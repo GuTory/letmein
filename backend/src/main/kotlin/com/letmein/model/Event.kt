@@ -3,10 +3,12 @@ package com.letmein.model
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.format.annotation.DateTimeFormat
+import java.time.LocalDate
+import java.time.Period
 import java.util.Date
 
 @Document("events")
-class Event (
+class Event(
     @Id
     private var Id: String? = null,
 
@@ -27,6 +29,11 @@ class Event (
     @DateTimeFormat(style = "yyyy-MM-dd hh:mm:ss")
     private var RegistrationDeadLine: Date,
 
+    private var DurationInHours: Period =
+        Period.between(
+            LocalDate.parse(StartDateTime.toString()),
+            LocalDate.parse(EndDatetime.toString())),
+
     private var RegistrationOpen: Boolean,
 
     private var Venue: String? = null,
@@ -37,7 +44,8 @@ class Event (
 
     private var Attendees: List<User>? = ArrayList(),
 
-) {
+    private var Organizers: List<User>? = ArrayList(),
+    ) {
 
     public fun Apply(user: User){
         //TODO
