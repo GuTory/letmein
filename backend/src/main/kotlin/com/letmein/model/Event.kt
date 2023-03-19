@@ -1,65 +1,56 @@
 package com.letmein.model
 
+import com.letmein.model.User
 import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDate
 import java.time.Period
 import java.util.Date
 
+//TODO: add picture field
 @Document("events")
-class Event(
+data class Event(
     @Id
-    private var Id: String? = null,
+    val Id: String,
 
-    private var Name: String,
-
-    @DateTimeFormat(style = "yyyy-MM-dd hh:mm:ss")
-    private var StartDateTime: Date,
+    var Name: String,
 
     @DateTimeFormat(style = "yyyy-MM-dd hh:mm:ss")
-    private var EndDatetime: Date,
+    var StartDateTime: Date,
 
     @DateTimeFormat(style = "yyyy-MM-dd hh:mm:ss")
-    private var EntranceStartTime: Date,
+    var EndDatetime: Date,
 
     @DateTimeFormat(style = "yyyy-MM-dd hh:mm:ss")
-    private var EntranceEndTime: Date,
+    var EntranceStartTime: Date,
 
     @DateTimeFormat(style = "yyyy-MM-dd hh:mm:ss")
-    private var RegistrationDeadLine: Date,
+    var EntranceEndTime: Date,
 
-    private var DurationInHours: Period =
-        Period.between(
-            LocalDate.parse(StartDateTime.toString()),
-            LocalDate.parse(EndDatetime.toString())),
+    @DateTimeFormat(style = "yyyy-MM-dd hh:mm:ss")
+    var RegistrationEndTime: Date,
 
-    private var RegistrationOpen: Boolean,
+    var Venue: String,
 
-    private var Venue: String? = null,
+    var Description: String,
 
-    private var Description: String? = null,
+    var AttendeeLimit: Int? = null,
 
-    private var AttendeeLimit: Int? = null,
+    @DBRef
+    var Attendees: List<User>,
 
-    private var Attendees: List<User>? = ArrayList(),
+    @DBRef
+    var Organizers: List<User>,
 
-    private var Organizers: List<User>? = ArrayList(),
-    ) {
+    var DurationInHours: Period = Period.between(
+        LocalDate.parse(StartDateTime.toString()),
+        LocalDate.parse(EndDatetime.toString())
+    ),
+) {
 
-    public fun Apply(user: User){
-        //TODO
-    }
-
-    public fun DeclineApplication(user: User){
-        //TODO
-    }
-
-    public fun CheckIn(user: User){
-        //TODO
-    }
-
-    public fun CheckOut(user: User){
-        //TODO
+    fun RegistrationOpen(): Boolean {
+        return Date().before(RegistrationEndTime)
     }
 }
