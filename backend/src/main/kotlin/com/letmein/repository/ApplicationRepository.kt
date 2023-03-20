@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface ApplicationRepository : MongoRepository<Application, String> {
-    //fun findByEvent(eventId: String): List<Application>
+    //fun findByEvent(eventId: String): Application
 
     //fun findByUser(userId: String): List<Application>
 

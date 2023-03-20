@@ -6,51 +6,45 @@ import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDate
+
 import java.time.Period
-import java.util.Date
 
 //TODO: add picture field
 @Document("events")
 data class Event(
-    @Id
-    val Id: String,
-
     var Name: String,
 
-    @DateTimeFormat(style = "yyyy-MM-dd hh:mm:ss")
-    var StartDateTime: Date,
+    var StartDateTime: LocalDate,
 
-    @DateTimeFormat(style = "yyyy-MM-dd hh:mm:ss")
-    var EndDatetime: Date,
+    var EndDatetime: LocalDate,
 
-    @DateTimeFormat(style = "yyyy-MM-dd hh:mm:ss")
-    var EntranceStartTime: Date,
+    var EntranceStartTime: LocalDate,
 
-    @DateTimeFormat(style = "yyyy-MM-dd hh:mm:ss")
-    var EntranceEndTime: Date,
+    var EntranceEndTime: LocalDate,
 
-    @DateTimeFormat(style = "yyyy-MM-dd hh:mm:ss")
-    var RegistrationEndTime: Date,
+    var RegistrationEndTime: LocalDate,
 
     var Venue: String,
 
     var Description: String,
 
-    var AttendeeLimit: Int? = null,
-
-    @DBRef
-    var Attendees: List<User>,
-
-    @DBRef
-    var Organizers: List<User>,
+    var AttendeeLimit: Int,
+) {
+    @Id
+    lateinit var Id: String
 
     var DurationInHours: Period = Period.between(
         LocalDate.parse(StartDateTime.toString()),
         LocalDate.parse(EndDatetime.toString())
-    ),
-) {
+    )
 
-    fun RegistrationOpen(): Boolean {
-        return Date().before(RegistrationEndTime)
+    @DBRef
+    var Attendees: List<User> = ArrayList()
+
+    @DBRef
+    var Organizers: List<User> = ArrayList()
+
+    fun CanRegister(): Boolean {
+        return (LocalDate.now() < RegistrationEndTime) && (Attendees.size < AttendeeLimit)
     }
 }

@@ -6,8 +6,6 @@ import org.springframework.data.mongodb.core.mapping.Document
 
 @Document("users")
 data class User (
-    @Id
-    var id: String,
 
     var Email: String,
 
@@ -20,16 +18,18 @@ data class User (
     var Company: String? = null,
 
     var Team: String? = null,
-
-    var Roles: List<String>,
-
-    @DBRef
-     var Applications: List<Application>,
-
-    @DBRef
-     var FavoriteEvents: List<Event>,
-
-    @DBRef
-     var AttendedEvents: List<Event>,
 ) {
+    @Id
+    lateinit var id: String
+
+    var Roles: List<String>? = null
+
+    @DBRef
+    var Applications: List<Application> = ArrayList()
+
+    @DBRef
+    var FavoriteEvents: List<Event>? = ArrayList()
+
+    @DBRef
+    var AttendedEvents: List<Event> = ArrayList()
 }

@@ -5,35 +5,36 @@ import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.data.mongodb.core.mapping.Field
 import org.springframework.format.annotation.DateTimeFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.Date
 
 @Document(collection = "applications")
 data class Application(
-    @Id
-    private var Id: String,
 
     @DBRef
-    private val Event: Event,
+    var Event: Event,
 
     @DBRef
-    private val User: User,
+    var User: User,
 
     //TODO: status enum
-    private var Status: String,
+    var Status: String,
 
     //TODO: payment method enum
-    private var PaymentMethod: String,
+    var PaymentMethod: String,
 ) {
 
-    @Field("application_id")
-    private lateinit var applicationId: String
+    @Id
+    lateinit var Id: String
 
-    @DateTimeFormat(style = "yyyy-MM-dd hh:mm:ss")
-    private val ApplicationDate: Date = Date()
+    var ApplicationDate: LocalDateTime = LocalDateTime.now()
 
-    private val EventName: String = Event.Name
+    var EventName: String = Event.Name
 
     init {
-        User.Applications += this
+        User.Applications?.plus(this)
+        if(Event.CanRegister())
+            Event.Attendees?.plus(this)
     }
 }

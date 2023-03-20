@@ -3,6 +3,7 @@ package com.letmein.service
 import com.letmein.repository.ApplicationRepository
 import org.springframework.stereotype.Service
 
+@Service
 class ApplicationService(
     private val applicationRepository: ApplicationRepository
 ){
