@@ -1,5 +1,7 @@
 package com.letmein.service
 
+import com.letmein.model.Event
+import com.letmein.model.User
 import com.letmein.repository.ApplicationRepository
 import org.springframework.stereotype.Service
 
@@ -11,10 +13,9 @@ class ApplicationService(
 
     fun getApplicationById(id: String) = applicationRepository.findById(id)
 
-    //fun getApplicationsByEventId(eventId: String) = applicationRepository.findByEvent(eventId)
+    fun getApplicationsByEvent(event: Event) = applicationRepository.findByEvent(event)
 
-    //fun getApplicationsByUserId(userId: String) = applicationRepository.findByUser(userId)
+    fun getApplicationsByUserId(user: User) = applicationRepository.findAllByUser(user)
 
-    //fun getApplicationsByEventName(eventName: String) = applicationRepository.findAllByEventNameContains(eventName)
-
+    fun getApplicationsByEventNameContains(eventName: String) = applicationRepository.findAllByEventNameContains(eventName)
 }
