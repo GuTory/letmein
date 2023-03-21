@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 class EventService (
     private val eventRepository: EventRepository
 ) {
-    fun deleteEvent(event: Event) = eventRepository.delete(event)
+    fun deleteEvent(id: String) = eventRepository.deleteById(id)
 
     fun saveEvent(event: Event) = eventRepository.save(event)
 
@@ -18,9 +18,9 @@ class EventService (
 
     fun getEventByName(eventName: String) = eventRepository.findByName(eventName)
 
-    fun getEventsByOrganizer(organizer: String) = eventRepository.findAllByOrganizersContains(organizer)
+    fun getAllEventsByOrganizer(organizer: String) = eventRepository.findAllByOrganizersContains(organizer)
 
-    fun getEventsByName(eventName: String) = eventRepository.findAllByNameContains(eventName)
+    fun getAllEventsByNameContains(eventName: String) = eventRepository.findAllByNameContains(eventName)
 
-    fun getEventsByVenue(venue: String) = eventRepository.findAllByVenueContains(venue)
+    fun getAllEventsByVenue(venue: String) = eventRepository.findAllByVenueContains(venue)
 }

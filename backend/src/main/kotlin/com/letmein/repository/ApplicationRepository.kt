@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface ApplicationRepository : MongoRepository<Application, String> {
-    fun findByEvent(event: Event): Application
+    fun findAllByEvent(event: Event): MutableList<Application>
 
-    fun findAllByUser(user: User): List<Application>
+    fun findAllByUser(user: User): MutableList<Application>
 
-    fun findAllByEventNameContains(eventName: String): List<Application>
+    fun findAllByEventNameContains(eventName: String): MutableList<Application>
 }

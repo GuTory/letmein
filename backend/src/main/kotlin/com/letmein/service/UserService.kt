@@ -10,7 +10,7 @@ class UserService (
 ){
     fun saveUser(user: User) = userRepository.save(user)
 
-    fun deleteUser(user: User) = userRepository.delete(user)
+    fun deleteUser(id: String) = userRepository.deleteById(id)
 
     fun getAllUsers() = userRepository.findAll()
 
@@ -18,7 +18,7 @@ class UserService (
 
     fun getUserByEmail(email: String) = userRepository.findByEmail(email)
 
-    fun getUsersByTeam(team: String) = userRepository.findAllByTeam(team)
+    fun getAllUsersByTeam(team: String) = userRepository.findAllByTeam(team)
 
-    fun getUsersByCompany(company: String) = userRepository.findAllByCompany(company)
+    fun getAllUsersByCompany(company: String) = userRepository.findAllByCompany(company)
 }

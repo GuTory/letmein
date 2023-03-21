@@ -20,57 +20,34 @@ class UserController (
 ) {
     //TODO: DTO? MODEL? WHAT?
     @PostMapping("/")
-    fun saveUser(user: User) : ResponseEntity<User> {
-        userService.saveUser(user)
-        return ResponseEntity(user, HttpStatus.CREATED)
-    }
+    fun saveUser(user: User) : ResponseEntity<User> = ResponseEntity(userService.saveUser(user), HttpStatus.CREATED)
 
     @PutMapping("/")
-    fun updateUser(user: User) : ResponseEntity<User>{
-        userService.saveUser(user)
-        return ResponseEntity(user, HttpStatus.OK)
-    }
+    fun updateUser(user: User) : ResponseEntity<User> = ResponseEntity(userService.saveUser(user), HttpStatus.OK)
 
     @DeleteMapping("/{id}")
-    fun deleteUser(
-        @PathVariable id: String
-    ): ResponseEntity<Unit> {
-        userService.getUserById(id).ifPresent {
-            userService.deleteUser(it)
-        }
+    fun deleteUser(@PathVariable id: String): ResponseEntity<Unit> {
+        userService.deleteUser(id)
         return ResponseEntity(HttpStatus.NO_CONTENT)
     }
 
     @GetMapping("/")
-    fun getUsers(): List<User> {
-        return userService.getAllUsers()
-    }
+    fun getUsers(): List<User> = userService.getAllUsers()
+
 
     @GetMapping("/{id}")
-    fun getUserById(
-        @PathVariable id: String
-    ): Optional<User> {
-        return userService.getUserById(id)
-    }
+    fun getUserById(@PathVariable id: String): Optional<User> = userService.getUserById(id)
+
 
     @GetMapping("/email/{email}")
-    fun getUserByEmail(
-        @PathVariable email: String
-    ): Optional<User> {
-        return userService.getUserByEmail(email)
-    }
+    fun getUserByEmail(@PathVariable email: String): Optional<User> = userService.getUserByEmail(email)
+
 
     @GetMapping("/team/{team}")
-    fun getUsersByTeam(
-        @PathVariable team: String
-    ): List<User> {
-        return userService.getUsersByTeam(team)
-    }
+    fun getUsersByTeam(@PathVariable team: String): List<User> = userService.getAllUsersByTeam(team)
+
 
     @GetMapping("/company/{company}")
-    fun getUsersByCompany(
-        @PathVariable company: String
-    ): List<User> {
-        return userService.getUsersByCompany(company)
-    }
+    fun getUsersByCompany(@PathVariable company: String): List<User> = userService.getAllUsersByCompany(company)
+
 }
