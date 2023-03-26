@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -35,17 +36,14 @@ class EventController (
     @GetMapping("/{id}")
     fun getEventById(@PathVariable id: String) = eventService.getEventById(id)
 
-    @GetMapping("/name/{name}")
-    fun getEventByName(@PathVariable name: String) = eventService.getEventByName(name)
+    @GetMapping("/name")
+    fun getEventByName(@RequestParam name: String) = eventService.getEventByName(name)
 
-    @GetMapping("/organizer/{organizer}")
-    fun getAllEventsByOrganizer(@PathVariable organizer: String) = eventService.getAllEventsByOrganizer(organizer)
+    @GetMapping("/organizer")
+    fun getAllEventsByOrganizer(@RequestParam organizer: String) = eventService.getAllEventsByOrganizer(organizer)
 
-    @GetMapping("/namecontains/{name}")
-    fun getAllEventsByNameContains(@PathVariable name: String) = eventService.getAllEventsByNameContains(name)
-
-    @GetMapping("/venue/{venue}")
-    fun getAllEventsByVenue(@PathVariable venue: String) = eventService.getAllEventsByVenue(venue)
+    @GetMapping("/venue")
+    fun getAllEventsByVenue(@RequestParam venue: String) = eventService.getAllEventsByVenue(venue)
 
     //TODO: megnézni, hogy a querybe hogyan kell helyesen paraméterezni, mert ezek átfedhetnek
 }

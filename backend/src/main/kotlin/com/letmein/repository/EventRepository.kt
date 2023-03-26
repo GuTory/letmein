@@ -8,8 +8,6 @@ import org.springframework.stereotype.Repository
 interface EventRepository : MongoRepository<Event, String> {
     fun findByName(eventName: String): Event
 
-    fun findAllByNameContains(eventName: String): List<Event>
-
     fun findAllByVenueContains(venue: String): List<Event>
 
     fun findAllByOrganizersContains(organizer: String): List<Event>

@@ -20,7 +20,5 @@ class EventService (
 
     fun getAllEventsByOrganizer(organizer: String) = eventRepository.findAllByOrganizersContains(organizer)
 
-    fun getAllEventsByNameContains(eventName: String) = eventRepository.findAllByNameContains(eventName)
-
     fun getAllEventsByVenue(venue: String) = eventRepository.findAllByVenueContains(venue)
 }
