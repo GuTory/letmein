@@ -20,10 +20,10 @@ class EventController (
     private val eventService: EventService
 ){
     @PostMapping("/")
-    fun createEvent(event: Event) = ResponseEntity(eventService.saveEvent(event), HttpStatus.CREATED)
+    fun createEvent(@ModelAttribute event: Event) = ResponseEntity(eventService.saveEvent(event), HttpStatus.CREATED)
 
     @PutMapping("/")
-    fun updateEvent(event: Event) = ResponseEntity(eventService.saveEvent(event), HttpStatus.OK)
+    fun updateEvent(@ModelAttribute event: Event) = ResponseEntity(eventService.saveEvent(event), HttpStatus.OK)
 
     @DeleteMapping("/{id}")
     fun deleteEvent(@PathVariable id: String): ResponseEntity<Unit> {
