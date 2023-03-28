@@ -29,15 +29,15 @@ class ApplicationController (
     fun getAllapplications() = applicationService.getAllApplications()
 
     @GetMapping("/{id}")
-    fun getapplicationsById(id: String) = applicationService.getApplicationById(id)
+    fun getApplicationById(@PathVariable id: String) = applicationService.getApplicationById(id)
 
     @GetMapping("/event")
-    fun getAllApplicationsyEvent(@RequestParam event: Event) = applicationService.getAllApplicationsByEvent(event)
+    fun getAllApplicationsyEvent(@ModelAttribute event: Event) = applicationService.getAllApplicationsByEvent(event)
 
     @GetMapping("/user")
-    fun getAllApplicationsyUser(user: User) = applicationService.getAllApplicationsByUser(user)
+    fun getAllApplicationsyUser(@ModelAttribute user: User) = applicationService.getAllApplicationsByUser(user)
 
     @GetMapping("/eventname")
-    fun getAllApplicationsByEventNameContains(@RequestParam eventName: String) = applicationService.getAllApplicationsByEventNameContains(eventName)
+    fun getAllApplicationsByEventNameContains(@ModelAttribute eventName: String) = applicationService.getAllApplicationsByEventNameContains(eventName)
 
 }

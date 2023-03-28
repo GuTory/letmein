@@ -12,12 +12,11 @@ import java.util.*
 class UserController (
     private val userService: UserService
 ) {
-    //TODO: DTO? MODEL? WHAT?
     @PostMapping("/")
-    fun saveUser(user: User) : ResponseEntity<User> = ResponseEntity(userService.saveUser(user), HttpStatus.CREATED)
+    fun saveUser(@ModelAttribute user: User) : ResponseEntity<User> = ResponseEntity(userService.saveUser(user), HttpStatus.CREATED)
 
     @PutMapping("/")
-    fun updateUser(user: User) : ResponseEntity<User> = ResponseEntity(userService.saveUser(user), HttpStatus.OK)
+    fun updateUser(@ModelAttribute user: User) : ResponseEntity<User> = ResponseEntity(userService.saveUser(user), HttpStatus.OK)
 
     @DeleteMapping("/{id}")
     fun deleteUser(@PathVariable id: String): ResponseEntity<Unit> {
@@ -35,8 +34,8 @@ class UserController (
     fun getUserByEmail(@PathVariable email: String): Optional<User> = userService.getUserByEmail(email)
 
     @GetMapping("/team")
-    fun getUsersByTeam(@RequestParam team: String): List<User> = userService.getAllUsersByTeam(team)
+    fun getAllUsersByTeam(@ModelAttribute team: String): List<User> = userService.getAllUsersByTeam(team)
 
     @GetMapping("/company")
-    fun getUsersByCompany(@RequestParam company: String): List<User> = userService.getAllUsersByCompany(company)
+    fun getAllUsersByCompany(@ModelAttribute company: String): List<User> = userService.getAllUsersByCompany(company)
 }
