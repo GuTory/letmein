@@ -3,13 +3,14 @@ import { Observable } from 'rxjs';
 import { Application } from '../model/application';
 import { ApplicationServiceInterface } from './interfaces/application';
 import { HttpClient } from '@angular/common/http';
+import {environment} from "../../environments/environment.development";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApplicationService implements ApplicationServiceInterface {
 
-  baseUrl = "http:localhost:8080/api/applications"
+  baseUrl = environment.applicationUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -25,7 +26,7 @@ export class ApplicationService implements ApplicationServiceInterface {
     this.http.delete(this.baseUrl + "/" + id);
    }
 
-  getApplications(): Observable<Application[]> { 
+  getApplications(): Observable<Application[]> {
     return this.http.get<Application[]>(this.baseUrl + "/");
   }
 

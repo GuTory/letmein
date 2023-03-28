@@ -2,6 +2,8 @@ import { Observable } from "rxjs";
 
 export interface EventServiceInterface {
 
+    baseUrl: string;
+
     saveEvent(event: Event): void;
 
     updateEvent(event: Event): void;

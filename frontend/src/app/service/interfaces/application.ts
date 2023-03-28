@@ -3,6 +3,8 @@ import { Application } from "src/app/model/application";
 import { User } from "src/app/model/user";
 
 export interface ApplicationServiceInterface {
+
+    baseUrl: string;
     saveApplication(application: Application): void;
 
     updateApplication(application: Application): void;
@@ -12,7 +14,7 @@ export interface ApplicationServiceInterface {
     getApplications(): Observable<Application[]>;
 
     getApplicationById(id: string): Observable<Application>;
-    
+
     getAllApplcationsByEvent(event: string): Observable<Application[]>;
 
     getAllApplicationsByUser(user: string): Observable<Application[]>;

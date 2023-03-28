@@ -2,6 +2,8 @@ import { Observable } from "rxjs";
 import { User } from "src/app/model/user";
 
 export interface UserServiceInterface {
+
+    baseUrl: string;
     saveUser(user: User): void;
 
     updateUser(user: User): void;
