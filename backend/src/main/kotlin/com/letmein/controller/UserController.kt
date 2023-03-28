@@ -33,9 +33,9 @@ class UserController (
     @GetMapping("/email/{email}")
     fun getUserByEmail(@PathVariable email: String): Optional<User> = userService.getUserByEmail(email)
 
-    @GetMapping("/team")
-    fun getAllUsersByTeam(@ModelAttribute team: String): List<User> = userService.getAllUsersByTeam(team)
+    @GetMapping("/team/{team}")
+    fun getAllUsersByTeam(@PathVariable team: String): List<User> = userService.getAllUsersByTeam(team)
 
-    @GetMapping("/company")
-    fun getAllUsersByCompany(@ModelAttribute company: String): List<User> = userService.getAllUsersByCompany(company)
+    @GetMapping("/company/{company}")
+    fun getAllUsersByCompany(@PathVariable company: String): List<User> = userService.getAllUsersByCompany(company)
 }

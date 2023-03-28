@@ -37,7 +37,7 @@ class ApplicationController (
     @GetMapping("/user")
     fun getAllApplicationsyUser(@ModelAttribute user: User) = applicationService.getAllApplicationsByUser(user)
 
-    @GetMapping("/eventname")
-    fun getAllApplicationsByEventNameContains(@ModelAttribute eventName: String) = applicationService.getAllApplicationsByEventNameContains(eventName)
+    @GetMapping("/eventname/{eventName}")
+    fun getAllApplicationsByEventNameContains(@PathVariable eventName: String) = applicationService.getAllApplicationsByEventNameContains(eventName)
 
 }
