@@ -8,13 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { EventComponent } from './components/event/event.component';
 import { UserComponent } from './components/user/user.component';
 import { ApplicationComponent } from './components/application/application.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventComponent,
     UserComponent,
-    ApplicationComponent
+    ApplicationComponent,
+    NavbarComponent
   ],
     imports: [
         BrowserModule,

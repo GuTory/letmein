@@ -4,16 +4,16 @@ import { Event } from "./event";
 export interface User{
     Id: string
 
-    Email: string
-    
+    email: string
+
     Password: string | null
 
     FirstName: string
-    
+
     LastName: string
-    
+
     Company: string | null
-    
+
     Team: string | null
 
     Roles: Array<string>
