@@ -4,9 +4,10 @@ import { User } from "src/app/model/user";
 export interface UserServiceInterface {
 
     baseUrl: string;
-    saveUser(user: User): void;
+    
+    saveUser(user: User): Observable<User>;
 
-    updateUser(user: User): void;
+    updateUser(user: User): Observable<User>;
 
     deleteUser(id: string): void;
 

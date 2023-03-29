@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/model/user';
-import { UserServiceInterface } from './interfaces/user';
-import {environment} from "../../environments/environment.development";
+import { UserServiceInterface } from './user';
+import {environment} from "../../../environments/environment.development";
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +14,12 @@ export class UserService implements UserServiceInterface {
 
   constructor(private http: HttpClient) { }
 
-  saveUser(user: User){
-    this.http.post(this.baseUrl + "/", user);
+  saveUser(user: User): Observable<User> {
+    return this.http.post<User>(this.baseUrl + "/", user);
   }
 
-  updateUser(user: User){
-    this.http.put(this.baseUrl + "/", user);
+  updateUser(user: User): Observable<User> {
+    return this.http.put<User>(this.baseUrl + "/", user);
   }
 
   deleteUser(id: string){
