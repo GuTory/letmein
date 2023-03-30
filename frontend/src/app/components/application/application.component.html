@@ -1,1 +1,5 @@
-<p>application works!</p>
+<section *ngFor="let application of applications">
+    <div>
+        {{application.id}}, {{application.status}}
+    </div>
+</section>
