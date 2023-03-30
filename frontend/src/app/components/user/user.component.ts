@@ -11,20 +11,14 @@ export class UserComponent implements OnInit {
 
     users: User[] = [];
 
-    constructor(private userService: UserService) {
-    }
+    constructor(private userService: UserService) {}
 
     ngOnInit(): void {
         this.getUsers();
     }
 
     saveUser(user: User): void {
-        this.userService.saveUser(user).subscribe((user: User) => {
-                this.users.push(user);
-            },
-            (err: Error) => {
-                console.log("Error saving user");
-            });
+        this.userService.saveUser(user);
     }
 
     updateUser(user: User): void {

@@ -2,25 +2,25 @@ import { Application } from "./application";
 import { Event } from "./event";
 
 export interface User{
-    Id: string
+    id: string
 
     email: string
 
-    Password: string | null
+    password: string | null
 
-    FirstName: string
+    firstName: string
 
-    LastName: string
+    lastName: string
 
-    Company: string | null
+    company: string | null
 
-    Team: string | null
+    team: string | null
 
-    Roles: Array<string>
+    roles: Array<string>
 
-    Appications: Array<Application>;
+    appications: Array<Application>;
 
-    FavoriteEvents: Array<Event>;
+    favoriteEvents: Array<Event>;
 
-    AttendedEvents: Array<Event>;
+    attendedEvents: Array<Event>;
 }

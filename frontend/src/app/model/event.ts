@@ -1,27 +1,27 @@
 import { User } from "./user";
 
 export interface Event{
-    Id: string
+    id: string
 
-    Name: string
+    name: string
 
-    StartDateTime: Date
+    startDateTime: Date
 
-    EndDatetime: Date
+    endDatetime: Date
 
-    EntranceStartTime: Date
+    entranceStartTime: Date
 
-    EntranceEndTime: Date
+    entranceEndTime: Date
 
-    RegistrationEndTime: Date
+    registrationEndTime: Date
 
-    Venue: String
+    venue: String
 
-    Description: String
+    description: String
 
-    AttendeeLimit: Number
+    attendeeLimit: Number
 
-    Attendees: Array<User>
+    attendees: Array<User>
 
-    Organizers: Array<User>
+    organizers: Array<User>
 }

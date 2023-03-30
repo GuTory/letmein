@@ -1,4 +1,5 @@
 import { Observable } from "rxjs";
+import { Event } from "../../model/event";
 
 export interface EventServiceInterface {
 

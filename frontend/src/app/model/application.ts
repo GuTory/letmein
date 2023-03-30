@@ -1,13 +1,13 @@
 import { User } from './user';
 
 export interface Application {
-    Id: string;
+    id: string;
 
-    Status: string;
+    status: string;
 
-    PaymentMethod: string;
+    paymentMethod: string;
 
-    User: User;
+    user: User;
 
-    Event: Event;
+    event: Event;
 }
