@@ -9,6 +9,12 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Date
 
+enum class Status(val value: String) {
+    PENDING ("Pending"),
+    APPROVED ("Approved"),
+    REJECTED ("Rejected")
+}
+
 @Document(collection = "applications")
 data class Application(
 
@@ -18,10 +24,8 @@ data class Application(
     @DBRef
     var User: User,
 
-    //TODO: status enum
     var Status: String,
 
-    //TODO: payment method enum
     var PaymentMethod: String,
 ) {
 
@@ -33,8 +37,8 @@ data class Application(
     var EventName: String = Event.Name
 
     init {
-        User.Applications?.plus(this)
+        User.Applications.plus(this)
         if(Event.CanRegister())
-            Event.Attendees?.plus(this)
+            Event.Attendees.plus(this)
     }
 }

@@ -38,11 +38,11 @@ data class Event(
         LocalDate.parse(EndDatetime.toString())
     )
 
-    @DBRef
-    var Attendees: List<User> = ArrayList()
+    @DBRef(lazy = true)
+    var Attendees: MutableList<User> = ArrayList()
 
-    @DBRef
-    var Organizers: List<User> = ArrayList()
+    @DBRef(lazy = true)
+    var Organizers: MutableList<User> = ArrayList()
 
     fun CanRegister(): Boolean {
         return (LocalDate.now() < RegistrationEndTime) && (Attendees.size < AttendeeLimit)

@@ -9,7 +9,7 @@ data class User (
 
     var Email: String,
 
-    var FirsName: String,
+    var FirstName: String,
 
     var LastName: String,
 
@@ -22,14 +22,14 @@ data class User (
     @Id
     lateinit var id: String
 
-    var Roles: List<String>? = null
+    var Roles: MutableList<String>? = null
 
-    @DBRef
-    var Applications: List<Application> = ArrayList()
+    @DBRef(lazy = true)
+    var Applications: MutableList<Application> = ArrayList()
 
-    @DBRef
-    var FavoriteEvents: List<Event>? = ArrayList()
+    @DBRef(lazy = true)
+    var FavoriteEvents: MutableList<Event>? = ArrayList()
 
-    @DBRef
-    var AttendedEvents: List<Event> = ArrayList()
+    @DBRef(lazy = true)
+    var AttendedEvents: MutableList<Event> = ArrayList()
 }

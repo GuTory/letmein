@@ -1,7 +1,8 @@
-import { Application } from "./application";
-import { Event } from "./event";
+import {Application} from "./application";
+import {Event} from "./event";
+import {Injectable} from "@angular/core";
 
-export interface User{
+export interface User {
     id: string
 
     email: string
@@ -18,7 +19,7 @@ export interface User{
 
     roles: Array<string>
 
-    appications: Array<Application>;
+    applications: Array<Application>;
 
     favoriteEvents: Array<Event>;
 

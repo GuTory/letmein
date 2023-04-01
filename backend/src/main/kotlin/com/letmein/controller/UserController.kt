@@ -13,6 +13,7 @@ import java.util.*
 class UserController (
     private val userService: UserService
 ) {
+
     @PostMapping("/")
     fun saveUser(@ModelAttribute user: User) : ResponseEntity<User> = ResponseEntity(userService.saveUser(user), HttpStatus.CREATED)
 
@@ -26,7 +27,7 @@ class UserController (
     }
 
     @GetMapping("/")
-    fun getUsers(): List<User> = userService.getAllUsers()
+    fun getUsers(): MutableList<User> = userService.getAllUsers()
 
     @GetMapping("/{id}")
     fun getUserById(@PathVariable id: String): Optional<User> = userService.getUserById(id)

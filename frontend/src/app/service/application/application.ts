@@ -1,9 +1,10 @@
-import { Observable } from "rxjs";
-import { Application } from "src/app/model/application";
+import {Observable} from "rxjs";
+import {Application} from "src/app/model/application";
 
 export interface ApplicationServiceInterface {
 
     baseUrl: string;
+
     saveApplication(application: Application): void;
 
     updateApplication(application: Application): void;
