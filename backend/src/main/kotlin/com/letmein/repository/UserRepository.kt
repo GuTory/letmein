@@ -7,6 +7,7 @@ import java.util.*
 
 @Repository
 interface UserRepository : MongoRepository<User, String> {
+
     fun findByEmail(email: String): Optional<User>
 
     fun findAllByTeam(team: String): MutableList<User>

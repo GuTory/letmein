@@ -3,17 +3,7 @@ package com.letmein.model
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
-import org.springframework.data.mongodb.core.mapping.Field
-import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.Date
-
-enum class Status(val value: String) {
-    PENDING ("Pending"),
-    APPROVED ("Approved"),
-    REJECTED ("Rejected")
-}
 
 @Document(collection = "applications")
 data class Application(
@@ -37,7 +27,7 @@ data class Application(
     var EventName: String = Event.Name
 
     init {
-        User.Applications.plus(this)
+        User.applications.plus(this)
         if(Event.CanRegister())
             Event.Attendees.plus(this)
     }
