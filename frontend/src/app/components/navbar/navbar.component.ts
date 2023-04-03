@@ -9,9 +9,10 @@ export class NavbarComponent {
 
     imgageSource = 'assets/images/logo.png';
 
-    refs = [
-        'Explore', 'Applications', 'Create Event'
-    ];
+    references = {
+        name: ["Explore", "Applications", "Create Event", "Social"],
+        link: ["/events", "/applications", "/newevent", "/users"]
+    }
 
     constructor(){}
 

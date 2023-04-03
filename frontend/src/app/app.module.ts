@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,16 +12,21 @@ import { UserComponent } from './components/user/user.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { EventcontainerComponent } from './components/eventcontainer/eventcontainer.component';
+import { RouterModule } from '@angular/router';
+import { UserPageComponent } from './components/user-page/user-page.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventComponent,
-      UsercontainerComponent,
+    UsercontainerComponent,
     ApplicationComponent,
     NavbarComponent,
     UserComponent,
     EventcontainerComponent,
+    UserPageComponent,
+    FooterComponent,
   ],
     imports: [
         BrowserModule,
@@ -30,7 +34,11 @@ import { EventcontainerComponent } from './components/eventcontainer/eventcontai
         BrowserAnimationsModule,
         HttpClientModule,
         MatCardModule,
-        MatGridListModule
+        MatGridListModule,
+        RouterModule.forRoot([
+          {path: '', component: AppComponent},
+          {path: 'users', component: UserPageComponent},
+        ])
     ],
   providers: [],
   bootstrap: [AppComponent]
