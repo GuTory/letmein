@@ -1,33 +1,33 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './components/app/app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-import { EventComponent } from './components/event/event.component';
-import { UsercontainerComponent } from './components/usercontainer/usercontainer.component';
-import { ApplicationComponent } from './components/application/application.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { UserComponent } from './components/user/user.component';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './components/app/app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http';
+import {EventComponent} from './components/event/event.component';
+import {UsercontainerComponent} from './components/usercontainer/usercontainer.component';
+import {ApplicationComponent} from './components/application/application.component';
+import {NavbarComponent} from './components/navbar/navbar.component';
+import {UserComponent} from './components/user/user.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
-import { EventcontainerComponent } from './components/eventcontainer/eventcontainer.component';
-import { RouterModule } from '@angular/router';
-import { UserPageComponent } from './components/user-page/user-page.component';
-import { FooterComponent } from './components/footer/footer.component';
+import {EventcontainerComponent} from './components/eventcontainer/eventcontainer.component';
+import {RouterModule} from '@angular/router';
+import {UserPageComponent} from './components/user-page/user-page.component';
+import {FooterComponent} from './components/footer/footer.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    EventComponent,
-    UsercontainerComponent,
-    ApplicationComponent,
-    NavbarComponent,
-    UserComponent,
-    EventcontainerComponent,
-    UserPageComponent,
-    FooterComponent,
-  ],
+    declarations: [
+        AppComponent,
+        EventComponent,
+        UsercontainerComponent,
+        ApplicationComponent,
+        NavbarComponent,
+        UserComponent,
+        EventcontainerComponent,
+        UserPageComponent,
+        FooterComponent,
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -35,12 +35,10 @@ import { FooterComponent } from './components/footer/footer.component';
         HttpClientModule,
         MatCardModule,
         MatGridListModule,
-        RouterModule.forRoot([
-          {path: '', component: AppComponent},
-          {path: 'users', component: UserPageComponent},
-        ])
+        RouterModule
     ],
-  providers: [],
-  bootstrap: [AppComponent]
+    providers: [],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
