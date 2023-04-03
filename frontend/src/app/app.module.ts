@@ -6,21 +6,23 @@ import { AppComponent } from './components/app/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { EventComponent } from './components/event/event.component';
-import { UserContainerComponent } from './components/usercontainer/user.container.component';
+import { UsercontainerComponent } from './components/usercontainer/usercontainer.component';
 import { ApplicationComponent } from './components/application/application.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserComponent } from './components/user/user.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { EventcontainerComponent } from './components/eventcontainer/eventcontainer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventComponent,
-      UserContainerComponent,
+      UsercontainerComponent,
     ApplicationComponent,
     NavbarComponent,
     UserComponent,
+    EventcontainerComponent,
   ],
     imports: [
         BrowserModule,

@@ -7,7 +7,7 @@ export interface EventServiceInterface {
 
     saveEvent(event: Event): void;
 
-    updateEvent(event: Event): void;
+    updateEvent(event: Event): Observable<Event>;
 
     deleteEvent(id: string): void;
 

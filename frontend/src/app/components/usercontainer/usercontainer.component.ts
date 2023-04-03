@@ -4,10 +4,10 @@ import {UserService} from '../../service/user/user.service';
 
 @Component({
     selector: 'app-usercontainer',
-    templateUrl: './user.container.component.html',
-    styleUrls: ['./user.container.component.scss']
+    templateUrl: './usercontainer.component.html',
+    styleUrls: ['./usercontainer.component.scss']
 })
-export class UserContainerComponent implements OnInit {
+export class UsercontainerComponent implements OnInit {
 
     columns = 3;
 
@@ -27,7 +27,7 @@ export class UserContainerComponent implements OnInit {
         let index = this.users.indexOf(user);
         this.userService.updateUser(user).subscribe({
             next: (data) => {
-                return this.users[index] = data;
+                this.users[index] = data;
             },
             error: (err: Error) => {
                 console.log("Error updating usercontainer" + err);
@@ -42,7 +42,7 @@ export class UserContainerComponent implements OnInit {
                 index = this.users.indexOf(user);
         })
         this.userService.deleteUser(id);
-        this.users.splice(index, 0);
+        this.users.splice(index, 1);
         console.log("User deleted: " + id);
     }
 
