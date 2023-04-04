@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Routes } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,7 @@ export class NavbarComponent {
 
     references = {
         name: ["Explore", "Applications", "Create Event", "Social"],
-        link: ["/events", "/applications", "/newevent", "/users"]
+        link: ["/", "/applications", "/newevent", "/users"]
     }
 
     constructor(){}

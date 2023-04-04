@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {UserPageComponent} from "./components/user-page/user-page.component";
-import {AppComponent} from "./components/app/app.component";
+import { UsercontainerComponent } from './components/usercontainer/usercontainer.component';
+import { EventcontainerComponent } from './components/eventcontainer/eventcontainer.component';
 
 const routes: Routes = [
-    {path: 'users', component: UserPageComponent},
-    {path: '', component: AppComponent},
+    {path: 'users', component: UsercontainerComponent},
+    {path: '', component: EventcontainerComponent},
 ];
 
 @NgModule({

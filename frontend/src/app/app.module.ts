@@ -13,7 +13,6 @@ import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {EventcontainerComponent} from './components/eventcontainer/eventcontainer.component';
 import {RouterModule} from '@angular/router';
-import {UserPageComponent} from './components/user-page/user-page.component';
 import {FooterComponent} from './components/footer/footer.component';
 
 @NgModule({
@@ -25,8 +24,7 @@ import {FooterComponent} from './components/footer/footer.component';
         NavbarComponent,
         UserComponent,
         EventcontainerComponent,
-        UserPageComponent,
-        FooterComponent,
+        FooterComponent
     ],
     imports: [
         BrowserModule,
