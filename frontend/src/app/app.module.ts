@@ -14,6 +14,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {EventcontainerComponent} from './components/eventcontainer/eventcontainer.component';
 import {RouterModule} from '@angular/router';
 import {FooterComponent} from './components/footer/footer.component';
+import { ApplicationcontainerComponent } from './components/applicationcontainer/applicationcontainer.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import {FooterComponent} from './components/footer/footer.component';
         NavbarComponent,
         UserComponent,
         EventcontainerComponent,
-        FooterComponent
+        FooterComponent,
+        ApplicationcontainerComponent
     ],
     imports: [
         BrowserModule,

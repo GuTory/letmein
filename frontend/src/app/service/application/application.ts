@@ -7,9 +7,9 @@ export interface ApplicationServiceInterface {
 
     saveApplication(application: Application): void;
 
-    updateApplication(application: Application): void;
+    updateApplication(application: Application): Observable<Application>;
 
-    deleteApplication(id: string): void;
+    deleteApplication(id: string): Observable<Application>;
 
     getApplications(): Observable<Application[]>;
 

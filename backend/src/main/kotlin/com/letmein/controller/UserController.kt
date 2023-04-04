@@ -17,6 +17,10 @@ class UserController(
 
     @PostMapping("/")
     fun saveUser(@ModelAttribute user: User): ResponseEntity<User> {
+        val existingUser = userService.getUserByEmail(user.email);
+        if(existingUser.isPresent)
+            return ResponseEntity<User>(HttpStatus.CONFLICT)
+
         user.password = bCryptPasswordEncoder.encode(user.password)
         return ResponseEntity(userService.saveUser(user), HttpStatus.CREATED)
     }

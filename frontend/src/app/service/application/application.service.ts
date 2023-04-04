@@ -19,12 +19,12 @@ export class ApplicationService implements ApplicationServiceInterface {
         this.http.post(this.baseUrl + "/", application);
     }
 
-    updateApplication(application: Application): void {
-        this.http.put(this.baseUrl + "/", application);
+    updateApplication(application: Application): Observable<Application> {
+        return this.http.put<Application>(this.baseUrl + "/", application);
     }
 
-    deleteApplication(id: string): void {
-        this.http.delete(this.baseUrl + "/" + id);
+    deleteApplication(id: string): Observable<Application> {
+        return this.http.delete<Application>(this.baseUrl + "/" + id);
     }
 
     getApplications(): Observable<Application[]> {
