@@ -26,7 +26,31 @@ dokumentációját is olvastam. A következő oldalakon jártam legtöbbet:
 Alább látható, hogy melyik héten mivel foglalkoztam, a munkaórák hozzávatőlegesek, mivel a
 hét folyamán többször dolgoztam a projekten, nem egy huzamban, és nem stoppereltem.
 
-| Hét    | Téma                        | Munkaóra |
-|--------|-----------------------------|----------|
-| 1. hét | Backend frontend demó       | ~10      |
-| 2. hét | Valós projekt inicializálás | ~6       |
+## Harmadik hét
+
+A szorgalmi isőszak harmadik hetében nulladik lépésként elkészítettem az oldalak hozzávetőleges kívánt kinézetét,
+amely a következő linken látható:  https://www.figma.com/file/Bf7RQCnOzt670KTEID6SXJ/Let-Me-In?node-id=0%3A1&t=m4s82zSoIjp2yvHg-1
+Ezután elkezdtem a kódbázis implementálását. A fejlesztés folyamán törekszem majd a vertikális kivitelezésre, ami alatt azt értem,
+hogy egy microservice-t minden rétegen implementálok, nem a rétegeket építem egymás után. Ezelőtt viszont meg kellett teremteni
+az alkalmazás gerincét, így először a backenddel kezdtem.
+
+Először definiáltam a Model entitásokat, majd a Repository réteget, amely a Springnek köszönhetően futási időben generálódik.
+Utána következett a Szolgáltatási réteg, ami a generált függvényekre épít egy elérhető interfészt az alkalmazás többi részének.
+Ezután jöhetett az API végpontok definiálása, azaz a Controller csomag.
+
+Végül implementáltam az alkalmazásban, hogy kívülről is fogadjon hívásokat, jelenleg csak a localhost 4200-as portjáról.
+
+## Negyedik hét
+
+Bekötöttem az alkalmazásba a swaggert, így most már láthatóak és tesztelhetőek az endpointok Front endtől függetlenül.
+
+Elkezdtem a projekt második fő részével, az angular front enddel foglalkozni. Itt is először fel kell építeni az alapokat,
+utána jöhet a felület maga. Amint megvan ez a gerinc, utána szeretném a feature-öket bele tenni vertikálisan.
+
+| Hét    | Téma                             | Munkaóra |
+|--------|----------------------------------|----------|
+| 1. hét | Backend frontend demó            | ~10      |
+| 2. hét | Valós projekt inicializálás      | ~6       |
+| 3. hét | Figma mocupok és backend építése | ~12      |
+| 4. hét | Angular alapok                   | ~9       |
+

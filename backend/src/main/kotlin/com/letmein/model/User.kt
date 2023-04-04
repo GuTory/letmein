@@ -1,35 +1,72 @@
 package com.letmein.model
 
 import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.index.Indexed
 import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
+import org.springframework.data.mongodb.core.mapping.Field
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
 
 @Document("users")
-data class User (
+data class User(
 
-    var Email: String,
+    @Indexed(unique = true)
+    @Field("email")
+    var email: String,
 
-    var FirsName: String,
+    var firstName: String,
 
-    var LastName: String,
+    var lastName: String,
 
-    var Password: String? = null,
+    @get:JvmName("getPasswordGenerated")
+    var password: String = "",
 
-    var Company: String? = null,
+    var company: String? = null,
 
-    var Team: String? = null,
-) {
+    var team: String? = null,
+) : UserDetails {
+
     @Id
     lateinit var id: String
 
-    var Roles: List<String>? = null
+    var roles: MutableList<String> = mutableListOf()
 
-    @DBRef
-    var Applications: List<Application> = ArrayList()
+    @DBRef(lazy = true)
+    var applications: MutableList<Application> = mutableListOf()
 
-    @DBRef
-    var FavoriteEvents: List<Event>? = ArrayList()
+    @DBRef(lazy = true)
+    var favoriteEvents: MutableList<Event>? = mutableListOf()
 
-    @DBRef
-    var AttendedEvents: List<Event> = ArrayList()
+    @DBRef(lazy = true)
+    var attendedEvents: MutableList<Event> = mutableListOf()
+
+    override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
+        return roles.map { SimpleGrantedAuthority(it) }.toMutableList()
+    }
+
+    override fun getPassword(): String {
+        return password
+    }
+
+    override fun getUsername(): String {
+        return email
+    }
+
+    override fun isAccountNonExpired(): Boolean {
+        return true
+    }
+
+    override fun isAccountNonLocked(): Boolean {
+        return true
+    }
+
+    override fun isCredentialsNonExpired(): Boolean {
+        return true
+    }
+
+    override fun isEnabled(): Boolean {
+        return true
+    }
 }

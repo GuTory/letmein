@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDate
-
 import java.time.Period
 
 //TODO: add picture field
@@ -38,11 +37,11 @@ data class Event(
         LocalDate.parse(EndDatetime.toString())
     )
 
-    @DBRef
-    var Attendees: List<User> = ArrayList()
+    @DBRef(lazy = true)
+    var Attendees: MutableList<User> = ArrayList()
 
-    @DBRef
-    var Organizers: List<User> = ArrayList()
+    @DBRef(lazy = true)
+    var Organizers: MutableList<User> = ArrayList()
 
     fun CanRegister(): Boolean {
         return (LocalDate.now() < RegistrationEndTime) && (Attendees.size < AttendeeLimit)

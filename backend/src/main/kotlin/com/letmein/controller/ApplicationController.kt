@@ -14,10 +14,10 @@ class ApplicationController (
     private val applicationService: ApplicationService
 ){
     @PostMapping("/")
-    fun createApplication(application: Application) = ResponseEntity(applicationService.saveApplication(application), HttpStatus.CREATED)
+    fun createApplication(@ModelAttribute application: Application) = ResponseEntity(applicationService.saveApplication(application), HttpStatus.CREATED)
 
     @PutMapping("/")
-    fun updateApplication(application: Application) = ResponseEntity(applicationService.saveApplication(application), HttpStatus.OK)
+    fun updateApplication(@ModelAttribute application: Application) = ResponseEntity(applicationService.saveApplication(application), HttpStatus.OK)
 
     @DeleteMapping("/{id}")
     fun deleteApplication(@PathVariable id: String): ResponseEntity<Unit> {
@@ -29,15 +29,15 @@ class ApplicationController (
     fun getAllapplications() = applicationService.getAllApplications()
 
     @GetMapping("/{id}")
-    fun getapplicationsById(id: String) = applicationService.getApplicationById(id)
+    fun getApplicationById(@PathVariable id: String) = applicationService.getApplicationById(id)
 
     @GetMapping("/event")
-    fun getAllApplicationsyEvent(@RequestParam event: Event) = applicationService.getAllApplicationsByEvent(event)
+    fun getAllApplicationsyEvent(@ModelAttribute event: Event) = applicationService.getAllApplicationsByEvent(event)
 
     @GetMapping("/user")
-    fun getAllApplicationsyUser(user: User) = applicationService.getAllApplicationsByUser(user)
+    fun getAllApplicationsyUser(@ModelAttribute user: User) = applicationService.getAllApplicationsByUser(user)
 
-    @GetMapping("/eventname")
-    fun getAllApplicationsByEventNameContains(@RequestParam eventName: String) = applicationService.getAllApplicationsByEventNameContains(eventName)
+    @GetMapping("/eventname/{eventName}")
+    fun getAllApplicationsByEventNameContains(@PathVariable eventName: String) = applicationService.getAllApplicationsByEventNameContains(eventName)
 
 }

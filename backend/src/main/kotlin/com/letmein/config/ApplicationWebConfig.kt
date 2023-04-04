@@ -2,6 +2,9 @@ package com.letmein.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.security.config.annotation.web.builders.HttpSecurity
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.web.SecurityFilterChain
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.CorsConfigurationSource
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
@@ -28,6 +31,23 @@ class ApplicationWebConfig {
     }
 
     @Bean
+    fun filterChain(http: HttpSecurity): SecurityFilterChain {
+        return http.cors {
+            it.configurationSource(corsConfigurationSource())
+        }.authorizeRequests {
+            it.antMatchers("/swagger-ui/index.html#/").authenticated()
+            //    .anyRequest().authenticated()
+            //    .and().formLogin()
+        }.build()
+    }
+
+    @Bean
+    fun filterChainLogout(http: HttpSecurity): SecurityFilterChain {
+        http.logout()
+        return http.build()
+    }
+
+    @Bean
     fun api(): Docket? {
         return Docket(DocumentationType.SWAGGER_2)
             .select()
@@ -35,4 +55,7 @@ class ApplicationWebConfig {
             .paths(PathSelectors.any())
             .build()
     }
+
+    @Bean
+    fun passwordEncoder() = BCryptPasswordEncoder()
 }
