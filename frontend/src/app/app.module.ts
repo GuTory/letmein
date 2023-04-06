@@ -15,6 +15,7 @@ import {EventcontainerComponent} from './components/eventcontainer/eventcontaine
 import {RouterModule} from '@angular/router';
 import {FooterComponent} from './components/footer/footer.component';
 import { ApplicationcontainerComponent } from './components/applicationcontainer/applicationcontainer.component';
+import { EventFormComponent } from './components/event-form/event-form.component';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import { ApplicationcontainerComponent } from './components/applicationcontainer
         UserComponent,
         EventcontainerComponent,
         FooterComponent,
-        ApplicationcontainerComponent
+        ApplicationcontainerComponent,
+        EventFormComponent
     ],
     imports: [
         BrowserModule,

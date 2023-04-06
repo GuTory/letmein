@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Routes } from '@angular/router';
+import { PathMap } from 'src/app/app-routing.module';
 
 @Component({
   selector: 'app-navbar',
@@ -11,8 +11,16 @@ export class NavbarComponent {
     imgageSource = 'assets/images/logo.png';
 
     references = {
-        name: ["Explore", "Applications", "Create Event", "Social"],
-        link: ["/", "/applications", "/newevent", "/users"]
+        name: [
+          "Explore", 
+          "Applications", 
+          "Create Event", 
+          "Social"],
+        link: [ 
+          PathMap.basePath, 
+          PathMap.applicationsPath, 
+          PathMap.newEventPath, 
+          PathMap.usersPath]
     }
 
     constructor(){}

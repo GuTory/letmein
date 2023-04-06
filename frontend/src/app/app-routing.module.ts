@@ -4,10 +4,17 @@ import { UsercontainerComponent } from './components/usercontainer/usercontainer
 import { EventcontainerComponent } from './components/eventcontainer/eventcontainer.component';
 import { ApplicationcontainerComponent } from './components/applicationcontainer/applicationcontainer.component';
 
+export const PathMap = {
+    usersPath: 'users',
+    applicationsPath: 'applications',
+    basePath: '',
+    newEventPath: 'newevent'
+};
+
 const routes: Routes = [
-    {path: 'users', component: UsercontainerComponent},
-    {path: 'applications', component: ApplicationcontainerComponent},
-    {path: '', component: EventcontainerComponent},
+    {path: PathMap.usersPath, component: UsercontainerComponent},
+    {path: PathMap.applicationsPath, component: ApplicationcontainerComponent},
+    {path: PathMap.basePath, component: EventcontainerComponent},
 ];
 
 @NgModule({
