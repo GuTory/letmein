@@ -16,6 +16,9 @@ import {RouterModule} from '@angular/router';
 import {FooterComponent} from './components/footer/footer.component';
 import { ApplicationcontainerComponent } from './components/applicationcontainer/applicationcontainer.component';
 import { EventFormComponent } from './components/event-form/event-form.component';
+import { UserFormComponent } from './components/user-form/user-form.component';
+import {FormsModule} from "@angular/forms";
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 @NgModule({
     declarations: [
@@ -28,7 +31,9 @@ import { EventFormComponent } from './components/event-form/event-form.component
         EventcontainerComponent,
         FooterComponent,
         ApplicationcontainerComponent,
-        EventFormComponent
+        EventFormComponent,
+        UserFormComponent,
+        LoginFormComponent
     ],
     imports: [
         BrowserModule,
@@ -37,7 +42,8 @@ import { EventFormComponent } from './components/event-form/event-form.component
         HttpClientModule,
         MatCardModule,
         MatGridListModule,
-        RouterModule
+        RouterModule,
+        FormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

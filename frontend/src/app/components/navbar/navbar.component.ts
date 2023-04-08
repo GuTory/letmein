@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { PathMap } from 'src/app/app-routing.module';
+import {Component} from '@angular/core';
+import {PathMap} from 'src/app/app-routing.module';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
 
@@ -12,18 +12,22 @@ export class NavbarComponent {
 
     references = {
         name: [
-          "Explore", 
-          "Applications", 
-          "Create Event", 
-          "Social"],
-        link: [ 
-          PathMap.basePath, 
-          PathMap.applicationsPath, 
-          PathMap.newEventPath, 
-          PathMap.usersPath]
+            "Explore",
+            "Applications",
+            "Social",
+            "Create Event",
+            "Apply"],
+        link: [
+            PathMap.basePath,
+            PathMap.applicationsPath,
+            PathMap.usersPath,
+            PathMap.newEventPath,
+            PathMap.newApplicationPath]
     }
 
-    constructor(){}
+    constructor() {
+    }
 
 
+    protected readonly PathMap = PathMap;
 }

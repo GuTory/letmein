@@ -1,5 +1,5 @@
-<div class="p-10 gap-6 m-4 items-stretch justify-center max-w-screen-xl">
-    <div class="justify-center grid-cols-2"  *ngFor="let user of users">
+<div class="grid md:grid-cols-2 xl:grid-cols-3 p-10 gap-6 m-4 items-stretch justify-center">
+    <div class="justify-center"  *ngFor="let user of users">
         <app-user class="justify-center"  [user]="user"></app-user>
     </div>
 </div>
