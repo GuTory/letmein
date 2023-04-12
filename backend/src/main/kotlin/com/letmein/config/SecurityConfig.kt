@@ -3,6 +3,7 @@ package com.letmein.config
 import com.letmein.service.MyUserDetailsService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.AuthenticationProvider
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider
@@ -26,64 +27,32 @@ class SecurityConfig(
 ) {
 
     @Bean
-    fun corsConfigurationSource(): CorsConfigurationSource? {
-        val configuration = CorsConfiguration()
-        configuration.allowedOrigins = listOf("http://localhost:4200")
-        val source = UrlBasedCorsConfigurationSource()
-        source.registerCorsConfiguration("/**", configuration)
-        return source
-    }
-
-
-    @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
+        val corsConfig = CorsConfiguration()
+        corsConfig.allowedOrigins = listOf("http://localhost:4200")
+        corsConfig.addAllowedHeader("*")
+        corsConfig.addAllowedMethod(HttpMethod.GET)
+        corsConfig.addAllowedMethod(HttpMethod.PUT)
+        corsConfig.addAllowedMethod(HttpMethod.POST)
+        corsConfig.addAllowedMethod(HttpMethod.DELETE)
+        val source = UrlBasedCorsConfigurationSource()
+        source.registerCorsConfiguration("/**",corsConfig)
+
         return http
-            /*
-            .csrf()
-            .disable()
-
-             */
-            .cors {
-                it.configurationSource(corsConfigurationSource())
-            }
+            .csrf().disable()
+            .cors().configurationSource(source)
+            .and()
             .authorizeHttpRequests()
-            .antMatchers("/**")
-            .permitAll().and()
-            /*
-            .authorizeHttpRequests {
-                it.anyRequest()
-                    .authenticated()
-                    .and()
-                    .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                    .and()
-                    .authenticationProvider(authenticationProvider())
-                    .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter::class.java)
-            }
-
-             */
+            .anyRequest()
+            .authenticated()
+            .and()
+            .sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
+            .authenticationProvider(authenticationProvider())
+            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter::class.java)
             .build()
     }
-
-    /*
-    @Bean
-    fun filterChainLogout(http: HttpSecurity): SecurityFilterChain {
-        http.logout()
-        return http.build()
-    }
-
-     */
-
-    /*
-    @Bean
-    fun publicApi(): GroupedOpenApi? {
-        return GroupedOpenApi.builder()
-            .pathsToMatch("/**")
-            .build()
-    }
-
-     */
-     */
 
     @Bean
     fun authenticationProvider(): AuthenticationProvider {

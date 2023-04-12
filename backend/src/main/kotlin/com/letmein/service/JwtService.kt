@@ -24,7 +24,7 @@ class JwtService {
             .setSubject(userDetails.username)
             .setIssuedAt(Date(System.currentTimeMillis()))
             .setExpiration(Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
-            .signWith(SignatureAlgorithm.HS256, getSignInKey())
+            .signWith(getSignInKey(), SignatureAlgorithm.HS256)
             .compact()
     }
 
@@ -51,8 +51,9 @@ class JwtService {
     }
 
     private fun extractAllClaims(token: String): Claims {
-        return Jwts.parser()
+        return Jwts.parserBuilder()
             .setSigningKey(getSignInKey())
+            .build()
             .parseClaimsJws(token)
             .body
     }
