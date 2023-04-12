@@ -1,6 +1,5 @@
-package com.letmein.auth
+package com.letmein.dto
 
 class AuthenticationResponse(
     var token: String
-) {
-}
+)

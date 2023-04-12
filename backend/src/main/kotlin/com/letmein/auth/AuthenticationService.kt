@@ -1,39 +1,41 @@
-package com.letmein.service
+package com.letmein.auth
 
-import com.letmein.auth.AuthenticationResponse
-import com.letmein.auth.LoginRequestDTO
-import com.letmein.auth.RegistrationRequestDTO
+import com.letmein.dto.AuthenticationRequest
+import com.letmein.dto.AuthenticationResponse
+import com.letmein.dto.RegistrationRequest
 import com.letmein.model.User
+import com.letmein.service.JwtService
+import com.letmein.service.UserService
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
 class AuthenticationService(
     private val userService: UserService,
-    private val encoder: BCryptPasswordEncoder,
+    private val encoder: PasswordEncoder,
     private val jwtService: JwtService,
     private val authenticationManager: AuthenticationManager
 ) {
 
-    fun reginster(registartionRequest: RegistrationRequestDTO): AuthenticationResponse {
-        if(userService.getUserByEmail(registartionRequest.email).isPresent)
+    fun register(registrationRequest: RegistrationRequest): AuthenticationResponse {
+        if(userService.getUserByEmail(registrationRequest.email).isPresent)
             throw Exception("User already exists")
         val user = User(
-            email = registartionRequest.email,
-            password = encoder.encode(registartionRequest.password),
-            firstName = registartionRequest.firstName,
-            lastName = registartionRequest.lastName,
-            company = registartionRequest.company,
-            team = registartionRequest.team
+            email = registrationRequest.email,
+            password = encoder.encode(registrationRequest.password),
+            firstName = registrationRequest.firstName,
+            lastName = registrationRequest.lastName,
+            company = registrationRequest.company,
+            team = registrationRequest.team
         )
         user.roles.add("User")
         userService.saveUser(user)
         return AuthenticationResponse(jwtService.generateToken(user))
     }
 
-    fun login(loginRequest: LoginRequestDTO): AuthenticationResponse {
+    fun login(loginRequest: AuthenticationRequest): AuthenticationResponse {
         authenticationManager.authenticate(
             UsernamePasswordAuthenticationToken(
                 loginRequest.email,

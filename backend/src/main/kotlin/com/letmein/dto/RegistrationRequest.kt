@@ -1,6 +1,6 @@
-package com.letmein.auth
+package com.letmein.dto
 
-data class RegistrationRequestDTO(
+data class RegistrationRequest(
     var email: String,
     var firstName: String,
     var lastName: String,

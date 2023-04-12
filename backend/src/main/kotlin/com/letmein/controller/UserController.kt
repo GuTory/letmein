@@ -1,10 +1,12 @@
 package com.letmein.controller
 
+import com.letmein.dto.AuthenticationResponse
+import com.letmein.auth.AuthenticationService
+import com.letmein.dto.RegistrationRequest
 import com.letmein.model.User
 import com.letmein.service.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
@@ -12,25 +14,27 @@ import java.util.*
 @RequestMapping("api/users")
 class UserController(
     private val userService: UserService,
-    private val bCryptPasswordEncoder: BCryptPasswordEncoder
+    private val authenticationService: AuthenticationService
 ) {
 
     @PostMapping("/")
-    fun saveUser(@ModelAttribute user: User): ResponseEntity<User> {
-        val existingUser = userService.getUserByEmail(user.email);
-        if(existingUser.isPresent)
-            return ResponseEntity<User>(HttpStatus.CONFLICT)
-
-        return ResponseEntity(userService.saveUser(user), HttpStatus.CREATED)
+    fun saveUser(@ModelAttribute user: RegistrationRequest): ResponseEntity<AuthenticationResponse> {
+        return try {
+            val response = authenticationService.register(user)
+            ResponseEntity(response, HttpStatus.CREATED)
+        } catch (e: Exception) {
+            ResponseEntity(HttpStatus.CONFLICT)
+        }
     }
 
     @PutMapping("/")
     fun updateUser(@ModelAttribute user: User): ResponseEntity<User> {
-        val userFromDb = userService.getUserById(user.id)
-        if (userFromDb.isPresent && userFromDb.get().password != user.password) {
-            user.password = bCryptPasswordEncoder.encode(user.password)
+        return try {
+            userService.updateUser(user)
+            ResponseEntity(user, HttpStatus.OK)
+        } catch (e: Exception) {
+            ResponseEntity(HttpStatus.NOT_FOUND)
         }
-        return ResponseEntity(userService.saveUser(user), HttpStatus.OK)
     }
 
     @DeleteMapping("/{id}")
@@ -54,7 +58,7 @@ class UserController(
     @GetMapping("/email/{email}")
     fun getUserByEmail(@PathVariable email: String): ResponseEntity<User> {
         val userByEmail = userService.getUserByEmail(email)
-        return if (userByEmail.isPresent){
+        return if (userByEmail.isPresent) {
             ResponseEntity(userByEmail.get(), HttpStatus.OK)
         } else {
             ResponseEntity(HttpStatus.NOT_FOUND)
@@ -64,7 +68,7 @@ class UserController(
     @GetMapping("/team/{team}")
     fun getAllUsersByTeam(@PathVariable team: String): ResponseEntity<List<User>> {
         val usersByTeam = userService.getAllUsersByTeam(team)
-        return if(usersByTeam.isEmpty()){
+        return if (usersByTeam.isEmpty()) {
             return ResponseEntity(HttpStatus.NOT_FOUND)
         } else {
             ResponseEntity(usersByTeam, HttpStatus.OK)
@@ -74,7 +78,7 @@ class UserController(
     @GetMapping("/company/{company}")
     fun getAllUsersByCompany(@PathVariable company: String): ResponseEntity<List<User>> {
         val usersByCompany = userService.getAllUsersByCompany(company)
-        return if(usersByCompany.isEmpty()){
+        return if (usersByCompany.isEmpty()) {
             return ResponseEntity(HttpStatus.NOT_FOUND)
         } else {
             ResponseEntity(usersByCompany, HttpStatus.OK)

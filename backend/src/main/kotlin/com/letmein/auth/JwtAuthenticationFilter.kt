@@ -1,4 +1,4 @@
-package com.letmein.config
+package com.letmein.auth
 
 import com.letmein.service.JwtService
 import com.letmein.service.MyUserDetailsService
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse
 class JwtAuthenticationFilter(
     private val userDetailsService: MyUserDetailsService,
     private val jwtService: JwtService
-): OncePerRequestFilter() {
+) : OncePerRequestFilter() {
 
     override fun doFilterInternal(
         request: HttpServletRequest,
@@ -24,19 +24,28 @@ class JwtAuthenticationFilter(
     ) {
         val authHeader = request.getHeader("Authorization")
         val bearer = "Bearer "
-        if(authHeader != null && authHeader.startsWith(bearer)) {
-            val authToken = authHeader.substring(bearer.length)
-            val userEmail = jwtService.extractUserNameFromToken(authToken)
-            if (userEmail.isNotEmpty() && SecurityContextHolder.getContext().authentication == null) {
+        if (authHeader == null || !authHeader.startsWith(bearer)) {
+            filterChain.doFilter(request, response)
+            return
+        }
+        val authToken = authHeader.substring(bearer.length)
+        val userEmail = jwtService.extractUserNameFromToken(authToken)
+        if (!userEmail.isNullOrEmpty() && SecurityContextHolder.getContext().authentication == null) {
+            try {
                 val userDetails = userDetailsService.loadUserByUsername(userEmail)
-                if(jwtService.isTokenValid(authToken, userDetails)){
-                    val authorities = userDetails.authorities
-                    val authentication = UsernamePasswordAuthenticationToken(userEmail, null, authorities)
+                if (jwtService.isTokenValid(authToken, userDetails)) {
+                    val authentication = UsernamePasswordAuthenticationToken(
+                        userDetails,
+                        null,
+                        userDetails.authorities)
                     authentication.details = WebAuthenticationDetailsSource().buildDetails(request)
                     SecurityContextHolder.getContext().authentication = authentication
                 }
+            } catch (e: Exception) {
+                filterChain.doFilter(request, response)
+                return
             }
-            filterChain.doFilter(request, response)
         }
+        filterChain.doFilter(request, response)
     }
 }
