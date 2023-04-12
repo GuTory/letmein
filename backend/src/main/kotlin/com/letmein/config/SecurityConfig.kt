@@ -1,6 +1,6 @@
 package com.letmein.config
 
-import com.letmein.auth.JwtAuthenticationFilter
+import com.letmein.jwt.JwtAuthenticationFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod

@@ -1,4 +1,4 @@
-package com.letmein.service
+package com.letmein.jwt
 
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
