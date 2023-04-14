@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './components/app/app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {EventComponent} from './components/event/event.component';
 import {UsercontainerComponent} from './components/usercontainer/usercontainer.component';
 import {ApplicationComponent} from './components/application/application.component';
@@ -15,6 +15,11 @@ import {EventcontainerComponent} from './components/eventcontainer/eventcontaine
 import {RouterModule} from '@angular/router';
 import {FooterComponent} from './components/footer/footer.component';
 import { ApplicationcontainerComponent } from './components/applicationcontainer/applicationcontainer.component';
+import { EventFormComponent } from './components/event-form/event-form.component';
+import { UserFormComponent } from './components/user-form/user-form.component';
+import {FormsModule} from "@angular/forms";
+import { LoginFormComponent } from './components/login-form/login-form.component';
+import { HeaderInterceptor } from './auth/header.interceptor';
 
 @NgModule({
     declarations: [
@@ -26,7 +31,10 @@ import { ApplicationcontainerComponent } from './components/applicationcontainer
         UserComponent,
         EventcontainerComponent,
         FooterComponent,
-        ApplicationcontainerComponent
+        ApplicationcontainerComponent,
+        EventFormComponent,
+        UserFormComponent,
+        LoginFormComponent,
     ],
     imports: [
         BrowserModule,
@@ -35,9 +43,16 @@ import { ApplicationcontainerComponent } from './components/applicationcontainer
         HttpClientModule,
         MatCardModule,
         MatGridListModule,
-        RouterModule
+        RouterModule,
+        FormsModule
     ],
-    providers: [],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HeaderInterceptor,
+            multi: true
+        }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
