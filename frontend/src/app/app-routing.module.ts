@@ -23,7 +23,7 @@ const routes: Routes = [
     {path: PathMap.registerPath, component: UserFormComponent},
     {path: PathMap.newEventPath, component: EventFormComponent},
     //{path: PathMap.newApplicationPath, component: EventcontainerComponent}, //Rossz komponens
-    {path: PathMap.basePath, component: EventcontainerComponent},
+    {path: PathMap.basePath, component: LoginFormComponent},
     {path: PathMap.loginPath, component: LoginFormComponent},
     {path: '**', redirectTo: PathMap.basePath}
 ];

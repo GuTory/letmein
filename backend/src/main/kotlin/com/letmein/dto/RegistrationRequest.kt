@@ -6,5 +6,6 @@ data class RegistrationRequest(
     var lastName: String,
     var password: String,
     var company: String,
-    var team: String
+    var team: String,
+    var roles: List<String>
 )

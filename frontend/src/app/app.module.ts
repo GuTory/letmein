@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './components/app/app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {EventComponent} from './components/event/event.component';
 import {UsercontainerComponent} from './components/usercontainer/usercontainer.component';
 import {ApplicationComponent} from './components/application/application.component';
@@ -19,6 +19,7 @@ import { EventFormComponent } from './components/event-form/event-form.component
 import { UserFormComponent } from './components/user-form/user-form.component';
 import {FormsModule} from "@angular/forms";
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { HeaderInterceptor } from './auth/header.interceptor';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
         ApplicationcontainerComponent,
         EventFormComponent,
         UserFormComponent,
-        LoginFormComponent
+        LoginFormComponent,
     ],
     imports: [
         BrowserModule,
@@ -45,7 +46,13 @@ import { LoginFormComponent } from './components/login-form/login-form.component
         RouterModule,
         FormsModule
     ],
-    providers: [],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HeaderInterceptor,
+            multi: true
+        }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

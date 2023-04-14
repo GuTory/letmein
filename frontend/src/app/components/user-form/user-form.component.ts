@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import { User } from '../../model/user';
 import {UserService} from "../../service/user/user.service";
 import {NgForm} from "@angular/forms";
 import {PathMap} from "../../app-routing.module";
+import { RegistrationRequest } from 'src/app/auth/registrationrequest';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-user-form',
@@ -11,29 +12,39 @@ import {PathMap} from "../../app-routing.module";
 })
 export class UserFormComponent implements OnInit {
 
-    newUser: User;
+    newUser: RegistrationRequest;
 
-    constructor(private userService: UserService) {}
+    constructor(
+        private authService: AuthService
+    ) {}
 
     ngOnInit(): void {
         this.newUser = {
-            id: '',
             email: '',
             password: '',
             firstName: '',
             lastName: '',
             company: '',
             team: '',
-            roles: [],
-            applications: [],
-            favoriteEvents: [],
-            attendedEvents: []
+            roles: []
         };
     }
 
     saveUser(registerForm: NgForm) {
-        console.log(this.newUser);
-        //this.userService.saveUser(this.newUser);
+        this.newUser.roles = [registerForm.value.roles];
+         this.authService.register(this.newUser).subscribe({
+            next: data => {
+                this.authService.token = data;
+                this.authService.authorized = true;
+
+                console.log(this.authService.token);
+            },
+            error: error => {
+                console.error('There was an error!', error);
+                this.authService.logout();
+            }
+        })
+       
     }
 
     protected readonly PathMap = PathMap;
