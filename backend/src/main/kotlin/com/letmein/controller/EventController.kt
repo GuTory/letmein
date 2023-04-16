@@ -22,17 +22,16 @@ class EventController (
     fun createEvent(@RequestBody event: EventDTO,
                     @RequestHeader("Authorization") token: String
     ): ResponseEntity<HttpStatus> {
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")
         val newEvent = Event(
-            event.name,
-            event.startDateTime,
-            event.endDateTime,
-            event.entranceStartTime,
-            event.entranceEndTime,
-            event.registrationEndTime,
-            event.venue,
-            event.description,
-            event.attendeeLimit
+            Name = event.name,
+            StartDateTime = event.startDateTime,
+            EndDatetime =  event.endDateTime,
+            EntranceStartTime =  event.entranceStartTime,
+            EntranceEndTime =  event.entranceEndTime,
+            RegistrationEndTime =  event.registrationEndTime,
+            Venue =  event.venue,
+            Description =  event.description,
+            AttendeeLimit =  event.attendeeLimit
         )
         val realtoken = token.substring(7)
         val username = jwtService.extractUserNameFromToken(realtoken)!!
@@ -40,10 +39,28 @@ class EventController (
         newEvent.Organizers.add(publisher)
         eventService.saveEvent(newEvent)
         return ResponseEntity(HttpStatus.CREATED)
-    } //= ResponseEntity(eventService.saveEvent(event), HttpStatus.CREATED)
+    }
 
     @PutMapping("/")
-    fun updateEvent(@ModelAttribute event: Event) = ResponseEntity(eventService.saveEvent(event), HttpStatus.OK)
+    fun updateEvent(@RequestBody event: Event): ResponseEntity<HttpStatus> {
+        return try {
+            val eventToUpdate = eventService.getEventById(event.Id).get()
+            eventToUpdate.let {
+                it.Name = event.Name
+                it.StartDateTime = event.StartDateTime
+                it.EndDatetime = event.EndDatetime
+                it.EntranceStartTime = event.EntranceStartTime
+                it.EntranceEndTime = event.EntranceEndTime
+                it.RegistrationEndTime = event.RegistrationEndTime
+                it.Venue = event.Venue
+                it.Description = event.Description
+                it.AttendeeLimit = event.AttendeeLimit
+            }
+            ResponseEntity.ok().build()
+        } catch (e: Exception) {
+            ResponseEntity.notFound().build()
+        }
+    }
 
     @DeleteMapping("/{id}")
     fun deleteEvent(@PathVariable id: String): ResponseEntity<Unit> {

@@ -12,7 +12,7 @@ class EventService (
 
     fun saveEvent(event: Event) = eventRepository.save(event)
 
-    fun getAllEvents() = eventRepository.findAll()
+    fun getAllEvents(): MutableList<Event> = eventRepository.findAll()
 
     fun getEventById(id: String) = eventRepository.findById(id)
 

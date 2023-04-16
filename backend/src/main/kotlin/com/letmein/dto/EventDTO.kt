@@ -1,7 +1,6 @@
 package com.letmein.dto
 
 import java.time.LocalDate
-import java.util.*
 
 data class EventDTO(
     var name: String,

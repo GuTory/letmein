@@ -21,7 +21,6 @@ class AuthenticationController(
     fun login(
         @RequestBody user: AuthenticationRequest
     ): ResponseEntity<AuthenticationResponse> {
-        println("login")
         return try {
             val response = authenticationService.login(user)
             ResponseEntity(response, HttpStatus.OK)
