@@ -26,7 +26,7 @@ class ApplicationController (
     }
 
     @GetMapping("/")
-    fun getAllapplications() = applicationService.getAllApplications()
+    fun getAllapplications(): MutableList<Application> = applicationService.getAllApplications()
 
     @GetMapping("/{id}")
     fun getApplicationById(@PathVariable id: String) = applicationService.getApplicationById(id)

@@ -6,11 +6,11 @@ import { RegistrationRequest } from 'src/app/auth/registrationrequest';
 import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
-  selector: 'app-user-form',
-  templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss']
+  selector: 'app-register-form',
+  templateUrl: './register-form.component.html',
+  styleUrls: ['./register-form.component.scss']
 })
-export class UserFormComponent implements OnInit {
+export class RegisterFormComponent implements OnInit {
 
     newUser: RegistrationRequest;
 
@@ -44,7 +44,7 @@ export class UserFormComponent implements OnInit {
                 this.authService.logout();
             }
         })
-       
+
     }
 
     protected readonly PathMap = PathMap;

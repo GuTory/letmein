@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {PathMap} from 'src/app/app-routing.module';
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
     selector: 'app-navbar',
@@ -7,8 +8,6 @@ import {PathMap} from 'src/app/app-routing.module';
     styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-
-    imgageSource = 'assets/images/logo.png';
 
     references = {
         name: [
@@ -18,14 +17,14 @@ export class NavbarComponent {
             "Create Event",
             "Apply"],
         link: [
-            PathMap.basePath,
+            PathMap.eventsPath,
             PathMap.applicationsPath,
             PathMap.usersPath,
             PathMap.newEventPath,
             PathMap.newApplicationPath]
     }
 
-    constructor() {
+    constructor(public authService: AuthService) {
     }
 
 

@@ -33,9 +33,8 @@ data class Event(
     lateinit var Id: String
 
     var DurationInHours: Period = Period.between(
-        LocalDate.parse(StartDateTime.toString()),
-        LocalDate.parse(EndDatetime.toString())
-    )
+        StartDateTime,
+        EndDatetime)
 
     @DBRef(lazy = true)
     var Attendees: MutableList<User> = ArrayList()

@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {EventServiceInterface} from './event';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {environment} from "../../../environments/environment.development";
 import {Event} from "../../model/event";
+import {EventDTO} from "../../dto/eventDTO";
 
 @Injectable({
     providedIn: 'root',
@@ -15,8 +16,15 @@ export class EventService implements EventServiceInterface {
     constructor(private http: HttpClient) {
     }
 
-    saveEvent(event: Event): void {
-        this.http.post(this.baseUrl + '/', event);
+    saveEvent(event: EventDTO): void {
+        this.http.post<HttpResponse<any>>(this.baseUrl + '/', event).subscribe({
+            next: res => {
+                console.log(res);
+            },
+            error: error => {
+                console.error('There was an error!', error);
+            }
+        });
     }
 
     updateEvent(event: Event): Observable<Event> {

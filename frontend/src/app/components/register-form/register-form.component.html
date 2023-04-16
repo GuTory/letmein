@@ -3,7 +3,9 @@
       (ngSubmit)="saveUser(registerForm)"
       #registerForm="ngForm">
     <div class="flex flex-wrap -mx-3 mb-4">
-        <h1 class="justify-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-light-secondary dark:text-white">Registration form</h1>
+        <h1 class="justify-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-light-secondary dark:text-white">
+            Registration form
+        </h1>
     </div>
     <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full px-3">
@@ -19,8 +21,9 @@
                 [(ngModel)]="newUser.email"
                 [ngClass]="{'is-invalid': (emailVar.touched || emailVar.dirty) && !emailVar.valid } ">
         </div>
-        <p *ngIf="emailVar.errors != null" class="text-light-secondary px-3 text-xs italic">Please fill out this
-            field.</p>
+        <p *ngIf="emailVar.errors != null" class="text-light-secondary px-3 text-xs italic">
+            Please fill out this field.
+        </p>
     </div>
     <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -36,8 +39,9 @@
                 #firstNameVar="ngModel"
                 [(ngModel)]="newUser.firstName"
                 [ngClass]="{'is-invalid': (firstNameVar.touched || firstNameVar.dirty) && !firstNameVar.valid } ">
-            <p *ngIf="firstNameVar.errors != null" class="text-light-secondary px-3 text-xs italic">Please fill out this
-                field.</p>
+            <p *ngIf="firstNameVar.errors != null" class="text-light-secondary px-3 text-xs italic">
+                Please fill out this field.
+            </p>
         </div>
         <div class="w-full md:w-1/2 px-3">
             <label class="block uppercase tracking-wide text-light-secondary text-xs font-bold mb-2"
@@ -52,8 +56,9 @@
                 #lastNameVar="ngModel"
                 [(ngModel)]="newUser.lastName"
                 [ngClass]="{'is-invalid': (lastNameVar.touched || lastNameVar.dirty) && !lastNameVar.valid}">
-            <p *ngIf="lastNameVar.errors != null" class="text-light-secondary px-3 text-xs italic">Please fill out this
-                field.</p>
+            <p *ngIf="lastNameVar.errors != null" class="text-light-secondary px-3 text-xs italic">
+                Please fill out this field.
+            </p>
         </div>
     </div>
     <div class="flex flex-wrap -mx-3 mb-6">
@@ -70,8 +75,9 @@
                 #passwordVar="ngModel"
                 [(ngModel)]="newUser.password"
                 [ngClass]="{'is-invalid': (passwordVar.touched || passwordVar.dirty) && !passwordVar.valid}">
-            <p *ngIf="passwordVar.errors != null" class="text-light-secondary px-3 text-xs italic">Please fill out this
-                field.</p>
+            <p *ngIf="passwordVar.errors != null" class="text-light-secondary px-3 text-xs italic">
+                Please fill out this field.
+            </p>
         </div>
     </div>
     <div class="flex flex-wrap -mx-3 mb-6">
@@ -117,12 +123,15 @@
         </button>
     </div>
     <div class="flex flex-wrap -mx-3 mb-6 justify-center">
-        <p *ngIf="!registerForm.valid" class="text-light-secondary px-3 text-xs italic">Your data is invalid! Please
-            insert valid data!</p>
+        <p *ngIf="!registerForm.valid" class="text-light-secondary px-3 text-xs italic">
+            Your data is invalid! Please insert valid data!
+        </p>
     </div>
     <hr class="h-px my-8 bg-gray-200 border-1 bg-light-secondary">
     <div class="flex flex-wrap -mx-3 mb-6 justify-center">
-        <div class="text-light-secondary px-3 text-xs italic">Already registered? Log in here!</div>
+        <div class="text-light-secondary px-3 text-xs italic">
+            Already registered? Log in here!
+        </div>
     </div>
     <div class="flex flex-wrap -mx-3 mb-6 justify-center">
         <a routerLink="/{{PathMap.loginPath}}"

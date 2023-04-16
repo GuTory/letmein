@@ -1,13 +1,13 @@
 import {User} from "./user";
 
 export interface Event {
-    id: string
+    id: string | null
 
     name: string
 
     startDateTime: Date
 
-    endDatetime: Date
+    endDateTime: Date
 
     entranceStartTime: Date
 
@@ -15,11 +15,11 @@ export interface Event {
 
     registrationEndTime: Date
 
-    venue: String
+    venue: string
 
-    description: String
+    description: string
 
-    attendeeLimit: Number
+    attendeeLimit: number
 
     attendees: Array<User>
 

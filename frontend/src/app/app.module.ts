@@ -16,7 +16,7 @@ import {RouterModule} from '@angular/router';
 import {FooterComponent} from './components/footer/footer.component';
 import { ApplicationcontainerComponent } from './components/applicationcontainer/applicationcontainer.component';
 import { EventFormComponent } from './components/event-form/event-form.component';
-import { UserFormComponent } from './components/user-form/user-form.component';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
 import {FormsModule} from "@angular/forms";
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { HeaderInterceptor } from './auth/header.interceptor';
@@ -33,7 +33,7 @@ import { HeaderInterceptor } from './auth/header.interceptor';
         FooterComponent,
         ApplicationcontainerComponent,
         EventFormComponent,
-        UserFormComponent,
+        RegisterFormComponent,
         LoginFormComponent,
     ],
     imports: [
