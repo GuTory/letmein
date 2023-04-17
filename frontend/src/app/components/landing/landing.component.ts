@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "../../auth/auth.service";
 import {PathMap} from "../../app-routing.module";
@@ -8,12 +8,16 @@ import {PathMap} from "../../app-routing.module";
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss']
 })
-export class LandingComponent {
+export class LandingComponent implements OnInit{
 
     constructor(private router: Router,
                 private authService: AuthService) {
-        if(!authService.authorized)
-            router.navigate([PathMap.loginPath]);
+
+    }
+
+    ngOnInit(): void {
+        if(!this.authService.authorized)
+            this.router.navigate([PathMap.loginPath]);
     }
 
 }

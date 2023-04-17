@@ -11,17 +11,17 @@ export class NavbarComponent {
 
     references = {
         name: [
+            "Home",
             "Explore",
             "Applications",
             "Social",
-            "Create Event",
-            "Apply"],
+            "Create Event"],
         link: [
+            PathMap.basePath,
             PathMap.eventsPath,
             PathMap.applicationsPath,
             PathMap.usersPath,
-            PathMap.newEventPath,
-            PathMap.newApplicationPath]
+            PathMap.newEventPath]
     }
 
     constructor(public authService: AuthService) {
