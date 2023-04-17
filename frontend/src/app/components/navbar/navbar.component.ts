@@ -12,9 +12,9 @@ export class NavbarComponent {
     references = {
         name: [
             "Home",
-            "Explore",
+            "Events",
             "Applications",
-            "Social",
+            "Users",
             "Create Event"],
         link: [
             PathMap.basePath,

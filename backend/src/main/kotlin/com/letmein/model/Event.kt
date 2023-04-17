@@ -1,10 +1,8 @@
 package com.letmein.model
 
-import com.letmein.model.User
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
-import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDate
 import java.time.Period
 
@@ -30,7 +28,7 @@ data class Event(
     var AttendeeLimit: Int,
 ) {
     @Id
-    lateinit var Id: String
+    lateinit var id: String
 
     var DurationInHours: Period = Period.between(
         StartDateTime,

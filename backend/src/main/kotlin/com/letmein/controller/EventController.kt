@@ -8,8 +8,6 @@ import com.letmein.service.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 @RestController
 @RequestMapping("/api/events")
@@ -44,7 +42,7 @@ class EventController (
     @PutMapping("/")
     fun updateEvent(@RequestBody event: Event): ResponseEntity<HttpStatus> {
         return try {
-            val eventToUpdate = eventService.getEventById(event.Id).get()
+            val eventToUpdate = eventService.getEventById(event.id).get()
             eventToUpdate.let {
                 it.Name = event.Name
                 it.StartDateTime = event.StartDateTime
@@ -71,8 +69,8 @@ class EventController (
     @GetMapping("/")
     fun getAllEvents(): MutableList<Event> = eventService.getAllEvents()
 
-    @GetMapping("/{id}")
-    fun getEventById(@PathVariable id: String) = eventService.getEventById(id)
+    @GetMapping("/{Id}")
+    fun getEventById(@PathVariable Id: String) = eventService.getEventById(Id)
 
     @GetMapping("/name")
     fun getEventByName(@ModelAttribute name: String) = eventService.getEventByName(name)

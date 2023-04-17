@@ -14,7 +14,7 @@ export const PathMap = {
     eventsPath: 'events',
     applicationsPath: 'applications',
     newEventPath: 'newevent',
-    newApplicationPath: 'newapplication',
+    //newApplicationPath: 'newapplication',
     registerPath: 'register',
     loginPath: 'login',
     basePath: '',
@@ -24,15 +24,14 @@ const routes: Routes = [
     {path: PathMap.usersPath, component: UsercontainerComponent},
     {path: PathMap.applicationsPath, component: ApplicationcontainerComponent},
     {path: PathMap.registerPath, component: RegisterFormComponent},
-    {path: PathMap.eventsPath, component: EventcontainerComponent,
-        children: [
-            {path: PathMap.newEventPath + ':id', component: EventDetailsComponent}
-        ]},
-    //{path: PathMap.newApplicationPath, component: EventcontainerComponent}, //Rossz komponens
+    {path: PathMap.eventsPath, component: EventcontainerComponent},
+    {path: PathMap.eventsPath + '/:id', component: EventDetailsComponent},
     {path: PathMap.newEventPath, component: EventFormComponent},
     {path: PathMap.basePath, component: LandingComponent},
     {path: PathMap.loginPath, component: LoginFormComponent},
     {path: '**', redirectTo: PathMap.basePath}
+
+    //{path: PathMap.newApplicationPath, component: EventcontainerComponent}, //Rossz komponens
 ];
 
 @NgModule({
