@@ -6,6 +6,8 @@ import { ApplicationcontainerComponent } from './components/applicationcontainer
 import {RegisterFormComponent} from "./components/register-form/register-form.component";
 import {EventFormComponent} from "./components/event-form/event-form.component";
 import {LoginFormComponent} from "./components/login-form/login-form.component";
+import {EventDetailsComponent} from "./components/event-details/event-details.component";
+import {LandingComponent} from "./components/landing/landing.component";
 
 export const PathMap = {
     usersPath: 'users',
@@ -22,10 +24,13 @@ const routes: Routes = [
     {path: PathMap.usersPath, component: UsercontainerComponent},
     {path: PathMap.applicationsPath, component: ApplicationcontainerComponent},
     {path: PathMap.registerPath, component: RegisterFormComponent},
-    {path: PathMap.eventsPath, component: EventcontainerComponent},
-    {path: PathMap.newEventPath, component: EventFormComponent},
+    {path: PathMap.eventsPath, component: EventcontainerComponent,
+        children: [
+            {path: PathMap.newEventPath + ':id', component: EventDetailsComponent}
+        ]},
     //{path: PathMap.newApplicationPath, component: EventcontainerComponent}, //Rossz komponens
-    {path: PathMap.basePath, component: LoginFormComponent},
+    {path: PathMap.newEventPath, component: EventFormComponent},
+    {path: PathMap.basePath, component: LandingComponent},
     {path: PathMap.loginPath, component: LoginFormComponent},
     {path: '**', redirectTo: PathMap.basePath}
 ];

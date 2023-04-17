@@ -20,6 +20,8 @@ import { RegisterFormComponent } from './components/register-form/register-form.
 import {FormsModule} from "@angular/forms";
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { HeaderInterceptor } from './auth/header.interceptor';
+import { EventDetailsComponent } from './components/event-details/event-details.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 @NgModule({
     declarations: [
@@ -35,6 +37,8 @@ import { HeaderInterceptor } from './auth/header.interceptor';
         EventFormComponent,
         RegisterFormComponent,
         LoginFormComponent,
+        EventDetailsComponent,
+        LandingComponent,
     ],
     imports: [
         BrowserModule,
