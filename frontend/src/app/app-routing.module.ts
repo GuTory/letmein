@@ -25,12 +25,8 @@ const routes: Routes = [
     {path: PathMap.usersPath, component: UsercontainerComponent, canActivate: [AuthGuardService]},
     {path: PathMap.applicationsPath, component: ApplicationcontainerComponent},
     {path: PathMap.registerPath, component: RegisterFormComponent},
-    {
-        path: PathMap.eventsPath, component: EventcontainerComponent, canActivate: [AuthGuardService],
-        children: [
-            {path: ':id', component: EventDetailsComponent},
-        ]
-    },
+    {path: PathMap.eventsPath, component: EventcontainerComponent},
+    {path: PathMap.eventsPath + '/' + ':id', component: EventDetailsComponent},
     {path: PathMap.newEventPath, component: EventFormComponent},
     {path: PathMap.basePath, component: LandingComponent},
     {path: PathMap.loginPath, component: LoginFormComponent},
