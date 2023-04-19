@@ -1,6 +1,5 @@
 package com.letmein.dto
 
-import java.time.LocalDate
 import java.time.LocalDateTime
 
 data class EventDTO(
@@ -13,5 +12,4 @@ data class EventDTO(
     var venue: String,
     var description: String,
     var attendeeLimit: Int
-) {
-}
+)
