@@ -14,10 +14,10 @@ class ApplicationController (
     private val applicationService: ApplicationService
 ){
     @PostMapping("/")
-    fun createApplication(@ModelAttribute application: Application) = ResponseEntity(applicationService.saveApplication(application), HttpStatus.CREATED)
+    fun createApplication(@RequestBody application: Application) = ResponseEntity(applicationService.saveApplication(application), HttpStatus.CREATED)
 
     @PutMapping("/")
-    fun updateApplication(@ModelAttribute application: Application) = ResponseEntity(applicationService.saveApplication(application), HttpStatus.OK)
+    fun updateApplication(@RequestBody application: Application) = ResponseEntity(applicationService.saveApplication(application), HttpStatus.OK)
 
     @DeleteMapping("/{id}")
     fun deleteApplication(@PathVariable id: String): ResponseEntity<Unit> {

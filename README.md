@@ -11,7 +11,7 @@ Event management software based on Spring Framework Backend and Angular frontend
 
 ## Use cases
 - [X] User CRUD (registration not included yet)
-- [ ] User login/logout
+- [X] User login/logout
 
 - [X] Event CRUD
 - [X] Event Application CRUD

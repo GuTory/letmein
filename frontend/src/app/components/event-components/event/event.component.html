@@ -1,0 +1,19 @@
+<div class="bg-light-secondary text-light-primary max-w-sm rounded overflow-hidden shadow-lg
+     transition-transform transform hover:scale-105 cursor-pointer justify-center"
+    routerLink="/{{PathMap.eventsPath + '/' + event.id}}">
+    <!-- <img class="w-full" src="/img/card-top.jpg" alt="Sunset in the mountains"> -->
+    <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2">
+            {{event.name}}
+        </div>
+        <p class="text-gray-700 text-base">
+            {{event.description}}
+        </p>
+    </div>
+    <div class="px-6 pt-4 pb-2">
+        <span
+            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Attendees: {{event.attendees.length}}/{{event.attendeeLimit}}</span>
+        <span
+            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{event.venue}}</span>
+    </div>
+</div>

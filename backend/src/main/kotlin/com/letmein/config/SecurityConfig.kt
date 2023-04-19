@@ -27,10 +27,10 @@ class SecurityConfig(
         val corsConfig = CorsConfiguration()
         corsConfig.allowedOrigins = listOf("http://localhost:4200")
         corsConfig.addAllowedHeader("*")
-        corsConfig.addAllowedMethod(HttpMethod.GET)
-        corsConfig.addAllowedMethod(HttpMethod.PUT)
-        corsConfig.addAllowedMethod(HttpMethod.POST)
-        corsConfig.addAllowedMethod(HttpMethod.DELETE)
+
+        val methods = listOf(HttpMethod.GET, HttpMethod.POST, HttpMethod.PUT, HttpMethod.DELETE)
+        methods.forEach { corsConfig.addAllowedMethod(it) }
+
         val source = UrlBasedCorsConfigurationSource()
         source.registerCorsConfiguration("/**",corsConfig)
 

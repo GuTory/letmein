@@ -1,0 +1,25 @@
+<div class="px-8">
+    <div class="flex justify-center my-6">
+        <div
+            class=" mb-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+            {{event.name}}
+        </div>
+    </div>
+
+    <div class="flex flex-col px-6">
+        <div class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
+            {{event.description}}
+        </div>
+
+        <div class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
+            <b> Venue: </b> {{event.venue}}
+        </div>
+
+        <div class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
+            Registration ends
+        </div>
+        <div class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
+            {{event.registrationEndTime}}
+        </div>
+    </div>
+</div>

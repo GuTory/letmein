@@ -20,11 +20,11 @@ data class Application(
 ) {
 
     @Id
-    lateinit var Id: String
+    lateinit var id: String
 
-    var ApplicationDate: LocalDateTime = LocalDateTime.now()
+    var applicationDate: LocalDateTime = LocalDateTime.now()
 
-    var EventName: String = Event.Name
+    var eventName: String = Event.Name
 
     init {
         User.applications.plus(this)
