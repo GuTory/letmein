@@ -13,6 +13,8 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class RegisterFormComponent implements OnInit {
 
     newUser: RegistrationRequest;
+    
+    error: string | undefined;
 
     constructor(
         private authService: AuthService
@@ -28,6 +30,7 @@ export class RegisterFormComponent implements OnInit {
             team: '',
             roles: []
         };
+        this.error = undefined;
     }
 
     saveUser(registerForm: NgForm) {
@@ -40,7 +43,7 @@ export class RegisterFormComponent implements OnInit {
                 console.log(this.authService.token);
             },
             error: error => {
-                console.error('There was an error!', error);
+                error = "Please provide proper input!"
                 this.authService.logout();
             }
         })

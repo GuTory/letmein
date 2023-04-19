@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import {NgForm} from "@angular/forms";
-import {PathMap} from "../../app-routing.module";
+import { NgForm } from "@angular/forms";
+import { PathMap } from "../../app-routing.module";
 import { LoginRequest } from 'src/app/auth/loginrequest';
 import { AuthService } from 'src/app/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -13,13 +14,17 @@ export class LoginFormComponent {
 
     logincredentials: LoginRequest;
 
+    error: string | undefined;
+
     constructor(
-        private authService: AuthService
+        private authService: AuthService,
+        private router: Router
     ) {
         this.logincredentials = {
             email: '',
             password: ''
         };
+        this.error = undefined;
      }
 
     login(loginFrom: NgForm) {
@@ -29,15 +34,19 @@ export class LoginFormComponent {
                 next: data => {
                     this.authService.token = data;
                     this.authService.authorized = true;
-
-                    console.log(this.authService.token);
+                    this.error = undefined;
+                    this.router.navigate([this.PathMap.basePath]);
                 },
                 error: error => {
-                    console.error('There was an error!', error);
+                    this.error = "The username and password does not match.";
                     this.authService.logout();
                 }
             });
         }
+    }
+
+    public removeError() {
+        this.error = undefined;
     }
 
     protected readonly PathMap = PathMap;

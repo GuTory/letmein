@@ -22,6 +22,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { HeaderInterceptor } from './auth/header.interceptor';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { ErrorMessageComponent } from './components/error-message/error-message.component';
 
 @NgModule({
     declarations: [
@@ -39,6 +40,7 @@ import { LandingComponent } from './components/landing/landing.component';
         LoginFormComponent,
         EventDetailsComponent,
         LandingComponent,
+        ErrorMessageComponent,
     ],
     imports: [
         BrowserModule,
