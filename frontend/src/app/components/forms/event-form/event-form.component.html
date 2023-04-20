@@ -3,7 +3,7 @@
       (ngSubmit)="publishEvent(eventPublishForm)"
       #eventPublishForm="ngForm">
     <div class="flex flex-wrap -mx-3 mb-4">
-        <h1 class="justify-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-light-secondary dark:text-white">
+        <h1 class="justify-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-light-secondary">
             Create new event
         </h1>
     </div>
@@ -90,7 +90,7 @@
                 required
                 name="endDate"
                 #endDate="ngModel"
-                [(ngModel)]="newEvent.endDateTime"
+                [(ngModel)]="newEvent.endDatetime"
                 [ngClass]="{'is-invalid': (endDate.touched || endDate.dirty) && !endDate.valid}">
             <p *ngIf="endDate.errors != null" class="text-light-secondary px-3 text-xs italic">
                 Please fill out this field.

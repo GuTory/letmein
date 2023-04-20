@@ -15,3 +15,7 @@ app-register-form, app-login-form, app-event-form, app-event-details, app-landin
     display: flex;
     justify-content: center;
 }
+
+*::-webkit-scrollbar-track {
+    background-color: var();
+}
