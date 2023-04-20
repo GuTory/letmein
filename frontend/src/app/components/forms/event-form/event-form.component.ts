@@ -26,7 +26,7 @@ constructor(private eventService: EventService) {}
             description: '',
             venue: '',
             startDateTime: new Date(),
-            endDateTime: new Date(),
+            endDatetime: new Date(),
             entranceStartTime: new Date(),
             entranceEndTime: new Date(),
             registrationEndTime: new Date(),

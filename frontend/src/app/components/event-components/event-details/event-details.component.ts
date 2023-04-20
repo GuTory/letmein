@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {EventService} from "../../../service/event/event.service";
 import {Event} from "../../../model/event";
 import {Router} from "@angular/router";
+import {PathMap} from "../../../app-routing.module";
 
 @Component({
   selector: 'app-event-details',
@@ -21,9 +22,18 @@ export class EventDetailsComponent implements OnInit {
         )).subscribe({
             next: (event) => {
                 this.event = event;
+                console.log(this.event);
             },
             error: (error) => {
                 console.log(error);
+            }
+        });
+    }
+
+    deleteEvent(id: string): void {
+        this.eventService.deleteEvent(id).subscribe({
+            next: (data) => {
+                this.router.navigate([PathMap.eventsPath]);
             }
         });
     }

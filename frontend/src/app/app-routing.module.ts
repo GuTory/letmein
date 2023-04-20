@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {UsercontainerComponent} from './components/user-components/usercontainer/usercontainer.component';
-import {EventcontainerComponent} from './components/event-components/eventcontainer/eventcontainer.component';
-import {ApplicationcontainerComponent} from './components/application-components/applicationcontainer/applicationcontainer.component';
+import {UserContainerComponent} from './components/user-components/user-container/user-container.component';
+import {EventContainerComponent} from './components/event-components/event-container/event-container.component';
+import {ApplicationContainerComponent} from './components/application-components/application-container/application-container.component';
 import {RegisterFormComponent} from "./components/forms/register-form/register-form.component";
 import {EventFormComponent} from "./components/forms/event-form/event-form.component";
 import {LoginFormComponent} from "./components/forms/login-form/login-form.component";
@@ -22,10 +22,10 @@ export const PathMap = {
 };
 
 const routes: Routes = [
-    {path: PathMap.usersPath, component: UsercontainerComponent, canActivate: [AuthGuardService]},
-    {path: PathMap.applicationsPath, component: ApplicationcontainerComponent},
+    {path: PathMap.usersPath, component: UserContainerComponent, canActivate: [AuthGuardService]},
+    {path: PathMap.applicationsPath, component: ApplicationContainerComponent},
     {path: PathMap.registerPath, component: RegisterFormComponent},
-    {path: PathMap.eventsPath, component: EventcontainerComponent},
+    {path: PathMap.eventsPath, component: EventContainerComponent},
     {path: PathMap.eventsPath + '/' + ':id', component: EventDetailsComponent},
     {path: PathMap.newEventPath, component: EventFormComponent},
     {path: PathMap.basePath, component: LandingPageComponent},

@@ -7,7 +7,7 @@ export interface Event {
 
     startDateTime: Date
 
-    endDateTime: Date
+    endDatetime: Date
 
     entranceStartTime: Date
 
