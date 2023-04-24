@@ -90,7 +90,7 @@
                 required
                 name="endDate"
                 #endDate="ngModel"
-                [(ngModel)]="newEvent.endDatetime"
+                [(ngModel)]="newEvent.endDateTime"
                 [ngClass]="{'is-invalid': (endDate.touched || endDate.dirty) && !endDate.valid}">
             <p *ngIf="endDate.errors != null" class="text-light-secondary px-3 text-xs italic">
                 Please fill out this field.

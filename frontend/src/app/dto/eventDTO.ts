@@ -3,7 +3,7 @@ export class EventDTO{
     description: string;
     venue: string;
     startDateTime: Date;
-    endDatetime: Date;
+    endDateTime: Date;
     entranceStartTime: Date;
     entranceEndTime: Date;
     registrationEndTime: Date;

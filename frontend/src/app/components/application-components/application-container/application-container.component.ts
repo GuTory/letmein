@@ -17,10 +17,6 @@ export class ApplicationContainerComponent implements OnInit {
     this.getApplications();
   }
 
-  saveApplication(application: Application): void {
-    this.applicationService.saveApplication(application);
-  }
-
   updateApplication(application: Application): void {
     let index = this.applications.indexOf(application);
     this.applicationService.updateApplication(application).subscribe({

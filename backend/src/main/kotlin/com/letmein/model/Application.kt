@@ -25,10 +25,4 @@ data class Application(
     var applicationDate: LocalDateTime = LocalDateTime.now()
 
     var eventName: String = Event.Name
-
-    init {
-        User.applications.plus(this)
-        if(Event.CanRegister())
-            Event.Attendees.plus(this)
-    }
 }

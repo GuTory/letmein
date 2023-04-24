@@ -19,10 +19,6 @@ export class EventContainerComponent {
         this.getEvents();
     }
 
-    saveEvent(event: Event): void {
-        this.eventService.saveEvent(event);
-    }
-
     updateEvent(event: Event): void {
         let index = this.events.indexOf(event);
         this.eventService.updateEvent(event).subscribe({

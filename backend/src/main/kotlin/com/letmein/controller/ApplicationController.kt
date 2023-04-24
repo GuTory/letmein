@@ -21,16 +21,24 @@ class ApplicationController(
     @PostMapping("/")
     fun createApplication(@RequestBody application: ApplicationDTO): ResponseEntity<Unit> {
         val user = userService.getUserByEmail(application.username)
-        val event = eventService.getEventById(application.eventid)
-        if (event.isEmpty || user.isEmpty || !event.get().CanRegister())
+        val event = eventService.getEventById(application.eventId)
+        if (event.isEmpty || user.isEmpty)
             return ResponseEntity(HttpStatus.BAD_REQUEST)
-        val newApplication = Application (
+        if (!event.get().CanRegister())
+            return ResponseEntity(HttpStatus.FORBIDDEN)
+        if (event.get().Attendees.contains(user.get()))
+            return ResponseEntity(HttpStatus.CONFLICT)
+        val newApplication = Application(
             event.get(),
             user.get(),
             application.status,
             application.paymentmethod
         )
+        event.get().Attendees.add(user.get())
+        user.get().applications.add(newApplication)
         applicationService.saveApplication(newApplication)
+        eventService.saveEvent(event.get())
+        userService.saveUser(user.get())
         return ResponseEntity(HttpStatus.CREATED)
     }
 

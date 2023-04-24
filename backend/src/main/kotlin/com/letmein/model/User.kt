@@ -1,5 +1,6 @@
 package com.letmein.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.index.Indexed
 import org.springframework.data.mongodb.core.mapping.DBRef
@@ -34,13 +35,14 @@ data class User(
     var roles: MutableList<String> = mutableListOf()
 
     @DBRef(lazy = true)
-    var applications: MutableList<Application> = mutableListOf()
+    @JsonIgnore
+    var applications: MutableSet<Application> = mutableSetOf()
 
     @DBRef(lazy = true)
-    var favoriteEvents: MutableList<Event>? = mutableListOf()
+    var favoriteEvents: MutableSet<Event>? = mutableSetOf()
 
     @DBRef(lazy = true)
-    var attendedEvents: MutableList<Event> = mutableListOf()
+    var attendedEvents: MutableSet<Event> = mutableSetOf()
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         return roles.map { SimpleGrantedAuthority(it) }.toMutableList()

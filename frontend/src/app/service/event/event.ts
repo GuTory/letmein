@@ -1,11 +1,12 @@
 import { Observable } from "rxjs";
 import { Event } from "../../model/event";
+import {EventDTO} from "../../dto/eventDTO";
 
 export interface EventServiceInterface {
 
     baseUrl: string;
 
-    saveEvent(event: Event): void;
+    saveEvent(event: EventDTO): void;
 
     updateEvent(event: Event): Observable<Event>;
 
