@@ -3,6 +3,8 @@ import {NgForm} from "@angular/forms";
 import {Event} from "../../../model/event";
 import {EventDTO} from "../../../dto/eventDTO";
 import {EventService} from "../../../service/event/event.service";
+import {Router} from "@angular/router";
+import {PathMap} from "../../../app-routing.module";
 
 @Component({
   selector: 'app-event-form',
@@ -11,13 +13,14 @@ import {EventService} from "../../../service/event/event.service";
 })
 export class EventFormComponent implements OnInit{
 
-constructor(private eventService: EventService) {}
+constructor(private eventService: EventService,
+            private router: Router) {}
 
     newEvent: EventDTO;
 
     publishEvent(form: NgForm) {
-        console.log(this.newEvent);
         this.eventService.saveEvent(this.newEvent);
+        this.router.navigate([PathMap.eventsPath]);
     }
 
     ngOnInit(): void {

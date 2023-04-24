@@ -1,25 +1,93 @@
 <div class="px-8">
     <div class="flex justify-center my-6">
         <div
-            class=" mb-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+            class=" mb-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
             {{event.name}}
         </div>
     </div>
-
     <div class="flex flex-col px-6">
-        <div class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
+        <div class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48">
             {{event.description}}
         </div>
-
-        <div class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
+        <div class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48">
             <b> Venue: </b> {{event.venue}}
         </div>
-
-        <div class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
-            Registration ends
+        <div class="flex flex-wrap box-border">
+            <div class="w-full md:w-1/2">
+                <div class="mb-6 text-lg font-bold text-gray-500 lg:text-xl sm:px-16 xl:px-48">
+                    Event starts at
+                </div>
+                <div class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48">
+                    {{ event.startDateTime | date:'medium' }}
+                </div>
+            </div>
+            <div class="w-full md:w-1/2">
+                <div class="mb-6 text-lg font-bold text-gray-500 lg:text-xl sm:px-16 xl:px-48">
+                    Event ends at
+                </div>
+                <div class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48">
+                    {{ event.endDatetime | date:'medium' }}
+                </div>
+            </div>
         </div>
-        <div class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
-            {{event.registrationEndTime}}
+        <div class="flex flex-wrap box-border">
+            <div class="w-full md:w-1/2">
+                <div class="mb-6 text-lg font-bold text-gray-500 lg:text-xl sm:px-16 xl:px-48">
+                    Event entrance begins
+                </div>
+                <div class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48">
+                    {{ event.entranceEndTime | date:'medium' }}
+                </div>
+            </div>
+            <div class="w-full md:w-1/2">
+                <div class="mb-6 text-lg font-bold text-gray-500 lg:text-xl sm:px-16 xl:px-48">
+                    Event entrance ends
+                </div>
+                <div class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48">
+                    {{ event.entranceStartTime | date:'medium' }}
+                </div>
+            </div>
         </div>
+        <div class="flex flex-wrap box-border">
+            <div class="w-full md:w-1/2">
+                <div class="mb-6 text-lg font-bold text-gray-500 lg:text-xl sm:px-16 xl:px-48">
+                    Registration ends at
+                </div>
+                <div class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48">
+                    {{ event.registrationEndTime | date:'medium' }}
+                </div>
+            </div>
+            <div *ngIf="event.organizers[0]" class="w-full md:w-1/2">
+                <div class="mb-6 text-lg font-bold text-gray-500 lg:text-xl sm:px-16 xl:px-48">
+                    Organizer
+                </div>
+                <div class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48">
+                    {{ event.organizers[0].email }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex px-6 justify-center">
+        <div *ngIf="message != undefined"
+             class="my-6 w-1/2 border border-red-400 text-red px-4 py-3 rounded border-red relative"
+             role="alert">
+            <span class="inline-block">{{message}}</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                <svg (click)="removeMessage()" class="fill-red h-6 w-6 text-red" role="button"
+                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title>
+                    <path
+                        d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+            </span>
+        </div>
+    </div>
+    <div class="flex px-6 justify-around my-6">
+        <a (click)="apply()"
+           class="cursor-pointer focus:outline-none text-light-secondary bg-light-primary focus:ring-4 focus:ring-red font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+            Apply
+        </a>
+        <a *ngIf="!isDisabled()" (click)="deleteEvent(event.id!!)"
+           class="cursor-pointer focus:outline-none text-light-secondary bg-pastel focus:ring-4 focus:ring-red font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+            Delete event
+        </a>
     </div>
 </div>

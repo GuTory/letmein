@@ -1,5 +1,6 @@
 package com.letmein.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
@@ -37,10 +38,10 @@ data class Event(
         EndDatetime)
 
     @DBRef(lazy = true)
-    var Attendees: MutableList<User> = ArrayList()
+    var Attendees: MutableSet<User> = HashSet()
 
-    @DBRef(lazy = true)
-    var Organizers: MutableList<User> = ArrayList()
+    @DBRef
+    var Organizers: MutableSet<User> = HashSet()
 
     fun CanRegister(): Boolean {
         return (LocalDateTime.now() < RegistrationEndTime) && (Attendees.size < AttendeeLimit)

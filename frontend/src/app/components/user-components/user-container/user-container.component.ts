@@ -3,11 +3,11 @@ import {User} from 'src/app/model/user';
 import {UserService} from '../../../service/user/user.service';
 
 @Component({
-    selector: 'app-usercontainer',
-    templateUrl: './usercontainer.component.html',
-    styleUrls: ['./usercontainer.component.scss']
+    selector: 'app-user-container',
+    templateUrl: './user-container.component.html',
+    styleUrls: ['./user-container.component.scss']
 })
-export class UsercontainerComponent implements OnInit {
+export class UserContainerComponent implements OnInit {
 
     columns = 3;
 
@@ -30,7 +30,7 @@ export class UsercontainerComponent implements OnInit {
                 this.users[index] = data;
             },
             error: (err: Error) => {
-                console.log("Error updating usercontainer" + err);
+                console.log("Error updating user-container" + err);
             }
         });
     }
@@ -62,7 +62,7 @@ export class UsercontainerComponent implements OnInit {
                 this.users = [data];
             },
             error: (err: Error) => {
-                console.log("Error getting usercontainer by id: " + err);
+                console.log("Error getting user-container by id: " + err);
             }
         });
     }
@@ -72,7 +72,7 @@ export class UsercontainerComponent implements OnInit {
             next: data => {
                 this.users = [data];
             }, error: err => {
-                console.log("Error getting usercontainer by email: " + err);
+                console.log("Error getting user-container by email: " + err);
             }
         });
     }

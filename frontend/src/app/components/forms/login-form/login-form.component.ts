@@ -34,6 +34,7 @@ export class LoginFormComponent {
                 next: data => {
                     this.authService.token = data;
                     this.authService.authorized = true;
+                    this.authService.email = this.logincredentials.email;
                     this.error = undefined;
                     this.router.navigate([this.PathMap.basePath]);
                 },

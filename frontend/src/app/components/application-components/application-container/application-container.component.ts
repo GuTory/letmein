@@ -3,11 +3,11 @@ import { Application } from 'src/app/model/application';
 import { ApplicationService } from 'src/app/service/application/application.service';
 
 @Component({
-  selector: 'app-applicationcontainer',
-  templateUrl: './applicationcontainer.component.html',
-  styleUrls: ['./applicationcontainer.component.scss']
+  selector: 'app-application-container',
+  templateUrl: './application-container.component.html',
+  styleUrls: ['./application-container.component.scss']
 })
-export class ApplicationcontainerComponent implements OnInit {
+export class ApplicationContainerComponent implements OnInit {
 
   applications: Application[] = [];
 
@@ -17,10 +17,6 @@ export class ApplicationcontainerComponent implements OnInit {
     this.getApplications();
   }
 
-  saveApplication(application: Application): void {
-    this.applicationService.saveApplication(application);
-  }
-
   updateApplication(application: Application): void {
     let index = this.applications.indexOf(application);
     this.applicationService.updateApplication(application).subscribe({
@@ -28,7 +24,7 @@ export class ApplicationcontainerComponent implements OnInit {
         this.applications[index] = data;
       },
       error: (err: Error) => {
-        console.log("Error updating applicationcontainer" + err);
+        console.log("Error updating application-container" + err);
       }
     });
   }

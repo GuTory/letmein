@@ -3,11 +3,11 @@ import {EventService} from "../../../service/event/event.service";
 import {Event} from "../../../model/event";
 
 @Component({
-  selector: 'app-eventcontainer',
-  templateUrl: './eventcontainer.component.html',
-  styleUrls: ['./eventcontainer.component.scss']
+  selector: 'app-event-container',
+  templateUrl: './event-container.component.html',
+  styleUrls: ['./event-container.component.scss']
 })
-export class EventcontainerComponent {
+export class EventContainerComponent {
 
     columns = 0;
 
@@ -17,10 +17,6 @@ export class EventcontainerComponent {
 
     ngOnInit(): void {
         this.getEvents();
-    }
-
-    saveEvent(event: Event): void {
-        this.eventService.saveEvent(event);
     }
 
     updateEvent(event: Event): void {
