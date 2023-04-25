@@ -1,13 +1,10 @@
 package com.letmein.model
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.Duration
-import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.Period
 
 //TODO: add picture field
 @Document("events")

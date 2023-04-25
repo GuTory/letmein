@@ -28,23 +28,17 @@ class ApplicationController(
             return ResponseEntity(HttpStatus.FORBIDDEN)
         if (event.get().Attendees.contains(user.get()))
             return ResponseEntity(HttpStatus.CONFLICT)
-        val newApplication = Application(
-            event.get(),
-            user.get(),
-            application.status,
-            application.paymentmethod
-        )
-        event.get().Attendees.add(user.get())
-        user.get().applications.add(newApplication)
-        applicationService.saveApplication(newApplication)
-        eventService.saveEvent(event.get())
-        userService.saveUser(user.get())
+
+        applicationService.saveApplication(application, user.get(), event.get())
         return ResponseEntity(HttpStatus.CREATED)
     }
 
     @PutMapping("/")
-    fun updateApplication(@RequestBody application: Application) =
-        ResponseEntity(applicationService.saveApplication(application), HttpStatus.OK)
+    fun updateApplication(@RequestBody application: ApplicationDTO): ResponseEntity<Unit> {
+        val user = userService.getUserByEmail(application.username)
+        val event = eventService.getEventById(application.eventId)
+        return ResponseEntity(applicationService.saveApplication(application, user.get(), event.get()), HttpStatus.OK)
+    }
 
     @DeleteMapping("/{id}")
     fun deleteApplication(@PathVariable id: String): ResponseEntity<Unit> {

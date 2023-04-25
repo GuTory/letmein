@@ -20,22 +20,10 @@ class EventController (
     fun createEvent(@RequestBody event: EventDTO,
                     @RequestHeader("Authorization") token: String
     ): ResponseEntity<HttpStatus> {
-        val newEvent = Event(
-            Name = event.name,
-            StartDateTime = event.startDateTime,
-            EndDatetime =  event.endDateTime,
-            EntranceStartTime =  event.entranceStartTime,
-            EntranceEndTime =  event.entranceEndTime,
-            RegistrationEndTime =  event.registrationEndTime,
-            Venue =  event.venue,
-            Description =  event.description,
-            AttendeeLimit =  event.attendeeLimit
-        )
         val realtoken = token.substring(7)
         val username = jwtService.extractUserNameFromToken(realtoken)!!
         val publisher = userService.getUserByEmail(username).get()
-        newEvent.Organizers.add(publisher)
-        eventService.saveEvent(newEvent)
+        eventService.saveEvent(event, publisher)
         return ResponseEntity(HttpStatus.CREATED)
     }
 

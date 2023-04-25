@@ -68,8 +68,6 @@ export class EventDetailsComponent implements OnInit {
                         this.message = "You already applied for this event";
                     }
                 }
-                console.log(error);
-                console.log(this.message);
             }
         });
     }
