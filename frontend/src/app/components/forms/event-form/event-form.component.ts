@@ -34,7 +34,7 @@ constructor(private eventService: EventService,
     publishEvent(form: NgForm) {
         this.eventService.saveEvent(this.newEvent).subscribe({
             next: (res) => {
-                //this.router.navigate([PathMap.eventsPath]);
+                this.router.navigate([PathMap.eventsPath]);
             }
         });
     }

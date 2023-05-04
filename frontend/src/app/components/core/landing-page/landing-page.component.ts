@@ -16,7 +16,7 @@ export class LandingPageComponent implements OnInit{
     }
 
     ngOnInit(): void {
-        if(!this.authService.authorized)
+        if(!this.authService.isAuthenticated())
             this.router.navigate([PathMap.loginPath]);
     }
 

@@ -14,7 +14,7 @@ import { PathMap } from '../app-routing.module';
 export class HeaderInterceptor implements HttpInterceptor {
 
   constructor(
-    private authService: AuthService, 
+    private authService: AuthService,
     private router: Router
     ) {}
 
@@ -22,8 +22,8 @@ export class HeaderInterceptor implements HttpInterceptor {
     if(request.url.includes('/api/v1/auth'))
       return next.handle(request);
 
-    if(this.authService.authorized) {
-      const token = this.authService.token;
+    if(this.authService.isAuthenticated()) {
+      const token = this.authService.getToken();
       if(token != undefined) {
       const authRequest = request.clone({
         headers: request.headers.set('Authorization', `Bearer ${token?.token}`)

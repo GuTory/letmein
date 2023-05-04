@@ -24,4 +24,6 @@ export interface Event {
     attendees: Array<User>
 
     organizers: Array<User>
+
+    imagePath: string
 }

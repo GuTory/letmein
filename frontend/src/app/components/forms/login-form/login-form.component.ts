@@ -29,12 +29,10 @@ export class LoginFormComponent {
 
     login(loginFrom: NgForm) {
         console.log(loginFrom.value);
-        if (loginFrom.valid && !this.authService.authorized) {
+        if (loginFrom.valid && !this.authService.isAuthenticated()) {
             this.authService.login(this.logincredentials).subscribe({
                 next: data => {
-                    this.authService.token = data;
-                    this.authService.authorized = true;
-                    this.authService.email = this.logincredentials.email;
+                    this.authService.setToken(data.token, this.logincredentials.email)
                     this.error = undefined;
                     this.router.navigate([this.PathMap.basePath]);
                 },

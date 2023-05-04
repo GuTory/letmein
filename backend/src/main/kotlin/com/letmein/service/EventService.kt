@@ -31,6 +31,10 @@ class EventService(
             if (it.Event == event.get())
                 applicationRepository.deleteById(it.id)
         }
+        if(event.get().imagePath != "")
+            event.get().imagePath?.let {
+                File(it).delete()
+            }
         eventRepository.deleteById(id)
     }
 

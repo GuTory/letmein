@@ -1,14 +1,24 @@
 <div class="px-8">
-    <div class="flex justify-center my-6">
+
+    <div class="flex flex-col justify-end my-6 items-center">
+        <img *ngIf="event.imagePath" src="/backendimages/{{currentimage}}" [alt]="event.name"
+             class="max-w-screen-lg"/>
         <div
-            class=" mb-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
-            {{event.name}}
+            class="flex justify-center pb-5 absolute w-full max-w-screen-lg bg-gradient-to-b from-transparent to-light-background">
+            <div
+                class="px-6 mt-6 text-4xl font-extrabold leading-none tracking-tight text-light-secondary">
+                {{event.name}}
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-col justify-center my-6 items-center">
+        <div class="flex justify-center my-6">
+            <div class="mb-6 text-lg font-normal text-light-secondary">
+                {{event.description}}
+            </div>
         </div>
     </div>
     <div class="flex flex-col px-6">
-        <div class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48">
-            {{event.description}}
-        </div>
         <div class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48">
             <b> Venue: </b> {{event.venue}}
         </div>
