@@ -8,6 +8,7 @@ import com.letmein.service.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.multipart.MultipartFile
 
 @RestController
 @RequestMapping("/api/events")
@@ -18,7 +19,8 @@ class EventController (
 ){
     @PostMapping("/")
     fun createEvent(@RequestBody event: EventDTO,
-                    @RequestHeader("Authorization") token: String
+                    @RequestHeader("Authorization") token: String,
+                    @RequestParam("event.image", required = false) image: MultipartFile?
     ): ResponseEntity<HttpStatus> {
         val realtoken = token.substring(7)
         val username = jwtService.extractUserNameFromToken(realtoken)!!

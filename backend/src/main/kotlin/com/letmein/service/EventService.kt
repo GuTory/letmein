@@ -6,6 +6,11 @@ import com.letmein.model.User
 import com.letmein.repository.ApplicationRepository
 import com.letmein.repository.EventRepository
 import org.springframework.stereotype.Service
+import java.io.ByteArrayInputStream
+import java.io.File
+import javax.imageio.ImageIO
+import javax.xml.bind.DatatypeConverter.parseBase64Binary
+
 
 @Service
 class EventService(
@@ -42,6 +47,26 @@ class EventService(
             AttendeeLimit = event.attendeeLimit
         )
         newEvent.Organizers.add(publisher)
+        if (event.image != null) {
+            try {
+                val dir = "C:\\egyetem\\aktualis_targyak\\onlab\\letmein\\backend\\src\\main\\resources\\static\\images"
+                val name = event.name + "_" + System.currentTimeMillis()
+                val data = event.image!!
+                val format = data.split(";")[0].split("/")[1]
+
+                val base64Image = data.split(",")[1]
+                val imageBytes: ByteArray = parseBase64Binary(base64Image)
+                val img = ImageIO.read(ByteArrayInputStream(imageBytes))
+                val fullname = "$dir\\$name.$format"
+                ImageIO.write(img, "jpg", File(fullname))
+                newEvent.imagePath = fullname
+            } catch (e: Exception) {
+                println(e.message)
+                newEvent.imagePath = ""
+            }
+        } else {
+            newEvent.imagePath = ""
+        }
         eventRepository.save(newEvent)
     }
 

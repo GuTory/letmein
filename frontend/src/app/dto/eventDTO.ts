@@ -8,4 +8,5 @@ export class EventDTO{
     entranceEndTime: Date;
     registrationEndTime: Date;
     attendeeLimit: number;
+    image: File | null;
 }

@@ -34,6 +34,8 @@ data class Event(
         StartDateTime,
         EndDatetime)
 
+    var imagePath: String? = null
+
     @DBRef(lazy = true)
     var Attendees: MutableSet<User> = HashSet()
 

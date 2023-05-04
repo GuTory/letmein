@@ -16,15 +16,10 @@ export class EventService implements EventServiceInterface {
     constructor(private http: HttpClient) {
     }
 
-    saveEvent(event: EventDTO): void {
-        this.http.post<HttpResponse<any>>(this.baseUrl + '/', event).subscribe({
-            next: res => {
-                console.log(res);
-            },
-            error: error => {
-                console.error('There was an error!', error);
-            }
-        });
+    saveEvent(event: EventDTO): Observable<Observable<HttpResponse<any>>> {
+        const file: File = event.image!!;
+
+        return this.http.post<Observable<HttpResponse<any>>>(this.baseUrl + '/', event);
     }
 
     updateEvent(event: Event): Observable<Event> {
