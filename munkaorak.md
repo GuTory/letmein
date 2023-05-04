@@ -47,10 +47,35 @@ Bekötöttem az alkalmazásba a swaggert, így most már láthatóak és tesztel
 Elkezdtem a projekt második fő részével, az angular front enddel foglalkozni. Itt is először fel kell építeni az alapokat,
 utána jöhet a felület maga. Amint megvan ez a gerinc, utána szeretném a feature-öket bele tenni vertikálisan.
 
-| Hét    | Téma                             | Munkaóra |
-|--------|----------------------------------|----------|
-| 1. hét | Backend frontend demó            | ~10      |
-| 2. hét | Valós projekt inicializálás      | ~6       |
-| 3. hét | Figma mocupok és backend építése | ~12      |
-| 4. hét | Angular alapok                   | ~9       |
+## Ötödik és hatodik hét
+
+Kidolgoztam az applikáció front endjét, a Service-eket komponenseket és modelleket is megcsináltam. 
+Működik a http kommunikáció a két vég között.
+
+## Hetedik hét
+
+Implementáltam JWT alapú autentikációt az alkalmazásban, azaz csak bejelentkezéssel lehet használni az alkalmazást.
+
+A front endet továbbra is finomítottam, készítettem további komponenseket és Angular template alapú formokat
+
+## Nyolcadik hét
+
+A formokat összekötöttem a backenddel, már lehet publikálni eseményeket, regisztrálni felhasználókat a kezelőfelületen keresztül,
+nem csak postmannel.
+
+Készítem az esemény részleteit megjelenítő felületét, ahol az alkalmazás főbb funkciói már látszódni fognak, jelentkezés becsekkolás stb.
+
+## Kilencedik hét
+
+
+
+| Hét    | Téma                                                                                   | Munkaóra |
+|--------|----------------------------------------------------------------------------------------|----------|
+| 1. hét | Backend frontend demó                                                                  | ~10      |
+| 2. hét | Valós projekt inicializálás                                                            | ~6       |
+| 3. hét | Figma mocupok és backend építése                                                       | ~12      |
+| 5. hét | Angular alapok                                                                         | ~9       |
+| 6. hét | Angular komponenesek és backend fixek                                                  | ~10      |
+| 7. hét | Formok és JWT autentikáció                                                             | ~15      |
+| 8. hét | Frontend finomítás, további komponensek és formok, kommunikáció és funkciók tesztelése | ~15      |
 

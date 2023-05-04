@@ -1,11 +1,13 @@
 import { Observable } from "rxjs";
 import { Event } from "../../model/event";
+import {EventDTO} from "../../dto/eventDTO";
+import {HttpResponse} from "@angular/common/http";
 
 export interface EventServiceInterface {
 
     baseUrl: string;
 
-    saveEvent(event: Event): void;
+    saveEvent(event: EventDTO): Observable<Observable<HttpResponse<any>>>;
 
     updateEvent(event: Event): Observable<Event>;
 

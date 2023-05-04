@@ -13,6 +13,8 @@ export class AuthService {
 
     authorized: boolean = false;
 
+    email: string = '';
+
     token?: Token;
 
     constructor(private http: HttpClient) {}
@@ -22,12 +24,12 @@ export class AuthService {
     }
 
     public register(user: RegistrationRequest): Observable<Token> {
-        console.log(user);
         return this.http.post<Token>(environment.registerurl, user);
     }
 
     public logout(): void {
         this.authorized = false;
+        this.email = '';
         this.token = undefined;
     }
 }

@@ -2,8 +2,9 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Application} from '../../model/application';
 import {ApplicationServiceInterface} from './application';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {environment} from "../../../environments/environment.development";
+import {ApplicationDTO} from "../../dto/applicationDTO";
 
 @Injectable({
     providedIn: 'root'
@@ -15,8 +16,8 @@ export class ApplicationService implements ApplicationServiceInterface {
     constructor(private http: HttpClient) {
     }
 
-    saveApplication(application: Application): void {
-        this.http.post(this.baseUrl + "/", application);
+    saveApplication(application: ApplicationDTO): Observable<HttpResponse<any>> {
+        return this.http.post<HttpResponse<any>>(this.baseUrl + "/", application);
     }
 
     updateApplication(application: Application): Observable<Application> {

@@ -1,11 +1,13 @@
 import {Observable} from "rxjs";
 import {Application} from "src/app/model/application";
+import {ApplicationDTO} from "../../dto/applicationDTO";
+import {HttpResponse} from "@angular/common/http";
 
 export interface ApplicationServiceInterface {
 
     baseUrl: string;
 
-    saveApplication(application: Application): void;
+    saveApplication(application: ApplicationDTO): Observable<HttpResponse<any>>;
 
     updateApplication(application: Application): Observable<Application>;
 
