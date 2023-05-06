@@ -8,6 +8,7 @@ import com.letmein.service.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.multipart.MultipartFile
 
 @RestController
 @RequestMapping("/api/events")
@@ -18,24 +19,13 @@ class EventController (
 ){
     @PostMapping("/")
     fun createEvent(@RequestBody event: EventDTO,
-                    @RequestHeader("Authorization") token: String
+                    @RequestHeader("Authorization") token: String,
+                    @RequestParam("event.image", required = false) image: MultipartFile?
     ): ResponseEntity<HttpStatus> {
-        val newEvent = Event(
-            Name = event.name,
-            StartDateTime = event.startDateTime,
-            EndDatetime =  event.endDateTime,
-            EntranceStartTime =  event.entranceStartTime,
-            EntranceEndTime =  event.entranceEndTime,
-            RegistrationEndTime =  event.registrationEndTime,
-            Venue =  event.venue,
-            Description =  event.description,
-            AttendeeLimit =  event.attendeeLimit
-        )
         val realtoken = token.substring(7)
         val username = jwtService.extractUserNameFromToken(realtoken)!!
         val publisher = userService.getUserByEmail(username).get()
-        newEvent.Organizers.add(publisher)
-        eventService.saveEvent(newEvent)
+        eventService.saveEvent(event, publisher)
         return ResponseEntity(HttpStatus.CREATED)
     }
 

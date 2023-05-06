@@ -22,6 +22,7 @@ import {LoginFormComponent} from './components/forms/login-form/login-form.compo
 import {HeaderInterceptor} from './auth/header.interceptor';
 import {EventDetailsComponent} from './components/event-components/event-details/event-details.component';
 import {LandingPageComponent} from './components/core/landing-page/landing-page.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
     declarations: [
@@ -48,7 +49,8 @@ import {LandingPageComponent} from './components/core/landing-page/landing-page.
         MatCardModule,
         MatGridListModule,
         RouterModule,
-        FormsModule
+        FormsModule,
+        NgOptimizedImage
     ],
     providers: [
         {

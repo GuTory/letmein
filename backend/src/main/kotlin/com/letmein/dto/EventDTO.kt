@@ -1,5 +1,7 @@
 package com.letmein.dto
 
+import org.springframework.web.multipart.MultipartFile
+import java.io.File
 import java.time.LocalDateTime
 
 data class EventDTO(
@@ -11,5 +13,6 @@ data class EventDTO(
     var registrationEndTime: LocalDateTime,
     var venue: String,
     var description: String,
-    var attendeeLimit: Int
+    var attendeeLimit: Int,
+    var image: String? = null,
 )

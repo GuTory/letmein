@@ -4,9 +4,9 @@ import {Event} from "../../../model/event";
 import {Router} from "@angular/router";
 import {PathMap} from "../../../app-routing.module";
 import {ApplicationService} from "../../../service/application/application.service";
-import {ApplicationDTO} from "../../../dto/applicationDTO";
 import {ApplicationStatus} from "../../../model/applicationstatus";
 import {AuthService} from "../../../auth/auth.service";
+import {HttpResponseHandlerService} from "../../../service/http-response-handler.service";
 
 @Component({
     selector: 'app-event-details',
@@ -19,9 +19,12 @@ export class EventDetailsComponent implements OnInit {
 
     message: string | undefined;
 
+    currentimage: string | undefined;
+
     constructor(private eventService: EventService,
                 private applicationService: ApplicationService,
                 public auth: AuthService,
+                private HttpResponseHandlerService: HttpResponseHandlerService,
                 private router: Router) {
     }
 
@@ -31,6 +34,10 @@ export class EventDetailsComponent implements OnInit {
         )).subscribe({
             next: (event) => {
                 this.event = event;
+
+                if(this.event.imagePath){
+                    this.currentimage = this.event.imagePath.split("\\backend\\src\\main\\resources\\static\\images\\")[1];
+                }
             },
             error: (error) => {
                 console.log(error);
@@ -42,34 +49,15 @@ export class EventDetailsComponent implements OnInit {
         this.applicationService.saveApplication({
             status: ApplicationStatus.pending,
             paymentmethod: "Cash",
-            username: this.auth.email,
+            username: this.auth.getEmail()!!,
             eventId: this.event.id!!
         }).subscribe({
             next: (res) => {
-                switch (res.status) {
-                    case 201: {
-                        this.message = "Application sent. Status: pending";
-                        break;
-                    }
-                }
+                this.message = this.HttpResponseHandlerService.handleEventDetailsResponse(res);
                 console.log(this.message)
             },
             error: (error) => {
-                switch (error.status) {
-                    case 400: {
-                        this.message = "Application failed";
-                        break;
-                    }
-                    case 403: {
-                        this.message = "Registration is closed";
-                        break;
-                    }
-                    case 409: {
-                        this.message = "You already applied for this event";
-                    }
-                }
-                console.log(error);
-                console.log(this.message);
+                this.message = this.HttpResponseHandlerService.handleEventDetailsResponse(error);
             }
         });
     }
@@ -89,6 +77,6 @@ export class EventDetailsComponent implements OnInit {
     }
 
     isDisabled(){
-        return this.event.organizers[0].email !== this.auth.email;
+        return this.event.organizers[0].email !== this.auth.getEmail();
     }
 }

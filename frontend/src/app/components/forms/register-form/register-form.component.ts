@@ -4,6 +4,7 @@ import {NgForm} from "@angular/forms";
 import {PathMap} from "../../../app-routing.module";
 import { RegistrationRequest } from 'src/app/auth/registrationrequest';
 import { AuthService } from 'src/app/auth/auth.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register-form',
@@ -17,7 +18,8 @@ export class RegisterFormComponent implements OnInit {
     error: string | undefined;
 
     constructor(
-        private authService: AuthService
+        private authService: AuthService,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -37,10 +39,9 @@ export class RegisterFormComponent implements OnInit {
         this.newUser.roles = [registerForm.value.roles];
          this.authService.register(this.newUser).subscribe({
             next: data => {
-                this.authService.token = data;
-                this.authService.authorized = true;
-
-                console.log(this.authService.token);
+                this.authService.setToken(data.token, this.newUser.email);
+                this.error = undefined;
+                this.router.navigate([this.PathMap.eventsPath]);
             },
             error: error => {
                 this.error = "Please provide proper input!"

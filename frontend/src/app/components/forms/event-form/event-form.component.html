@@ -171,6 +171,21 @@
         </div>
     </div>
 
+    <div class="flex flex-col flex-wrap -mx-3 mb-6 justify-center">
+        <label class=" uppercase tracking-wide text-xs font-bold px-3 mb-6 text-light-secondary"
+               for="grid-image">
+            Event image
+        </label>
+        <input
+            class="px-3 mb-6"
+            id="grid-image"
+            type="file"
+            name="file"
+            accept="image/*"
+            (change)="onselectFile($event)"
+            [(ngModel)]="newEvent.image">
+    </div>
+
     <div class="flex flex-wrap -mx-3 mb-6 justify-center">
         <button type="submit"
                 class="bg-light-primary text-light-secondary font-bold py-2 px-8 border border-blue-700 rounded"

@@ -18,9 +18,25 @@ constructor(private eventService: EventService,
 
     newEvent: EventDTO;
 
+    onselectFile(event: any) {
+        let filetype = event.target.files[0].type;
+        if(event.target.files[0] && filetype.match('image.*')){
+            let reader = new FileReader();
+            reader.readAsDataURL(event.target.files[0]);
+            reader.onload = (event: any) => {
+                this.newEvent.image = event.target.result;
+            };
+        } else {
+            this.newEvent.image = null;
+        }
+    }
+
     publishEvent(form: NgForm) {
-        this.eventService.saveEvent(this.newEvent);
-        this.router.navigate([PathMap.eventsPath]);
+        this.eventService.saveEvent(this.newEvent).subscribe({
+            next: (res) => {
+                this.router.navigate([PathMap.eventsPath]);
+            }
+        });
     }
 
     ngOnInit(): void {
@@ -34,10 +50,13 @@ constructor(private eventService: EventService,
             entranceEndTime: new Date(),
             registrationEndTime: new Date(),
             attendeeLimit: 0,
+            image: null
         };
     }
 
     now(): Date {
         return new Date();
     }
+
+    protected readonly onselect = onselect;
 }
