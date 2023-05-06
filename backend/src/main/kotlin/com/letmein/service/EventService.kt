@@ -15,7 +15,9 @@ import javax.xml.bind.DatatypeConverter.parseBase64Binary
 @Service
 class EventService(
     private val eventRepository: EventRepository,
-    private val userService: UserService, private val applicationRepository: ApplicationRepository
+    private val userService: UserService,
+    private val imageService: ImageService,
+    private val applicationRepository: ApplicationRepository
 ) {
     fun deleteEvent(id: String) {
         val event = eventRepository.findById(id)
@@ -31,10 +33,7 @@ class EventService(
             if (it.Event == event.get())
                 applicationRepository.deleteById(it.id)
         }
-        if(event.get().imagePath != "")
-            event.get().imagePath?.let {
-                File(it).delete()
-            }
+        imageService.deleteImage(event.get().imagePath ?: "")
         eventRepository.deleteById(id)
     }
 
@@ -53,17 +52,10 @@ class EventService(
         newEvent.Organizers.add(publisher)
         if (event.image != null) {
             try {
-                val dir = "C:\\egyetem\\aktualis_targyak\\onlab\\letmein\\backend\\src\\main\\resources\\static\\images"
-                val name = event.name + "_" + System.currentTimeMillis()
-                val data = event.image!!
-                val format = data.split(";")[0].split("/")[1]
-
-                val base64Image = data.split(",")[1]
-                val imageBytes: ByteArray = parseBase64Binary(base64Image)
-                val img = ImageIO.read(ByteArrayInputStream(imageBytes))
-                val fullname = "$dir\\$name.$format"
-                ImageIO.write(img, "jpg", File(fullname))
-                newEvent.imagePath = fullname
+                newEvent.imagePath = imageService.saveImage(
+                        event.image!!,
+                        event.name + "_" + System.currentTimeMillis()
+                    )
             } catch (e: Exception) {
                 println(e.message)
                 newEvent.imagePath = ""

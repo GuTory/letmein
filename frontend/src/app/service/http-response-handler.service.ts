@@ -31,6 +31,9 @@ export class HttpResponseHandlerService {
                 message = "You already applied for this event";
                 break;
             }
+            default: {
+                message = "Other HTTP response code received: " + response.status;
+            }
         }
         return message;
     }
