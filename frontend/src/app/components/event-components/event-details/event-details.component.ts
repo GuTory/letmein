@@ -1,19 +1,22 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {EventService} from "../../../service/event/event.service";
 import {Event} from "../../../model/event";
 import {Router} from "@angular/router";
 import {PathMap} from "../../../app-routing.module";
 import {ApplicationService} from "../../../service/application/application.service";
-import {ApplicationStatus} from "../../../model/applicationstatus";
 import {AuthService} from "../../../auth/auth.service";
 import {HttpResponseHandlerService} from "../../../service/http-response-handler/http-response-handler.service";
+import {ApplicationDTO} from "../../../dto/applicationDTO";
+import {Refreshable} from "../../../service/refreshable";
+import {UserService} from "../../../service/user/user.service";
+import {WebsocketService} from "../../../service/websocket/websocket.service";
 
 @Component({
     selector: 'app-event-details',
     templateUrl: './event-details.component.html',
     styleUrls: ['./event-details.component.scss']
 })
-export class EventDetailsComponent implements OnInit {
+export class EventDetailsComponent implements OnInit, Refreshable {
 
     event: Event;
 
@@ -23,12 +26,34 @@ export class EventDetailsComponent implements OnInit {
 
     constructor(private eventService: EventService,
                 private applicationService: ApplicationService,
+                private userService: UserService,
                 public auth: AuthService,
-                private HttpResponseHandlerService: HttpResponseHandlerService,
-                private router: Router) {
+                private httpResponseHandlerService: HttpResponseHandlerService,
+                private webSocketService: WebsocketService,
+                private router: Router,
+                private cdr: ChangeDetectorRef) {
+    }
+
+
+    refresh(application: ApplicationDTO): void {
+        console.log("Received message username: " + application.username);
+        if (this.event.id === application.eventId) {
+            this.userService.getUserByEmail(application.username).subscribe({
+                next: (user) => {
+                    if (!this.event.attendees.find(u => u.email === user.email)){
+                        this.event.attendees.push(user);
+                        this.cdr.detectChanges();
+                    }
+                },
+                error: (error) => {
+                    //console.log(error);
+                }
+            });
+        }
     }
 
     ngOnInit(): void {
+        this.webSocketService.openConnection(this);
         this.eventService.getEventById(this.router.url.substring(
             this.router.url.lastIndexOf('/') + 1
         )).subscribe({
@@ -46,20 +71,22 @@ export class EventDetailsComponent implements OnInit {
     }
 
     apply() {
-        this.applicationService.saveApplication({
-            status: ApplicationStatus.pending,
+        const newApplication: ApplicationDTO = {
+            status: "pending",
             paymentmethod: "Cash",
             username: this.auth.getEmail()!!,
             eventId: this.event.id!!
-        }).subscribe({
+        };
+        this.applicationService.saveApplication(newApplication).subscribe({
             next: (res) => {
-                this.message = this.HttpResponseHandlerService.handleEventDetailsResponse(res);
-                console.log(this.message)
+                this.message = this.httpResponseHandlerService.handleEventDetailsResponse(res, newApplication.username);
+                console.log("next")
             },
             error: (error) => {
-                this.message = this.HttpResponseHandlerService.handleEventDetailsResponse(error);
+                this.message = this.httpResponseHandlerService.handleEventDetailsResponse(error, newApplication.username);
             }
         });
+        this.webSocketService.sendMessage(newApplication);
     }
 
     removeMessage() {

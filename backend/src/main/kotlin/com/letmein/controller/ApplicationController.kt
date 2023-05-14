@@ -1,6 +1,7 @@
 package com.letmein.controller
 
 import com.letmein.dto.ApplicationDTO
+import com.letmein.jwt.JwtService
 import com.letmein.model.Application
 import com.letmein.model.Event
 import com.letmein.model.User
@@ -16,7 +17,8 @@ import org.springframework.web.bind.annotation.*
 class ApplicationController(
     private val applicationService: ApplicationService,
     private val userService: UserService,
-    private val eventService: EventService
+    private val eventService: EventService,
+    private val jwtService: JwtService
 ) {
     @PostMapping("/")
     fun createApplication(@RequestBody application: ApplicationDTO): ResponseEntity<Unit> {
@@ -29,15 +31,15 @@ class ApplicationController(
         if (event.get().Attendees.contains(user.get()))
             return ResponseEntity(HttpStatus.CONFLICT)
 
-        applicationService.saveApplication(application, user.get(), event.get())
+        applicationService.saveApplication(application)
         return ResponseEntity(HttpStatus.CREATED)
     }
 
     @PutMapping("/")
-    fun updateApplication(@RequestBody application: ApplicationDTO): ResponseEntity<Unit> {
+    fun updateApplication(@RequestBody application: ApplicationDTO): ResponseEntity<Application> {
         val user = userService.getUserByEmail(application.username)
         val event = eventService.getEventById(application.eventId)
-        return ResponseEntity(applicationService.saveApplication(application, user.get(), event.get()), HttpStatus.OK)
+        return ResponseEntity(applicationService.saveApplication(application), HttpStatus.OK)
     }
 
     @DeleteMapping("/{id}")

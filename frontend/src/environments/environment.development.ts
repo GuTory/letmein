@@ -6,6 +6,4 @@ export const environment = {
     userUrl: 'http://localhost:8080/api/users',
     applicationUrl: 'http://localhost:8080/api/applications',
     webSocketUrl: 'ws://localhost:8080/websocket',
-    websocketSubscriptionUrl: 'ws://localhost:8080/ws/reply',
-    webSocketMessageUrl: 'ws://localhost:8080/ws/message',
 };

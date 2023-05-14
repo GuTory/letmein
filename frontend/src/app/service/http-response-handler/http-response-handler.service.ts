@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpResponse} from "@angular/common/http";
+import {WebsocketService} from "../websocket/websocket.service";
 
 @Injectable({
     providedIn: 'root'
@@ -8,15 +9,18 @@ export class HttpResponseHandlerService {
 
     constructor() {}
 
-    handleEventDetailsResponse(response: HttpResponse<any>): string {
+    handleEventDetailsResponse(response: HttpResponse<any>, username: string): string {
         var message: string = "";
+        var newApplication: boolean = false;
         switch (response.status) {
             case 200: {
-                message = "Application sent. Status: pending";
+                message = "Application sent";
+                newApplication = true;
                 break;
             }
             case 201: {
-                message = "Application sent. Status: pending";
+                message = "Application sent";
+                newApplication = true;
                 break;
             }
             case 400: {
