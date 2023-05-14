@@ -9,8 +9,6 @@ import {UserContainerComponent} from './components/user-components/user-containe
 import {ApplicationComponent} from './components/application-components/application/application.component';
 import {NavbarComponent} from './components/core/navbar/navbar.component';
 import {UserComponent} from './components/user-components/user/user.component';
-import {MatCardModule} from '@angular/material/card';
-import {MatGridListModule} from '@angular/material/grid-list';
 import {EventContainerComponent} from './components/event-components/event-container/event-container.component';
 import {RouterModule} from '@angular/router';
 import {FooterComponent} from './components/core/footer/footer.component';
@@ -40,14 +38,13 @@ import {NgOptimizedImage} from "@angular/common";
         LoginFormComponent,
         EventDetailsComponent,
         LandingPageComponent,
+
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        MatCardModule,
-        MatGridListModule,
         RouterModule,
         FormsModule,
         NgOptimizedImage
@@ -57,7 +54,7 @@ import {NgOptimizedImage} from "@angular/common";
             provide: HTTP_INTERCEPTORS,
             useClass: HeaderInterceptor,
             multi: true
-        }
+        },
     ],
     bootstrap: [AppComponent]
 })

@@ -6,7 +6,7 @@ import {PathMap} from "../../../app-routing.module";
 import {ApplicationService} from "../../../service/application/application.service";
 import {ApplicationStatus} from "../../../model/applicationstatus";
 import {AuthService} from "../../../auth/auth.service";
-import {HttpResponseHandlerService} from "../../../service/http-response-handler.service";
+import {HttpResponseHandlerService} from "../../../service/http-response-handler/http-response-handler.service";
 
 @Component({
     selector: 'app-event-details',
@@ -35,7 +35,7 @@ export class EventDetailsComponent implements OnInit {
             next: (event) => {
                 this.event = event;
 
-                if(this.event.imagePath){
+                if (this.event.imagePath) {
                     this.currentimage = this.event.imagePath.split("\\backend\\src\\main\\resources\\static\\images\\")[1];
                 }
             },
@@ -62,12 +62,12 @@ export class EventDetailsComponent implements OnInit {
         });
     }
 
-    removeMessage(){
+    removeMessage() {
         this.message = undefined;
     }
 
     deleteEvent(id: string): void {
-        if(!this.isDisabled()) {
+        if (!this.isDisabled()) {
             this.eventService.deleteEvent(id).subscribe({
                 next: (data) => {
                     this.router.navigate([PathMap.eventsPath]);
@@ -76,7 +76,7 @@ export class EventDetailsComponent implements OnInit {
         }
     }
 
-    isDisabled(){
+    isDisabled() {
         return this.event.organizers[0].email !== this.auth.getEmail();
     }
 }
