@@ -31,8 +31,6 @@ const routes: Routes = [
     {path: PathMap.basePath, component: LandingPageComponent},
     {path: PathMap.loginPath, component: LoginFormComponent},
     {path: '**', redirectTo: PathMap.basePath}
-
-    //{path: PathMap.newApplicationPath, component: EventcontainerComponent}, //Rossz komponens
 ];
 
 @NgModule({

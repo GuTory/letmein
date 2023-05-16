@@ -13,7 +13,9 @@ class ApplicationService(
     private val userService: UserService,
     private val eventService: EventService
 ){
-    fun saveApplication(application: ApplicationDTO, user: User, event: Event) {
+    fun saveApplication(application: ApplicationDTO): Application {
+        val event = eventService.getEventById(application.eventId).get()
+        val user = userService.getUserByEmail(application.username).get()
         val newApplication = Application(
             event,
             user,
@@ -25,6 +27,7 @@ class ApplicationService(
         applicationRepository.save(newApplication)
         eventService.updateEvent(event)
         userService.saveUser(user)
+        return newApplication
     }
 
     fun deleteApplication(id: String) {

@@ -37,7 +37,8 @@ class SecurityConfig(
         return http
             .authorizeHttpRequests()
             .requestMatchers(
-                AntPathRequestMatcher("/api/v1/auth/**")
+                AntPathRequestMatcher("/api/v1/auth/**"),
+                AntPathRequestMatcher("/websocket/**")
             )
             .permitAll()
             .anyRequest()

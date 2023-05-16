@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthGuardService} from "../../../auth/auth-guard.service";
+import {WebsocketService} from "../../../service/websocket/websocket.service";
 
 @Component({
     selector: 'app-root',

@@ -1,6 +1,8 @@
 package com.letmein.controller
 
 import com.letmein.dto.ApplicationDTO
+import com.letmein.dto.ApplicationResponse
+import com.letmein.jwt.JwtService
 import com.letmein.model.Application
 import com.letmein.model.Event
 import com.letmein.model.User
@@ -16,28 +18,39 @@ import org.springframework.web.bind.annotation.*
 class ApplicationController(
     private val applicationService: ApplicationService,
     private val userService: UserService,
-    private val eventService: EventService
+    private val eventService: EventService,
+    private val jwtService: JwtService
 ) {
     @PostMapping("/")
-    fun createApplication(@RequestBody application: ApplicationDTO): ResponseEntity<Unit> {
+    fun createApplication(@RequestBody application: ApplicationDTO): ResponseEntity<ApplicationResponse> {
         val user = userService.getUserByEmail(application.username)
         val event = eventService.getEventById(application.eventId)
         if (event.isEmpty || user.isEmpty)
-            return ResponseEntity(HttpStatus.BAD_REQUEST)
-        if (!event.get().CanRegister())
-            return ResponseEntity(HttpStatus.FORBIDDEN)
-        if (event.get().Attendees.contains(user.get()))
-            return ResponseEntity(HttpStatus.CONFLICT)
+            return ResponseEntity(
+                ApplicationResponse("Event or user does not exist", false),
+                HttpStatus.BAD_REQUEST)
 
-        applicationService.saveApplication(application, user.get(), event.get())
-        return ResponseEntity(HttpStatus.CREATED)
+        if (!event.get().CanRegister())
+            return ResponseEntity(
+                ApplicationResponse("User cannot register. Application is closed.", false),
+                HttpStatus.FORBIDDEN)
+
+        if (event.get().Attendees.contains(user.get()))
+            return ResponseEntity(
+                ApplicationResponse("User Already applied", false),
+                HttpStatus.CONFLICT)
+
+        applicationService.saveApplication(application)
+        return ResponseEntity(ApplicationResponse(
+            "Successfully Applied", true),
+            HttpStatus.CREATED)
     }
 
     @PutMapping("/")
-    fun updateApplication(@RequestBody application: ApplicationDTO): ResponseEntity<Unit> {
+    fun updateApplication(@RequestBody application: ApplicationDTO): ResponseEntity<Application> {
         val user = userService.getUserByEmail(application.username)
         val event = eventService.getEventById(application.eventId)
-        return ResponseEntity(applicationService.saveApplication(application, user.get(), event.get()), HttpStatus.OK)
+        return ResponseEntity(applicationService.saveApplication(application), HttpStatus.OK)
     }
 
     @DeleteMapping("/{id}")

@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {EventServiceInterface} from './event';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {environment} from "../../../environments/environment.development";
 import {Event} from "../../model/event";
@@ -9,7 +8,7 @@ import {EventDTO} from "../../dto/eventDTO";
 @Injectable({
     providedIn: 'root',
 })
-export class EventService implements EventServiceInterface {
+export class EventService {
 
     baseUrl = environment.eventUrl;
 
@@ -17,8 +16,6 @@ export class EventService implements EventServiceInterface {
     }
 
     saveEvent(event: EventDTO): Observable<Observable<HttpResponse<any>>> {
-        const file: File = event.image!!;
-
         return this.http.post<Observable<HttpResponse<any>>>(this.baseUrl + '/', event);
     }
 
