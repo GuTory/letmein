@@ -1,5 +1,8 @@
 import {User} from "./user";
 
+/**
+ * Event model.
+ */
 export interface Event {
     id: string | null
 

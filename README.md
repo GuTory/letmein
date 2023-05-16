@@ -1,6 +1,8 @@
 # Let Me In - Event Management Application
 Event management software based on Spring Framework Backend and Angular frontend
 
+# Kick Off - initial ideas
+
 ## Schema
 
 ![](diagram.svg)
