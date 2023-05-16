@@ -1,27 +1,30 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './components/core/app/app.component';
+import {AppComponent} from './components/app/app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {EventComponent} from './components/event-components/event/event.component';
-import {UserContainerComponent} from './components/user-components/user-container/user-container.component';
-import {ApplicationComponent} from './components/application-components/application/application.component';
-import {NavbarComponent} from './components/core/navbar/navbar.component';
-import {UserComponent} from './components/user-components/user/user.component';
-import {EventContainerComponent} from './components/event-components/event-container/event-container.component';
+import {EventComponent} from './components/event/event.component';
+import {UserContainerComponent} from './components/user-container/user-container.component';
+import {ApplicationComponent} from './components/application/application.component';
+import {NavbarComponent} from './components/navbar/navbar.component';
+import {UserComponent} from './components/user/user.component';
+import {EventContainerComponent} from './components/event-container/event-container.component';
 import {RouterModule} from '@angular/router';
-import {FooterComponent} from './components/core/footer/footer.component';
-import {ApplicationContainerComponent} from './components/application-components/application-container/application-container.component';
-import {EventFormComponent} from './components/forms/event-form/event-form.component';
-import {RegisterFormComponent} from './components/forms/register-form/register-form.component';
+import {FooterComponent} from './components/footer/footer.component';
+import {ApplicationContainerComponent} from './components/application-container/application-container.component';
+import {EventFormComponent} from './components/event-form/event-form.component';
+import {RegisterFormComponent} from './components/register-form/register-form.component';
 import {FormsModule} from "@angular/forms";
-import {LoginFormComponent} from './components/forms/login-form/login-form.component';
+import {LoginFormComponent} from './components/login-form/login-form.component';
 import {HeaderInterceptor} from './auth/header.interceptor';
-import {EventDetailsComponent} from './components/event-components/event-details/event-details.component';
-import {LandingPageComponent} from './components/core/landing-page/landing-page.component';
+import {EventDetailsComponent} from './components/event-details/event-details.component';
+import {LandingPageComponent} from './components/landing-page/landing-page.component';
 import {NgOptimizedImage} from "@angular/common";
 
+/**
+ * The app module.
+ */
 @NgModule({
     declarations: [
         AppComponent,

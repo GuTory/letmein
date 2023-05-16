@@ -1,7 +1,9 @@
 import {Application} from "./application";
 import {Event} from "./event";
-import {Injectable} from "@angular/core";
 
+/**
+ * User model.
+ */
 export interface User {
     id: string
 

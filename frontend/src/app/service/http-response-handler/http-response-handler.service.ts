@@ -2,6 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpResponse} from "@angular/common/http";
 import {WebsocketService} from "../websocket/websocket.service";
 
+/**
+ * This service handles the HTTP responses when applying to events.
+ */
 @Injectable({
     providedIn: 'root'
 })
@@ -9,6 +12,11 @@ export class HttpResponseHandlerService {
 
     constructor() {}
 
+    /**
+     * Handles the HTTP response when applying to an event.
+     * @param response
+     * @param username
+     */
     handleEventDetailsResponse(response: HttpResponse<any>, username: string): string {
         var message: string = "";
         var newApplication: boolean = false;

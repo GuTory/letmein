@@ -1,26 +1,31 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {UserContainerComponent} from './components/user-components/user-container/user-container.component';
-import {EventContainerComponent} from './components/event-components/event-container/event-container.component';
-import {ApplicationContainerComponent} from './components/application-components/application-container/application-container.component';
-import {RegisterFormComponent} from "./components/forms/register-form/register-form.component";
-import {EventFormComponent} from "./components/forms/event-form/event-form.component";
-import {LoginFormComponent} from "./components/forms/login-form/login-form.component";
-import {EventDetailsComponent} from "./components/event-components/event-details/event-details.component";
-import {LandingPageComponent} from "./components/core/landing-page/landing-page.component";
+import {UserContainerComponent} from './components/user-container/user-container.component';
+import {EventContainerComponent} from './components/event-container/event-container.component';
+import {ApplicationContainerComponent} from './components/application-container/application-container.component';
+import {RegisterFormComponent} from "./components/register-form/register-form.component";
+import {EventFormComponent} from "./components/event-form/event-form.component";
+import {LoginFormComponent} from "./components/login-form/login-form.component";
+import {EventDetailsComponent} from "./components/event-details/event-details.component";
+import {LandingPageComponent} from "./components/landing-page/landing-page.component";
 import {AuthGuardService} from "./auth/auth-guard.service";
 
+/**
+ * Paths that are used in the application.
+ */
 export const PathMap = {
     usersPath: 'users',
     eventsPath: 'events',
     applicationsPath: 'applications',
     newEventPath: 'newevent',
-    //newApplicationPath: 'newapplication',
     registerPath: 'register',
     loginPath: 'login',
     basePath: '',
 };
 
+/**
+ * Routes defined for the application.
+ */
 const routes: Routes = [
     {path: PathMap.usersPath, component: UserContainerComponent, canActivate: [AuthGuardService]},
     {path: PathMap.applicationsPath, component: ApplicationContainerComponent},
@@ -33,6 +38,9 @@ const routes: Routes = [
     {path: '**', redirectTo: PathMap.basePath}
 ];
 
+/**
+ * The app routing module.
+ */
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]

@@ -1,3 +1,6 @@
+/**
+ * Event Data transfer object for sending via HTTP request
+ */
 export class EventDTO{
     name: string;
     description: string;

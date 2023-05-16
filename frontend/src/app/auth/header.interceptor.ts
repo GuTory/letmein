@@ -1,42 +1,51 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor
+    HttpRequest,
+    HttpHandler,
+    HttpEvent,
+    HttpInterceptor
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
-import { Router } from '@angular/router';
-import { PathMap } from '../app-routing.module';
+import {Observable} from 'rxjs';
+import {AuthService} from './auth.service';
+import {Router} from '@angular/router';
+import {PathMap} from '../app-routing.module';
 
+/**
+ * Interceptor for adding the Authorization header to
+ * all requests except the login and register requests.
+ */
 @Injectable()
 export class HeaderInterceptor implements HttpInterceptor {
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
+    constructor(
+        private authService: AuthService,
+        private router: Router
     ) {}
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if(request.url.includes('/api/v1/auth'))
-      return next.handle(request);
+    /**
+     * Intercept the request and add the Authorization header
+     * @param request
+     * @param next
+     */
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        if (request.url.includes('/api/v1/auth'))
+            return next.handle(request);
 
-    if(this.authService.isAuthenticated()) {
-      const token = this.authService.getToken();
-      if(token != undefined) {
-      const authRequest = request.clone({
-        headers: request.headers.set('Authorization', `Bearer ${token?.token}`)
-      });
-      return next.handle(authRequest);
-    } else {
-      if(request.url.includes('/api/v1/auth/register')){
-        this.router.navigate([PathMap.registerPath]);
-      } else {
-        this.router.navigate([PathMap.loginPath]);
-      }
+        if (this.authService.isAuthenticated()) {
+            const token = this.authService.getToken();
+            if (token != undefined) {
+                const authRequest = request.clone({
+                    headers: request.headers.set('Authorization', `Bearer ${token?.token}`)
+                });
+                return next.handle(authRequest);
+            } else {
+                if (request.url.includes('/api/v1/auth/register')) {
+                    this.router.navigate([PathMap.registerPath]);
+                } else {
+                    this.router.navigate([PathMap.loginPath]);
+                }
+            }
+        }
+        return next.handle(request);
     }
-  }
-  return next.handle(request);
-}
 }

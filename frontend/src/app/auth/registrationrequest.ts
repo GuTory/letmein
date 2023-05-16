@@ -1,3 +1,6 @@
+/**
+ * Registration request DTO
+ */
 export interface RegistrationRequest {
     email: string,
     firstName: string,
