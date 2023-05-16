@@ -2,13 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/model/user';
-import { UserServiceInterface } from './user';
 import {environment} from "../../../environments/environment.development";
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService implements UserServiceInterface {
+export class UserService  {
 
   baseUrl = environment.userUrl;
 

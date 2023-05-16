@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {EventService} from "../../../service/event/event.service";
 import {Event} from "../../../model/event";
 import {Router} from "@angular/router";
@@ -16,11 +16,13 @@ import {WebsocketService} from "../../../service/websocket/websocket.service";
     templateUrl: './event-details.component.html',
     styleUrls: ['./event-details.component.scss']
 })
-export class EventDetailsComponent implements OnInit, Refreshable {
+export class EventDetailsComponent implements OnInit, Refreshable, OnDestroy {
 
     event: Event;
 
     message: string | undefined;
+
+    success = false;
 
     currentimage: string | undefined;
 
@@ -34,6 +36,10 @@ export class EventDetailsComponent implements OnInit, Refreshable {
                 private cdr: ChangeDetectorRef) {
     }
 
+    ngOnDestroy(): void {
+        this.webSocketService.closeConnection(this);
+    }
+
 
     refresh(application: ApplicationDTO): void {
         console.log("Received message username: " + application.username);
@@ -45,9 +51,7 @@ export class EventDetailsComponent implements OnInit, Refreshable {
                         this.cdr.detectChanges();
                     }
                 },
-                error: (error) => {
-                    //console.log(error);
-                }
+                error: (error) => {}
             });
         }
     }
@@ -79,14 +83,16 @@ export class EventDetailsComponent implements OnInit, Refreshable {
         };
         this.applicationService.saveApplication(newApplication).subscribe({
             next: (res) => {
-                this.message = this.httpResponseHandlerService.handleEventDetailsResponse(res, newApplication.username);
-                console.log("next")
+                this.message = this.httpResponseHandlerService.handleEventDetailsResponse(res, this.auth.getEmail()!!);
+                this.success = true;
+                console.log(res);
             },
             error: (error) => {
-                this.message = this.httpResponseHandlerService.handleEventDetailsResponse(error, newApplication.username);
+                this.message = this.httpResponseHandlerService.handleEventDetailsResponse(error, this.auth.getEmail()!!);
+                this.success = false;
             }
         });
-        this.webSocketService.sendMessage(newApplication);
+
     }
 
     removeMessage() {

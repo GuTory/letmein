@@ -1,6 +1,7 @@
 package com.letmein.controller
 
 import com.letmein.dto.ApplicationDTO
+import com.letmein.dto.ApplicationResponse
 import com.letmein.jwt.JwtService
 import com.letmein.model.Application
 import com.letmein.model.Event
@@ -21,18 +22,28 @@ class ApplicationController(
     private val jwtService: JwtService
 ) {
     @PostMapping("/")
-    fun createApplication(@RequestBody application: ApplicationDTO): ResponseEntity<Unit> {
+    fun createApplication(@RequestBody application: ApplicationDTO): ResponseEntity<ApplicationResponse> {
         val user = userService.getUserByEmail(application.username)
         val event = eventService.getEventById(application.eventId)
         if (event.isEmpty || user.isEmpty)
-            return ResponseEntity(HttpStatus.BAD_REQUEST)
+            return ResponseEntity(
+                ApplicationResponse("Event or user does not exist", false),
+                HttpStatus.BAD_REQUEST)
+
         if (!event.get().CanRegister())
-            return ResponseEntity(HttpStatus.FORBIDDEN)
+            return ResponseEntity(
+                ApplicationResponse("User cannot register. Application is closed.", false),
+                HttpStatus.FORBIDDEN)
+
         if (event.get().Attendees.contains(user.get()))
-            return ResponseEntity(HttpStatus.CONFLICT)
+            return ResponseEntity(
+                ApplicationResponse("User Already applied", false),
+                HttpStatus.CONFLICT)
 
         applicationService.saveApplication(application)
-        return ResponseEntity(HttpStatus.CREATED)
+        return ResponseEntity(ApplicationResponse(
+            "Successfully Applied", true),
+            HttpStatus.CREATED)
     }
 
     @PutMapping("/")

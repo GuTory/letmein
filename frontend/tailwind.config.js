@@ -11,6 +11,7 @@ module.exports = {
             'dark-primary': '#BDFF00',
             'red': '#FF0000',
             'pastel': '#FF6961',
+            'green': '#77DD77',
             transparent: 'transparent',
         },
         extend: {},

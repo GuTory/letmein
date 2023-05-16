@@ -1,23 +1,23 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Application} from '../../model/application';
-import {ApplicationServiceInterface} from './application';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {environment} from "../../../environments/environment.development";
 import {ApplicationDTO} from "../../dto/applicationDTO";
+import {ApplicationResponse} from "../../dto/ApplicationResponse";
 
 @Injectable({
     providedIn: 'root'
 })
-export class ApplicationService implements ApplicationServiceInterface {
+export class ApplicationService {
 
     baseUrl = environment.applicationUrl;
 
     constructor(private http: HttpClient) {
     }
 
-    saveApplication(application: ApplicationDTO): Observable<HttpResponse<any>> {
-        return this.http.post<HttpResponse<any>>(this.baseUrl + "/", application);
+    saveApplication(application: ApplicationDTO): Observable<HttpResponse<ApplicationResponse>> {
+        return this.http.post<ApplicationResponse>(this.baseUrl + "/", application, {observe: 'response'});
     }
 
     updateApplication(application: Application): Observable<Application> {

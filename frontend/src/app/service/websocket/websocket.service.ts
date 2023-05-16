@@ -15,7 +15,9 @@ export class WebsocketService {
 
     constructor() {
         this.ws = new WebSocket(environment.webSocketUrl);
-
+        this.ws.onopen = (event) => {
+            console.log("Websocket connection opened");
+        };
         this.ws.onmessage = (event) => {
             this.refreshables.forEach((refreshable) => {
                 refreshable.refresh(JSON.parse(event.data))
@@ -27,9 +29,11 @@ export class WebsocketService {
     }
 
     openConnection(refreshable: Refreshable) {
-        this.ws.onopen = (event) => {
-            this.refreshables.push(refreshable);
-        };
+        this.refreshables.push(refreshable);
+    }
+
+    closeConnection(refreshable: Refreshable) {
+        this.refreshables = this.refreshables.filter((r) => r != refreshable);
     }
 
     sendMessage(application: ApplicationDTO) {
