@@ -90,10 +90,11 @@ export class EventDetailsComponent implements OnInit, Refreshable, OnDestroy {
      * @param application
      */
     refresh(application: ApplicationDTO): void {
-        console.log("Received message username: " + application.username);
+
         if (this.event.id === application.eventId) {
             this.userService.getUserByEmail(application.username).subscribe({
                 next: (user) => {
+                    console.log("Received message username: " + user.email);
                     if (!this.event.attendees.find(u => u.email === user.email)){
                         this.event.attendees.push(user);
                         this.cdr.detectChanges();
@@ -118,7 +119,7 @@ export class EventDetailsComponent implements OnInit, Refreshable, OnDestroy {
             next: (res) => {
                 this.message = this.httpResponseHandlerService.handleEventDetailsResponse(res, this.auth.getEmail()!!);
                 this.success = true;
-                console.log(res);
+                this.webSocketService.sendMessage(newApplication);
             },
             error: (error) => {
                 this.message = this.httpResponseHandlerService.handleEventDetailsResponse(error, this.auth.getEmail()!!);
