@@ -89,14 +89,31 @@ export class EventDetailsComponent implements OnInit, Refreshable, OnDestroy {
      * Refreshing UI when websocket message arrives
      * @param application
      */
-    refresh(application: ApplicationDTO): void {
-
+    refreshAdd(application: ApplicationDTO): void {
         if (this.event.id === application.eventId) {
             this.userService.getUserByEmail(application.username).subscribe({
                 next: (user) => {
                     console.log("Received message username: " + user.email);
                     if (!this.event.attendees.find(u => u.email === user.email)){
                         this.event.attendees.push(user);
+                        this.cdr.detectChanges();
+                    }
+                },
+                error: (error) => {}
+            });
+        }
+    }
+
+    /**
+     * Refreshing UI when websocket message arrives
+     * @param application
+     */
+    refreshDelete(application: ApplicationDTO): void {
+        if (this.event.id === application.eventId) {
+            this.userService.getUserByEmail(application.username).subscribe({
+                next: (user) => {
+                    if (!this.event.attendees.find(u => u.email === user.email)){
+                        this.event.attendees = this.event.attendees.filter(u => u.email !== user.email);
                         this.cdr.detectChanges();
                     }
                 },

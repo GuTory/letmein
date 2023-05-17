@@ -33,7 +33,7 @@ export class WebsocketService {
         };
         this.ws.onmessage = (event) => {
             this.refreshables.forEach((refreshable) => {
-                refreshable.refresh(JSON.parse(event.data))
+                refreshable.refreshAdd(JSON.parse(event.data))
             });
         }
         this.ws.onclose = (event) => {

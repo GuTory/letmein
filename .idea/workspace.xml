@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b1ccff1-8d54-41cc-9ad4-423ff86345c3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/munkaorak.md" beforeDir="false" afterPath="$PROJECT_DIR$/munkaorak.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/event-details/event-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/event-details/event-details.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/service/websocket/refreshable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/service/websocket/refreshable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/service/websocket/websocket.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/service/websocket/websocket.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +43,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "features",
+    "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/egyetem/aktualis_targyak/onlab/letmein",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -51,7 +51,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "yarn",
     "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2022.2.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "C:\\egyetem\\aktualis_targyak\\onlab\\letmein\\frontend\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -106,6 +106,7 @@
       <workItem from="1679073675714" duration="1390000" />
       <workItem from="1680025624581" duration="1747000" />
       <workItem from="1681827584736" duration="626000" />
+      <workItem from="1684348673858" duration="53000" />
     </task>
     <servers />
   </component>
