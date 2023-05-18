@@ -41,8 +41,8 @@ export class EventService {
      * Deletes an event.
      * @param id
      */
-    deleteEvent(id: string): Observable<Event> {
-        return this.http.delete<Event>(this.baseUrl + '/' + id);
+    deleteEvent(id: string): Observable<HttpResponse<any>> {
+        return this.http.delete(this.baseUrl + '/' + id, {observe: 'response'});
     }
 
     /**

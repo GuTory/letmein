@@ -5,4 +5,5 @@ data class ApplicationDTO(
     var paymentmethod: String,
     var username: String,
     var eventId: String,
+    var isCreated: Boolean
 )

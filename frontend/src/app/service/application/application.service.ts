@@ -40,10 +40,10 @@ export class ApplicationService {
 
     /**
      * Deletes an application by id.
-     * @param id
+     * @param dto
      */
-    deleteApplication(id: string): Observable<Application> {
-        return this.http.delete<Application>(this.baseUrl + "/" + id);
+    deleteApplication(dto: ApplicationDTO): Observable<HttpResponse<any>> {
+        return this.http.delete(this.baseUrl + "/", {observe: 'response', body: dto});
     }
 
     /**

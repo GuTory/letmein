@@ -53,9 +53,9 @@ class ApplicationController(
         return ResponseEntity(applicationService.saveApplication(application), HttpStatus.OK)
     }
 
-    @DeleteMapping("/{id}")
-    fun deleteApplication(@PathVariable id: String): ResponseEntity<Unit> {
-        applicationService.deleteApplication(id)
+    @DeleteMapping("/")
+    fun deleteApplication(@RequestBody application: ApplicationDTO): ResponseEntity<Unit> {
+        applicationService.deleteApplication(application)
         return ResponseEntity(HttpStatus.NO_CONTENT)
     }
 

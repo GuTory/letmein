@@ -13,10 +13,7 @@ import org.springframework.web.socket.WebSocketMessage
 import org.springframework.web.socket.WebSocketSession
 
 @Component
-class MyWebSocketHandler(
-    private val applicationService: ApplicationService,
-    private val userService: UserService,
-) : WebSocketHandler {
+class MyWebSocketHandler : WebSocketHandler {
 
     private val sessions = mutableListOf<WebSocketSession>()
 
@@ -28,7 +25,6 @@ class MyWebSocketHandler(
         try {
             val obj = Gson().fromJson(message.payload.toString(), ApplicationDTO::class.java)
             if (obj is ApplicationDTO) {
-                println("message $obj")
                 sessions.forEach {
                     it.sendMessage(message)
                 }
