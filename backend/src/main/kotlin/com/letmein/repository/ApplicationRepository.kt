@@ -5,6 +5,7 @@ import com.letmein.model.Event
 import com.letmein.model.User
 import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.stereotype.Repository
+import java.util.Optional
 
 @Repository
 interface ApplicationRepository : MongoRepository<Application, String> {

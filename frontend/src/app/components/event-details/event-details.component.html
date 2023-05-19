@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-    <div class="flex flex-col justify-center my-6 items-center">
+    <div class="flex m-auto justify-center my-6 items-center max-w-screen-lg">
         <div class="flex justify-center my-6">
             <div class="mb-6 text-lg font-normal text-light-secondary">
                 {{event.description}}
@@ -107,6 +107,10 @@
         <a (click)="apply()"
            class="cursor-pointer focus:outline-none text-light-secondary bg-light-primary focus:ring-4 focus:ring-red font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
             Apply
+        </a>
+        <a *ngIf="hasApplied()" (click)="declineApplication()"
+           class="cursor-pointer focus:outline-none text-light-secondary bg-pastel focus:ring-4 focus:ring-red rounded-lg px-5 py-2.5 mr-2 mb-2">
+            Decline application
         </a>
         <a *ngIf="!isAbleToDelete()" (click)="deleteEvent(event.id!!)"
            class="cursor-pointer focus:outline-none text-light-secondary bg-red focus:ring-4 focus:ring-red rounded-lg px-5 py-2.5 mr-2 mb-2">

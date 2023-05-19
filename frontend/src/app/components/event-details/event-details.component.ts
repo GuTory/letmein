@@ -90,17 +90,29 @@ export class EventDetailsComponent implements OnInit, Refreshable, OnDestroy {
      * @param application
      */
     refresh(application: ApplicationDTO): void {
-
         if (this.event.id === application.eventId) {
             this.userService.getUserByEmail(application.username).subscribe({
                 next: (user) => {
-                    console.log("Received message username: " + user.email);
-                    if (!this.event.attendees.find(u => u.email === user.email)){
-                        this.event.attendees.push(user);
-                        this.cdr.detectChanges();
+                    console.log(this.event.attendees);
+                    switch (application.isCreated) {
+                        case true:
+                            if (!this.event.attendees.find(u => u.email === user.email)) {
+                                console.log("adding user");
+                                this.event.attendees.push(user);
+                                this.cdr.detectChanges();
+                            }
+                            break;
+                        case false:
+                            if (this.event.attendees.find(u => u.email === user.email)) {
+                                console.log("removing user");
+                                this.event.attendees.splice(this.event.attendees.indexOf(user), 1);
+                                this.cdr.detectChanges();
+                            }
+                            break;
                     }
                 },
-                error: (error) => {}
+                error: (error) => {
+                }
             });
         }
     }
@@ -113,7 +125,8 @@ export class EventDetailsComponent implements OnInit, Refreshable, OnDestroy {
             status: "pending",
             paymentmethod: "Cash",
             username: this.auth.getEmail()!!,
-            eventId: this.event.id!!
+            eventId: this.event.id!!,
+            isCreated: true
         };
         this.applicationService.saveApplication(newApplication).subscribe({
             next: (res) => {
@@ -124,6 +137,27 @@ export class EventDetailsComponent implements OnInit, Refreshable, OnDestroy {
             error: (error) => {
                 this.message = this.httpResponseHandlerService.handleEventDetailsResponse(error, this.auth.getEmail()!!);
                 this.success = false;
+            }
+        });
+    }
+
+    hasApplied(): boolean {
+        return this.event.attendees.find(u => u.email === this.auth.getEmail()!!) !== undefined;
+    }
+
+    declineApplication() {
+        const deletedApplication: ApplicationDTO = {
+            status: "pending",
+            paymentmethod: "Cash",
+            username: this.auth.getEmail()!!,
+            eventId: this.event.id!!,
+            isCreated: false
+        };
+        this.applicationService.deleteApplication(deletedApplication).subscribe({
+            next: (data) => {
+                this.webSocketService.sendMessage(deletedApplication);
+            },
+            error: (error) => {
             }
         });
     }

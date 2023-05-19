@@ -6,4 +6,5 @@ export class ApplicationDTO{
     paymentmethod: string;
     username: string;
     eventId: string;
+    isCreated: boolean;
 }

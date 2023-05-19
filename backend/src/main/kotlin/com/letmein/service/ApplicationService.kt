@@ -30,13 +30,19 @@ class ApplicationService(
         return newApplication
     }
 
-    fun deleteApplication(id: String) {
-        val application = applicationRepository.findById(id)
-        application.get().Event.Attendees.remove(application.get().User)
-        application.get().User.applications.remove(application.get())
-        eventService.updateEvent(application.get().Event)
-        userService.saveUser(application.get().User)
-        applicationRepository.deleteById(id)
+    fun deleteApplication(application: ApplicationDTO) {
+        println("deleting application")
+        val applications = applicationRepository.findAll()
+        applications.forEach {app ->
+            if(app.Event.id == application.eventId && app.User.email == application.username){
+                app.Event.Attendees.remove(app.User)
+                app.User.applications.remove(app)
+                eventService.updateEvent(app.Event)
+                println("event updated")
+                userService.saveUser(app.User)
+                applicationRepository.deleteById(app.id)
+            }
+        }
     }
 
     fun getAllApplications(): MutableList<Application> = applicationRepository.findAll()
