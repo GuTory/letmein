@@ -25,7 +25,7 @@
                 Email address
             </label>
             <input
-                class="appearance-none block w-full bg-gray-200 text-light-secondary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                inputClasses
                 id="grid-email" type="text" placeholder="posedge@clk.com"
                 required
                 name="email"
@@ -33,7 +33,7 @@
                 [(ngModel)]="newUser.email"
                 [ngClass]="{'is-invalid': (emailVar.touched || emailVar.dirty) && !emailVar.valid } ">
         </div>
-        <p *ngIf="emailVar.errors != null" class="text-light-secondary px-3 text-xs italic">
+        <p *ngIf="emailVar.errors != null" formFeedback>
             Please fill out this field.
         </p>
     </div>
@@ -44,14 +44,14 @@
                 First Name
             </label>
             <input
-                class="appearance-none block w-full bg-gray-200 text-light-secondary border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                inputClasses
                 id="grid-first-name" type="text" placeholder="Bob"
                 required
                 name="firstName"
                 #firstNameVar="ngModel"
                 [(ngModel)]="newUser.firstName"
                 [ngClass]="{'is-invalid': (firstNameVar.touched || firstNameVar.dirty) && !firstNameVar.valid } ">
-            <p *ngIf="firstNameVar.errors != null" class="text-light-secondary px-3 text-xs italic">
+            <p *ngIf="firstNameVar.errors != null" formFeedback>
                 Please fill out this field.
             </p>
         </div>
@@ -61,14 +61,14 @@
                 Last Name
             </label>
             <input
-                class="appearance-none block w-full bg-gray-200 text-light-secondary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                inputClasses
                 id="grid-last-name" type="text" placeholder="Smith"
                 required
                 name="lastName"
                 #lastNameVar="ngModel"
                 [(ngModel)]="newUser.lastName"
                 [ngClass]="{'is-invalid': (lastNameVar.touched || lastNameVar.dirty) && !lastNameVar.valid}">
-            <p *ngIf="lastNameVar.errors != null" class="text-light-secondary px-3 text-xs italic">
+            <p *ngIf="lastNameVar.errors != null" formFeedback>
                 Please fill out this field.
             </p>
         </div>
@@ -80,14 +80,14 @@
                 Password
             </label>
             <input
-                class="appearance-none block w-full bg-gray-200 text-light-secondary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                inputClasses
                 id="grid-password" type="password" placeholder="******************"
                 required
                 name="password"
                 #passwordVar="ngModel"
                 [(ngModel)]="newUser.password"
                 [ngClass]="{'is-invalid': (passwordVar.touched || passwordVar.dirty) && !passwordVar.valid}">
-            <p *ngIf="passwordVar.errors != null" class="text-light-secondary px-3 text-xs italic">
+            <p *ngIf="passwordVar.errors != null" formFeedback>
                 Please fill out this field.
             </p>
         </div>
@@ -98,7 +98,7 @@
                 Company
             </label>
             <input
-                class="appearance-none block w-full bg-gray-200 text-light-secondary border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                inputClasses
                 id="grid-company" type="text" placeholder="Company"
                 name="company"
                 [(ngModel)]="newUser.company">
@@ -108,7 +108,7 @@
                 Team
             </label>
             <input
-                class="appearance-none block w-full bg-gray-200 text-light-secondary border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                inputClasses
                 id="grid-team" type="text" placeholder="Team"
                 name="team"
                 [(ngModel)]="newUser.team">
@@ -118,7 +118,7 @@
                 Role
             </label>
             <select
-                class="block appearance-none w-full bg-gray-200 border border-gray-200 text-light-secondary py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                inputClasses
                 id="grid-roles"
                 name="roles"
                 [(ngModel)]="newUser.roles">
@@ -135,13 +135,13 @@
         </button>
     </div>
     <div class="flex flex-wrap -mx-3 mb-6 justify-center">
-        <p *ngIf="!registerForm.valid" class="text-light-secondary px-3 text-xs italic">
+        <p *ngIf="!registerForm.valid" formFeedback>
             Your data is invalid! Please insert valid data!
         </p>
     </div>
     <hr class="h-px my-8 bg-gray-200 border-1 bg-light-secondary">
     <div class="flex flex-wrap -mx-3 mb-6 justify-center">
-        <div class="text-light-secondary px-3 text-xs italic">
+        <div formFeedback>
             Already registered? Log in here!
         </div>
     </div>

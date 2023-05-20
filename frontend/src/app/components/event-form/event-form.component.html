@@ -1,7 +1,7 @@
-<form novalidate
-      class="w-full max-w-lg m-6"
+<form #eventPublishForm="ngForm"
       (ngSubmit)="publishEvent(eventPublishForm)"
-      #eventPublishForm="ngForm">
+      class="w-full max-w-lg m-6"
+      novalidate>
     <div class="flex flex-wrap -mx-3 mb-4">
         <h1 class="justify-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-light-secondary">
             Create new event
@@ -9,192 +9,192 @@
     </div>
     <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full px-3">
-            <label class="block uppercase tracking-wide text-light-secondary text-xs font-bold mb-2"
-                   for="grid-name">
+            <label for="grid-name"
+                   formLabel>
                 Name
             </label>
             <input
-                class="appearance-none block w-full bg-gray-200 text-light-secondary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-name" type="text" placeholder="Event name"
-                required
-                name="name"
                 #eventName="ngModel"
-                [(ngModel)]="newEvent.name"
-                [ngClass]="{'is-invalid': (eventName.touched || eventName.dirty) && !eventName.valid } ">
+                [(ngModel)]="newEvent.name" [ngClass]="{'is-invalid': (eventName.touched || eventName.dirty) && !eventName.valid } " class=" block w-full  text-light-secondary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-name"
+                name="name"
+                placeholder="Event name"
+                required
+                type="text">
         </div>
-        <p *ngIf="eventName.errors != null" class="text-light-secondary px-3 text-xs italic">Please fill out this
+        <p *ngIf="eventName.errors != null" formFeedback>Please fill out this
             field.</p>
     </div>
     <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full px-3">
-            <label class="block uppercase tracking-wide text-light-secondary text-xs font-bold mb-2"
-                   for="grid-description">
+            <label for="grid-description"
+                   formLabel>
                 Description
             </label>
             <textarea
-                class="appearance-none block w-full bg-gray-200 text-light-secondary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-description" rows="4" type="text" placeholder="Write a description for your event..."
-                required
-                name="decription"
                 #eventDescription="ngModel"
-                [(ngModel)]="newEvent.description"
-                [ngClass]="{'is-invalid': (eventDescription.touched || eventDescription.dirty) && !eventDescription.valid } "></textarea>
+                [(ngModel)]="newEvent.description" [ngClass]="{'is-invalid': (eventDescription.touched || eventDescription.dirty) && !eventDescription.valid } " inputClasses id="grid-description"
+                name="decription"
+                placeholder="Write a description for your event..."
+                required
+                rows="4"
+                type="text"></textarea>
         </div>
-        <p *ngIf="eventDescription.errors != null" class="text-light-secondary px-3 text-xs italic">Please fill out
+        <p *ngIf="eventDescription.errors != null" formFeedback>Please fill out
             this
             field.</p>
     </div>
     <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full px-3">
-            <label class="block uppercase tracking-wide text-light-secondary text-xs font-bold mb-2"
-                   for="grid-venue">
+            <label for="grid-venue"
+                   formLabel>
                 Venue
             </label>
             <input
-                class="appearance-none block w-full bg-gray-200 text-light-secondary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-venue" type="text" placeholder="Event venue"
-                required
-                name="venue"
                 #eventVenue="ngModel"
-                [(ngModel)]="newEvent.venue"
-                [ngClass]="{'is-invalid': (eventVenue.touched || eventVenue.dirty) && !eventVenue.valid } ">
+                [(ngModel)]="newEvent.venue" [ngClass]="{'is-invalid': (eventVenue.touched || eventVenue.dirty) && !eventVenue.valid } " inputClasses
+                id="grid-venue"
+                name="venue"
+                placeholder="Event venue"
+                required
+                type="text">
         </div>
-        <p *ngIf="eventVenue.errors != null" class="text-light-secondary px-3 text-xs italic">
+        <p *ngIf="eventVenue.errors != null" formFeedback>
             Please fill out this field.</p>
     </div>
     <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label class="block uppercase tracking-wide text-light-secondary text-xs font-bold mb-2"
-                   for="grid-startdate">
+            <label for="grid-startdate"
+                   formLabel>
                 Start date
             </label>
             <input
-                class="appearance-none block w-full bg-gray-200 text-light-secondary border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                id="grid-startdate" type="datetime-local" placeholder="Start date"
-                required
-                name="startDate"
                 #startDate="ngModel"
-                [(ngModel)]="newEvent.startDateTime"
-                [ngClass]="{'is-invalid': (startDate.touched || startDate.dirty) && !startDate.valid } ">
-            <p *ngIf="startDate.errors != null" class="text-light-secondary px-3 text-xs italic">Please fill out this
+                [(ngModel)]="newEvent.startDateTime" [ngClass]="{'is-invalid': (startDate.touched || startDate.dirty) && !startDate.valid } " inputClasses
+                id="grid-startdate"
+                name="startDate"
+                placeholder="Start date"
+                required
+                type="datetime-local">
+            <p *ngIf="startDate.errors != null" formFeedback>Please fill out this
                 field.</p>
         </div>
         <div class="w-full md:w-1/2 px-3">
-            <label class="block uppercase tracking-wide text-light-secondary text-xs font-bold mb-2"
-                   for="grid-enddate">
+            <label for="grid-enddate"
+                   formLabel>
                 End date
             </label>
             <input
-                class="appearance-none block w-full bg-gray-200 text-light-secondary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-enddate" type="datetime-local" placeholder="End date"
-                required
-                name="endDate"
                 #endDate="ngModel"
-                [(ngModel)]="newEvent.endDateTime"
-                [ngClass]="{'is-invalid': (endDate.touched || endDate.dirty) && !endDate.valid}">
-            <p *ngIf="endDate.errors != null" class="text-light-secondary px-3 text-xs italic">
+                [(ngModel)]="newEvent.endDateTime" [ngClass]="{'is-invalid': (endDate.touched || endDate.dirty) && !endDate.valid}" inputClasses
+                id="grid-enddate"
+                name="endDate"
+                placeholder="End date"
+                required
+                type="datetime-local">
+            <p *ngIf="endDate.errors != null" formFeedback>
                 Please fill out this field.
             </p>
         </div>
     </div>
     <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label class="block uppercase tracking-wide text-light-secondary text-xs font-bold mb-2"
-                   for="grid-entrancestartdate">
+            <label for="grid-entrancestartdate"
+                   formLabel>
                 Entrance Start date
             </label>
             <input
-                class="appearance-none block w-full bg-gray-200 text-light-secondary border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                id="grid-entrancestartdate" type="datetime-local" placeholder="Entrance start date"
-                required
-                name="entranceStartDate"
                 #entranceStartDate="ngModel"
-                [(ngModel)]="newEvent.entranceStartTime"
-                [ngClass]="{'is-invalid': (entranceStartDate.touched || entranceStartDate.dirty) && !entranceStartDate.valid } ">
-            <p *ngIf="entranceStartDate.errors != null" class="text-light-secondary px-3 text-xs italic">
+                [(ngModel)]="newEvent.entranceStartTime" [ngClass]="{'is-invalid': (entranceStartDate.touched || entranceStartDate.dirty) && !entranceStartDate.valid } " inputClasses
+                id="grid-entrancestartdate"
+                name="entranceStartDate"
+                placeholder="Entrance start date"
+                required
+                type="datetime-local">
+            <p *ngIf="entranceStartDate.errors != null" formFeedback>
                 Please fill out this field.
             </p>
         </div>
         <div class="w-full md:w-1/2 px-3">
-            <label class="block uppercase tracking-wide text-light-secondary text-xs font-bold mb-2"
-                   for="grid-entranceenddate">
+            <label for="grid-entranceenddate"
+                   formLabel>
                 Entrance End date
             </label>
             <input
-                class="appearance-none block w-full bg-gray-200 text-light-secondary border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-entranceenddate" type="datetime-local" placeholder="Entrance end date"
-                required
-                name="entranceEndDate"
                 #entranceEndDate="ngModel"
-                [(ngModel)]="newEvent.entranceEndTime"
-                [ngClass]="{'is-invalid': (entranceEndDate.touched || entranceEndDate.dirty) && !entranceEndDate.valid}">
-            <p *ngIf="entranceEndDate.errors != null" class="text-light-secondary px-3 text-xs italic">
+                [(ngModel)]="newEvent.entranceEndTime" [ngClass]="{'is-invalid': (entranceEndDate.touched || entranceEndDate.dirty) && !entranceEndDate.valid}" inputClasses
+                id="grid-entranceenddate"
+                name="entranceEndDate"
+                placeholder="Entrance end date"
+                required
+                type="datetime-local">
+            <p *ngIf="entranceEndDate.errors != null" formFeedback>
                 Please fill out this field.
             </p>
         </div>
     </div>
     <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full md:w-2/3 px-3 mb-6 md:mb-0">
-            <label class="block uppercase tracking-wide text-xs font-bold mb-2 text-red"
+            <label formLabel class="text-red"
                    for="grid-registrationend">
                 Registration End Time
             </label>
             <input
-                class="appearance-none block w-full bg-gray-200 text-light-secondary border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                id="grid-registrationend" type="datetime-local" placeholder="Registration end time"
-                required
-                name="entranceStartDate"
                 #registrationEndTime="ngModel"
-                [(ngModel)]="newEvent.registrationEndTime"
-                [ngClass]="{'is-invalid': (registrationEndTime.touched || registrationEndTime.dirty) &&
-                    !registrationEndTime.valid || registrationEndTime.value < now() } ">
-            <p *ngIf="registrationEndTime.errors != null" class="text-light-secondary px-3 text-xs italic">
+                [(ngModel)]="newEvent.registrationEndTime" [ngClass]="{'is-invalid': (registrationEndTime.touched || registrationEndTime.dirty) &&
+                    !registrationEndTime.valid || registrationEndTime.value < now() } " inputClasses
+                id="grid-registrationend"
+                name="entranceStartDate"
+                placeholder="Registration end time"
+                required
+                type="datetime-local">
+            <p *ngIf="registrationEndTime.errors != null" formFeedback>
                 Please fill out this field.
             </p>
         </div>
         <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-            <label class="block uppercase tracking-wide text-xs font-bold mb-2 text-light-secondary"
+            <label formLabel
                    for="grid-attendeelimit">
                 Attendee limit
             </label>
             <input
-                class="appearance-none block w-full bg-gray-200 text-light-secondary border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                id="grid-attendeelimit" type="number" value="10"
-                required
-                name="attendeeLimit"
                 #attendeeLimit="ngModel"
-                [(ngModel)]="newEvent.attendeeLimit"
-                [ngClass]="{'is-invalid': (attendeeLimit.touched || attendeeLimit.dirty) && !attendeeLimit.valid } ">
-            <p *ngIf="attendeeLimit.errors != null" class="text-light-secondary px-3 text-xs italic">
+                [(ngModel)]="newEvent.attendeeLimit" [ngClass]="{'is-invalid': (attendeeLimit.touched || attendeeLimit.dirty) && !attendeeLimit.valid } " inputClasses
+                id="grid-attendeelimit"
+                name="attendeeLimit"
+                required
+                type="number"
+                value="10">
+            <p *ngIf="attendeeLimit.errors != null" formFeedback>
                 Please fill out this field.
             </p>
         </div>
     </div>
 
     <div class="flex flex-col flex-wrap -mx-3 mb-6 justify-center">
-        <label class=" uppercase tracking-wide text-xs font-bold px-3 mb-6 text-light-secondary"
+        <label formLabel
                for="grid-image">
             Event image
         </label>
         <input
+            (change)="onselectFile($event)"
+            [(ngModel)]="newEvent.image"
+            accept="image/*"
             class="px-3 mb-6"
             id="grid-image"
-            type="file"
             name="file"
-            accept="image/*"
-            (change)="onselectFile($event)"
-            [(ngModel)]="newEvent.image">
+            type="file">
     </div>
 
     <div class="flex flex-wrap -mx-3 mb-6 justify-center">
-        <button type="submit"
+        <button [disabled]="!eventPublishForm.valid"
                 class="bg-light-primary text-light-secondary font-bold py-2 px-8 border border-blue-700 rounded"
-                [disabled]="!eventPublishForm.valid">
+                type="submit">
             Submit
         </button>
     </div>
     <div class="flex flex-wrap -mx-3 mb-6 justify-center">
-        <p *ngIf="!eventPublishForm.valid" class="text-light-secondary px-3 text-xs italic">
+        <p *ngIf="!eventPublishForm.valid" formFeedback>
             Your data is invalid! Please insert valid data!
         </p>
     </div>
