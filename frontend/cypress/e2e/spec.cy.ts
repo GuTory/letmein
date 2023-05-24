@@ -48,8 +48,8 @@ describe('log in and out', () => {
         cy.get('button[type="submit"]').click()
         cy.location('pathname').should('eq', '/')
         cy.window().then((win) => {
-            expect(win.localStorage.getItem('token')).to.exist
-            expect(win.localStorage.getItem('email')).to.exist
+            expect(win.sessionStorage.getItem('token')).to.exist
+            expect(win.sessionStorage.getItem('email')).to.exist
         })
     })
 })

@@ -43,8 +43,9 @@ export class AuthService {
      */
     public logout(): void {
         this.authorized = false;
-        localStorage.removeItem("token");
-        localStorage.removeItem("email");
+        sessionStorage.removeItem("token");
+
+        sessionStorage.removeItem("email");
     }
 
     /**
@@ -53,8 +54,8 @@ export class AuthService {
      * @param email
      */
     public setToken(token: string, email: string): void {
-        localStorage.setItem("token", token);
-        localStorage.setItem("email", email);
+        sessionStorage.setItem("token", token);
+        sessionStorage.setItem("email", email);
         this.authorized = true;
     }
 
@@ -62,7 +63,7 @@ export class AuthService {
      * Get the token from the local storage.
      */
     public getToken(): Token | undefined {
-        const token = localStorage.getItem("token");
+        const token = sessionStorage.getItem("token");
         if (token) {
             return {token: token};
         }
@@ -73,7 +74,7 @@ export class AuthService {
      * Get the email from the local storage.
      */
     public getEmail(): string | undefined {
-        const email = localStorage.getItem("email");
+        const email = sessionStorage.getItem("email");
         if (email) {
             return email;
         }

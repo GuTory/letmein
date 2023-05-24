@@ -18,8 +18,7 @@ import org.springframework.web.bind.annotation.*
 class ApplicationController(
     private val applicationService: ApplicationService,
     private val userService: UserService,
-    private val eventService: EventService,
-    private val jwtService: JwtService
+    private val eventService: EventService
 ) {
     @PostMapping("/")
     fun createApplication(@RequestBody application: ApplicationDTO): ResponseEntity<ApplicationResponse> {
