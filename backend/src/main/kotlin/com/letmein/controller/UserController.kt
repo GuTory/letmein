@@ -1,7 +1,7 @@
 package com.letmein.controller
 
-import com.letmein.dto.AuthenticationResponse
 import com.letmein.auth.AuthenticationService
+import com.letmein.dto.AuthenticationResponse
 import com.letmein.dto.RegistrationRequest
 import com.letmein.model.User
 import com.letmein.service.UserService

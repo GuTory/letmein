@@ -1,11 +1,7 @@
 package com.letmein.handler
 
-import com.letmein.dto.ApplicationDTO
-import com.letmein.model.User
-import com.letmein.service.ApplicationService
-import com.letmein.service.UserService
 import com.google.gson.Gson
-import org.springframework.boot.json.GsonJsonParser
+import com.letmein.dto.ApplicationDTO
 import org.springframework.stereotype.Component
 import org.springframework.web.socket.CloseStatus
 import org.springframework.web.socket.WebSocketHandler
