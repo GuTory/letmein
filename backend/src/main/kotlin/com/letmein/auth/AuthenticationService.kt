@@ -3,8 +3,8 @@ package com.letmein.auth
 import com.letmein.dto.AuthenticationRequest
 import com.letmein.dto.AuthenticationResponse
 import com.letmein.dto.RegistrationRequest
-import com.letmein.model.User
 import com.letmein.jwt.JwtService
+import com.letmein.model.User
 import com.letmein.service.UserService
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken

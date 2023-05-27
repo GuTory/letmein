@@ -6,10 +6,6 @@ import com.letmein.model.User
 import com.letmein.repository.ApplicationRepository
 import com.letmein.repository.EventRepository
 import org.springframework.stereotype.Service
-import java.io.ByteArrayInputStream
-import java.io.File
-import javax.imageio.ImageIO
-import javax.xml.bind.DatatypeConverter.parseBase64Binary
 
 
 @Service

@@ -21,6 +21,9 @@ import {HeaderInterceptor} from './auth/header.interceptor';
 import {EventDetailsComponent} from './components/event-details/event-details.component';
 import {LandingPageComponent} from './components/landing-page/landing-page.component';
 import {NgOptimizedImage} from "@angular/common";
+import {FormLabelDirective} from './metadata/form-label.directive';
+import { FormFeedbackDirective } from './metadata/form-feedback.directive';
+import { InputClassesDirective } from './metadata/input-classes.directive';
 
 /**
  * The app module.
@@ -41,6 +44,9 @@ import {NgOptimizedImage} from "@angular/common";
         LoginFormComponent,
         EventDetailsComponent,
         LandingPageComponent,
+        FormLabelDirective,
+        FormFeedbackDirective,
+        InputClassesDirective,
 
     ],
     imports: [

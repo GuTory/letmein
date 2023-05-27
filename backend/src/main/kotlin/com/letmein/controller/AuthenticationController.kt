@@ -1,9 +1,9 @@
 package com.letmein.controller
 
-import com.letmein.dto.AuthenticationResponse
-import com.letmein.dto.AuthenticationRequest
-import com.letmein.dto.RegistrationRequest
 import com.letmein.auth.AuthenticationService
+import com.letmein.dto.AuthenticationRequest
+import com.letmein.dto.AuthenticationResponse
+import com.letmein.dto.RegistrationRequest
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping

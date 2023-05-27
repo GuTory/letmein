@@ -2,7 +2,6 @@ package com.letmein.controller
 
 import com.letmein.dto.ApplicationDTO
 import com.letmein.dto.ApplicationResponse
-import com.letmein.jwt.JwtService
 import com.letmein.model.Application
 import com.letmein.model.Event
 import com.letmein.model.User
@@ -18,8 +17,7 @@ import org.springframework.web.bind.annotation.*
 class ApplicationController(
     private val applicationService: ApplicationService,
     private val userService: UserService,
-    private val eventService: EventService,
-    private val jwtService: JwtService
+    private val eventService: EventService
 ) {
     @PostMapping("/")
     fun createApplication(@RequestBody application: ApplicationDTO): ResponseEntity<ApplicationResponse> {
