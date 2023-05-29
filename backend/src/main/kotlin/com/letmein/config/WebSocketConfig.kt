@@ -15,5 +15,4 @@ class WebSocketConfig(
         registry.addHandler(webSocketHandler, "/websocket")
             .setAllowedOrigins("*")
     }
-
 }

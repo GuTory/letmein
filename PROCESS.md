@@ -67,15 +67,31 @@ Készítem az esemény részleteit megjelenítő felületét, ahol az alkalmazá
 
 ## Kilencedik hét
 
+EventDetails komponens kidolgozása, child route-okkal való ismerkedés
 
+## Tizedik hét
 
-| Hét    | Téma                                                                                   | Munkaóra |
-|--------|----------------------------------------------------------------------------------------|----------|
-| 1. hét | Backend frontend demó                                                                  | ~10      |
-| 2. hét | Valós projekt inicializálás                                                            | ~6       |
-| 3. hét | Figma mocupok és backend építése                                                       | ~12      |
-| 5. hét | Angular alapok                                                                         | ~9       |
-| 6. hét | Angular komponenesek és backend fixek                                                  | ~10      |
-| 7. hét | Formok és JWT autentikáció                                                             | ~15      |
-| 8. hét | Frontend finomítás, további komponensek és formok, kommunikáció és funkciók tesztelése | ~15      |
+Websocket kommunikáció utánjárás a backend oldalon. Túl sok dokumentáció szól a STOMP-ról, így sok idő jó irányba menni
+
+## Tizenegyedik hét
+
+Websocket kommunikáció megoldása, refaktorálások és kiszervezések. Clean code elvek követése. Stílusok kiszervezése direktívákba
+
+## Tizenkettedik hét
+
+Websocket bug javítás és end to end tesztelés Cypressben
+
+| Hét     | Téma                                                                                   | óraszám |
+|---------|----------------------------------------------------------------------------------------|---------|
+| 1. hét  | Backend frontend demó                                                                  | ~10     |
+| 2. hét  | Valós projekt inicializálás                                                            | ~6      |
+| 3. hét  | Figma mocupok és backend építése                                                       | ~12     |
+| 5. hét  | Angular alapok                                                                         | ~9      |
+| 6. hét  | Angular komponenesek és backend fixek                                                  | ~10     |
+| 7. hét  | Formok és JWT autentikáció                                                             | ~15     |
+| 8. hét  | Frontend finomítás, további komponensek és formok, kommunikáció és funkciók tesztelése | ~15     |
+| 9. hét  | Event details komponens, jelentkezés eventekre                                         | ~15     |
+| 10. hét | Websocket kommunikáció, jelentkezés és lemondás                                        | ~10     |
+| 11. hét | Websocket kommunikáció                                                                 | ~12     |
+| 12. hét | e2e tesztelés                                                                          | ~10     |
 
