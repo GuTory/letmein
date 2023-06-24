@@ -6,43 +6,42 @@ import org.springframework.data.mongodb.core.mapping.Document
 import java.time.Duration
 import java.time.LocalDateTime
 
-//TODO: add picture field
 @Document("events")
 data class Event(
-    var Name: String,
+    var name: String,
 
-    var StartDateTime: LocalDateTime,
+    var startDateTime: LocalDateTime,
 
-    var EndDatetime: LocalDateTime,
+    var endDatetime: LocalDateTime,
 
-    var EntranceStartTime: LocalDateTime,
+    var entranceStartTime: LocalDateTime,
 
-    var EntranceEndTime: LocalDateTime,
+    var entranceEndTime: LocalDateTime,
 
-    var RegistrationEndTime: LocalDateTime,
+    var registrationEndTime: LocalDateTime,
 
-    var Venue: String,
+    var venue: String,
 
-    var Description: String,
+    var description: String,
 
-    var AttendeeLimit: Int,
+    var attendeeLimit: Int,
 ) {
     @Id
     lateinit var id: String
 
-    var DurationInHours: Duration = Duration.between(
-        StartDateTime,
-        EndDatetime)
+    var durationInHours: Duration = Duration.between(
+        startDateTime,
+        endDatetime)
 
     var imagePath: String? = ""
 
     @DBRef(lazy = true)
-    var Attendees: MutableSet<User> = HashSet()
+    var attendees: MutableSet<User> = HashSet()
 
     @DBRef
-    var Organizers: MutableSet<User> = HashSet()
+    var organizers: MutableSet<User> = HashSet()
 
-    fun CanRegister(): Boolean {
-        return (LocalDateTime.now() < RegistrationEndTime) && (Attendees.size < AttendeeLimit)
+    fun canRegister(): Boolean {
+        return (LocalDateTime.now() < registrationEndTime) && (attendees.size < attendeeLimit)
     }
 }

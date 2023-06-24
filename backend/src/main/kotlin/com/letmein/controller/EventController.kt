@@ -34,15 +34,15 @@ class EventController (
         return try {
             val eventToUpdate = eventService.getEventById(event.id).get()
             eventToUpdate.let {
-                it.Name = event.Name
-                it.StartDateTime = event.StartDateTime
-                it.EndDatetime = event.EndDatetime
-                it.EntranceStartTime = event.EntranceStartTime
-                it.EntranceEndTime = event.EntranceEndTime
-                it.RegistrationEndTime = event.RegistrationEndTime
-                it.Venue = event.Venue
-                it.Description = event.Description
-                it.AttendeeLimit = event.AttendeeLimit
+                it.name = event.name
+                it.startDateTime = event.startDateTime
+                it.endDatetime = event.endDatetime
+                it.entranceStartTime = event.entranceStartTime
+                it.entranceEndTime = event.entranceEndTime
+                it.registrationEndTime = event.registrationEndTime
+                it.venue = event.venue
+                it.description = event.description
+                it.attendeeLimit = event.attendeeLimit
             }
             ResponseEntity.ok().build()
         } catch (e: Exception) {

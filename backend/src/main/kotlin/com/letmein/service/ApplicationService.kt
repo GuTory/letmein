@@ -22,7 +22,7 @@ class ApplicationService(
             application.status,
             application.paymentmethod
         )
-        event.Attendees.add(user)
+        event.attendees.add(user)
         user.applications.add(newApplication)
         applicationRepository.save(newApplication)
         eventService.updateEvent(event)
@@ -34,12 +34,12 @@ class ApplicationService(
         println("deleting application")
         val applications = applicationRepository.findAll()
         applications.forEach {app ->
-            if(app.Event.id == application.eventId && app.User.email == application.username){
-                app.Event.Attendees.remove(app.User)
-                app.User.applications.remove(app)
-                eventService.updateEvent(app.Event)
+            if(app.event.id == application.eventId && app.user.email == application.username){
+                app.event.attendees.remove(app.user)
+                app.user.applications.remove(app)
+                eventService.updateEvent(app.event)
                 println("event updated")
-                userService.saveUser(app.User)
+                userService.saveUser(app.user)
                 applicationRepository.deleteById(app.id)
             }
         }

@@ -28,12 +28,12 @@ class ApplicationController(
                 ApplicationResponse("Event or user does not exist", false),
                 HttpStatus.BAD_REQUEST)
 
-        if (!event.get().CanRegister())
+        if (!event.get().canRegister())
             return ResponseEntity(
                 ApplicationResponse("User cannot register. Application is closed.", false),
                 HttpStatus.FORBIDDEN)
 
-        if (event.get().Attendees.contains(user.get()))
+        if (event.get().attendees.contains(user.get()))
             return ResponseEntity(
                 ApplicationResponse("User Already applied", false),
                 HttpStatus.CONFLICT)
