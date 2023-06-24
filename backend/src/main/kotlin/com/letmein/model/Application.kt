@@ -9,14 +9,14 @@ import java.time.LocalDateTime
 data class Application(
 
     @DBRef
-    var Event: Event,
+    var event: Event,
 
     @DBRef
-    var User: User,
+    var user: User,
 
-    var Status: String,
+    var status: String,
 
-    var PaymentMethod: String,
+    var paymentMethod: String,
 ) {
 
     @Id
@@ -24,5 +24,5 @@ data class Application(
 
     var applicationDate: LocalDateTime = LocalDateTime.now()
 
-    var eventName: String = Event.Name
+    var eventName: String = event.name
 }

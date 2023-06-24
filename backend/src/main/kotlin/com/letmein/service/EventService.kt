@@ -19,14 +19,14 @@ class EventService(
         val event = eventRepository.findById(id)
         if (event.isEmpty) return
 
-        event.get().Attendees.forEach { user ->
-            user.applications.removeIf { it.Event == event.get() }
+        event.get().attendees.forEach { user ->
+            user.applications.removeIf { it.event == event.get() }
             user.favoriteEvents?.remove(event.get())
             user.attendedEvents.remove(event.get())
             userService.updateUser(user)
         }
         applicationRepository.findAll().forEach {
-            if (it.Event == event.get())
+            if (it.event == event.get())
                 applicationRepository.deleteById(it.id)
         }
         imageService.deleteImage(event.get().imagePath ?: "")
@@ -35,17 +35,17 @@ class EventService(
 
     fun saveEvent(event: EventDTO, publisher: User) {
         val newEvent = Event(
-            Name = event.name,
-            StartDateTime = event.startDateTime,
-            EndDatetime = event.endDateTime,
-            EntranceStartTime = event.entranceStartTime,
-            EntranceEndTime = event.entranceEndTime,
-            RegistrationEndTime = event.registrationEndTime,
-            Venue = event.venue,
-            Description = event.description,
-            AttendeeLimit = event.attendeeLimit
+            name = event.name,
+            startDateTime = event.startDateTime,
+            endDatetime = event.endDateTime,
+            entranceStartTime = event.entranceStartTime,
+            entranceEndTime = event.entranceEndTime,
+            registrationEndTime = event.registrationEndTime,
+            venue = event.venue,
+            description = event.description,
+            attendeeLimit = event.attendeeLimit
         )
-        newEvent.Organizers.add(publisher)
+        newEvent.organizers.add(publisher)
         if (event.image != null) {
             try {
                 newEvent.imagePath = imageService.saveImage(

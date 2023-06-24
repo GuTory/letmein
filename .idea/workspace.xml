@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b1ccff1-8d54-41cc-9ad4-423ff86345c3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/test/kotlin/com/letmein/controller/AuthenticationControllerTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/kotlin/com/letmein/controller/ApplicationController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/kotlin/com/letmein/controller/ApplicationController.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,6 +107,8 @@
       <workItem from="1684348673858" duration="53000" />
       <workItem from="1684955626574" duration="11000" />
       <workItem from="1684957861384" duration="3000" />
+      <workItem from="1685801778958" duration="1593000" />
+      <workItem from="1685830954413" duration="13000" />
     </task>
     <servers />
   </component>
